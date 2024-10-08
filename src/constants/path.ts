@@ -20,6 +20,7 @@ export const API_PATH = {
     GET_ACCESS_TOKEN: API_BASE_URL + `/oauth2/kakao`,
     GET_REFRESH_ACCESS_TOKEN: API_BASE_URL + `/api/v1/auth/tokens`,
     GET_PROFILES: API_BASE_URL + `/api/v1/profiles`,
+    SET_PUSH_ALARM: API_BASE_URL + `/api/v1/notifications/tokens`,
   },
   CHAT: {
     PARTICIPATION: API_BASE_URL + `/api/v1/participation`,
