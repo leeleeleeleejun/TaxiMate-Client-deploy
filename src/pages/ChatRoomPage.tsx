@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { GroupMessage } from '@/types/chat.ts';
 import { CLIENT_PATH } from '@/constants/path.ts';
@@ -25,6 +25,7 @@ import {
 
 import ArrowLeftIcon from '@/assets/icons/arrow-left-icon.svg?react';
 import ArrowRightIcon from '@/assets/icons/arrow-right-icon.svg?react';
+import Container from '@/components/common/Layout/Layout.style.ts';
 
 const ChatRoomPage = ({
   sendMessage,
@@ -35,6 +36,8 @@ const ChatRoomPage = ({
 }) => {
   const navigate = useNavigate();
   const currentPartyId = useLocation().pathname.split('/')[2];
+  const divRef = useRef<HTMLDivElement>(null);
+
   const { data: userData, isLoading } = useGetProfileQuery(null);
   const { data: chatData, isLoading: chatIsLoading } =
     useGetChatQuery(currentPartyId);
@@ -47,11 +50,6 @@ const ChatRoomPage = ({
   const [initialChatMessage, setInitialChatMessage] = useState<GroupMessage[]>(
     []
   );
-
-  useEffect(() => {
-    console.log(chatData);
-    console.log(initialChatMessage);
-  }, [initialChatMessage]);
 
   useEffect(() => {
     if (!chatData) return;
@@ -90,11 +88,25 @@ const ChatRoomPage = ({
     setInitialChatMessage(array);
   }, [chatData]);
 
+  useEffect(() => {
+    const handleVisualViewPortResize = () => {
+      const currentVisualViewport = Number(window.visualViewport?.height);
+      if (divRef) {
+        divRef.current!.style.height = `${currentVisualViewport}px`;
+        window.scrollTo(0, 10);
+      }
+    };
+
+    if (window.visualViewport) {
+      window.visualViewport.onresize = handleVisualViewPortResize;
+    }
+  }, []);
+
   if (isLoading || chatIsLoading) return <div>Loading...</div>;
   if (!userData || !chatData) return <div>no data...</div>;
 
   return (
-    <>
+    <Container ref={divRef}>
       {notification && (
         <InAppNotification
           id={notification.id}
@@ -166,7 +178,7 @@ const ChatRoomPage = ({
         )}
       </MessageList>
       <MessageInputBox sendMessage={sendMessage} partyId={currentPartyId} />
-    </>
+    </Container>
   );
 };
 
