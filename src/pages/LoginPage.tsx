@@ -9,10 +9,7 @@ const LoginPage = () => {
       <div>공주대학교</div>
       <span>택시팟</span>
       <LoginButton onClick={getKakaoInga}>
-        <img
-          src={'src/assets/icons/login/kakao-login.png'}
-          alt={'kakao-login-button'}
-        />
+        <img src={'/kakao-login.png'} alt={'kakao-login-button'} />
       </LoginButton>
     </IconWrap>
   );
