@@ -91,15 +91,31 @@ const ChatRoomPage = ({
   useEffect(() => {
     const handleVisualViewPortResize = () => {
       const currentVisualViewport = Number(window.visualViewport?.height);
-      if (divRef) {
-        divRef.current!.style.height = `${currentVisualViewport}px`;
-        window.scrollTo(0, 10);
+      if (divRef.current) {
+        divRef.current.style.height = `${currentVisualViewport}px`;
+        // 스크롤 조정에 약간의 지연을 추가
+        setTimeout(() => {
+          window.scrollTo(0, 10);
+        }, 0);
       }
     };
 
     if (window.visualViewport) {
-      window.visualViewport.onresize = handleVisualViewPortResize;
+      window.visualViewport.addEventListener(
+        'resize',
+        handleVisualViewPortResize
+      );
     }
+
+    // 컴포넌트 언마운트 시 이벤트 해제
+    return () => {
+      if (window.visualViewport) {
+        window.visualViewport.removeEventListener(
+          'resize',
+          handleVisualViewPortResize
+        );
+      }
+    };
   }, []);
 
   if (isLoading || chatIsLoading) return <div>Loading...</div>;
