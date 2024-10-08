@@ -6,6 +6,7 @@ export const PeopleCountTagContainer = styled.div<{
 }>`
   display: flex;
   align-items: center;
+  white-space: nowrap;
 
   padding: 5px 8px;
 
