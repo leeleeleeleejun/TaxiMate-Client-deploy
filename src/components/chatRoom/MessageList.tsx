@@ -145,8 +145,9 @@ const chatHandler = (
       const isSameUser = lastMessage.sender?.id === message.sender.id;
       const isSameTime =
         lastMessage.createdAt.slice(0, 16) === message.createdAt?.slice(0, 16);
+      const isSameType = lastMessage.type === message.type;
 
-      if (isSameUser && isSameTime) {
+      if (isSameType && isSameUser && isSameTime) {
         const updatedMessage = {
           ...lastMessage,
           chat: [...lastMessage.chat, ...setMessage.chat],

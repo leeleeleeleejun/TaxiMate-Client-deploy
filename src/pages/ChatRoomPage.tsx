@@ -49,6 +49,7 @@ const ChatRoomPage = ({
   );
 
   useEffect(() => {
+    console.log(chatData);
     console.log(initialChatMessage);
   }, [initialChatMessage]);
 
@@ -75,8 +76,9 @@ const ChatRoomPage = ({
       const isSameUser = lastMessage.sender?.id === message.sender?.id;
       const isSameTime =
         lastMessage.createdAt.slice(0, 16) === message.createdAt?.slice(0, 16);
+      const isSameType = lastMessage.type === message.type;
 
-      if (isSameUser && isSameTime) {
+      if (isSameType && isSameUser && isSameTime) {
         // 이전 메시지와 같은 유저, 같은 시간대의 메시지라면 chat 배열에 추가
         lastMessage.chat.push(message.message);
       } else {
