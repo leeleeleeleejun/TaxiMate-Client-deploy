@@ -19,7 +19,7 @@ const InAppNotificationLayout = () => {
 
   return (
     <>
-      {notification && (
+      {showNotification && notification && (
         <InAppNotification
           setShowNotification={() => {
             setShowNotification(false);
