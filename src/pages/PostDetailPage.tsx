@@ -22,6 +22,7 @@ import UserContainer from '@/components/common/UserContainer';
 import * as S from '@/components/PostDetail/PostDetail.style';
 
 import ArrowLeftIcon from '@/assets/icons/arrow-left-icon.svg?react';
+import LoadingIcon from '@/components/common/LoadingIcon';
 
 const PostDetailPage = () => {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ const PostDetailPage = () => {
 
   useErrorHandle(leaveChatError);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <LoadingIcon />;
   if (!data) return <div>no data...</div>;
 
   const participationChatHandler = async () => {
@@ -44,8 +45,7 @@ const PostDetailPage = () => {
       return navigate('/login');
     }
     if (data.status !== 'PARTICIPATING') {
-      const result = await participationChat(data.id).unwrap();
-      alert(result.message);
+      await participationChat(data.id).unwrap();
       refetch();
       goChatRoom();
     } else if (data.status === 'PARTICIPATING') {
@@ -55,8 +55,7 @@ const PostDetailPage = () => {
 
   const leaveChatHandler = async () => {
     if (data.status === 'PARTICIPATING') {
-      const result = await leaveChat(data.id).unwrap();
-      alert(result.message);
+      await leaveChat(data.id).unwrap();
       refetch();
     }
   };

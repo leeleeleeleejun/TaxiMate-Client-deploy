@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import {
   useGetAccessTokenQuery,
-  useSetPushAlarmMutation,
+  // useSetPushAlarmMutation,
 } from '@/api/localApi.ts';
 import { setIsLogin } from '@/components/myProfile/userSlice.ts';
 import { useEffect } from 'react';
@@ -14,21 +14,21 @@ const LoginLoadingPage = () => {
   const queryParams = new URLSearchParams(location.search);
   const code = queryParams.get('code') || '';
 
-  const [setPushAlarmTrigger] = useSetPushAlarmMutation();
+  // const [setPushAlarmTrigger] = useSetPushAlarmMutation();
   const { isLoading, isSuccess } = useGetAccessTokenQuery({ code: code });
-
-  useEffect(() => {
-    const handleMessage = (e: MessageEvent) => {
-      setPushAlarmTrigger(e.data);
-    };
-    window.addEventListener('message', handleMessage);
-  }, []);
+  //
+  // useEffect(() => {
+  //   const handleMessage = (e: MessageEvent) => {
+  //     setPushAlarmTrigger(e.data);
+  //   };
+  //   window.addEventListener('message', handleMessage);
+  // }, []);
 
   useEffect(() => {
     if (!isLoading) {
       if (isSuccess) {
         dispatch(setIsLogin(true));
-        window.ReactNativeWebView.postMessage('push_notification');
+        // window.ReactNativeWebView.postMessage('push_notification');
       }
       // 모든 작업이 완료된 후 네비게이션 수행
       navigate('/');

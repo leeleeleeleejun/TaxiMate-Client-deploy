@@ -34,7 +34,6 @@ const useCreatePost = (registerData: RegisterData) => {
       departureTime: formatDate,
     }).unwrap();
 
-    alert(result.message);
     navigate('/posts/' + result.data.partyId);
   };
 };

@@ -1,7 +1,7 @@
 import { API_PATH, CLIENT_PATH } from '@/constants/path.ts';
 
 const kakaoApiKey = import.meta.env.VITE_KAKAO_API;
-const localUrl = import.meta.env.VITE_API_LOCAL_URL;
+const localUrl = 'http://localhost:5173';
 const kakaoClient = import.meta.env.VITE_KAKAO_CLIENT_ID;
 
 export const getAddress = async (x: number, y: number) => {

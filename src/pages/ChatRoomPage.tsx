@@ -25,6 +25,7 @@ import {
 
 import ArrowLeftIcon from '@/assets/icons/arrow-left-icon.svg?react';
 import ArrowRightIcon from '@/assets/icons/arrow-right-icon.svg?react';
+import LoadingIcon from '@/components/common/LoadingIcon';
 
 const ChatRoomPage = ({
   sendMessage,
@@ -35,6 +36,7 @@ const ChatRoomPage = ({
 }) => {
   const navigate = useNavigate();
   const currentPartyId = useLocation().pathname.split('/')[2];
+
   const { data: userData, isLoading } = useGetProfileQuery(null);
   const { data: chatData, isLoading: chatIsLoading } =
     useGetChatQuery(currentPartyId);
@@ -47,10 +49,6 @@ const ChatRoomPage = ({
   const [initialChatMessage, setInitialChatMessage] = useState<GroupMessage[]>(
     []
   );
-
-  useEffect(() => {
-    console.log(initialChatMessage);
-  }, [initialChatMessage]);
 
   useEffect(() => {
     if (!chatData) return;
@@ -75,8 +73,9 @@ const ChatRoomPage = ({
       const isSameUser = lastMessage.sender?.id === message.sender?.id;
       const isSameTime =
         lastMessage.createdAt.slice(0, 16) === message.createdAt?.slice(0, 16);
+      const isSameType = lastMessage.type === message.type;
 
-      if (isSameUser && isSameTime) {
+      if (isSameType && isSameUser && isSameTime) {
         // 이전 메시지와 같은 유저, 같은 시간대의 메시지라면 chat 배열에 추가
         lastMessage.chat.push(message.message);
       } else {
@@ -88,7 +87,11 @@ const ChatRoomPage = ({
     setInitialChatMessage(array);
   }, [chatData]);
 
-  if (isLoading || chatIsLoading) return <div>Loading...</div>;
+  useEffect(() => {
+    console.log(initialChatMessage);
+  }, [initialChatMessage]);
+
+  if (isLoading || chatIsLoading) return <LoadingIcon />;
   if (!userData || !chatData) return <div>no data...</div>;
 
   return (
@@ -162,6 +165,12 @@ const ChatRoomPage = ({
             />
           )
         )}
+        <OthersMessageBox
+          name={'user'}
+          img={''}
+          messages={['안녕']}
+          time={'2024-10-10T22:24:11'}
+        />
       </MessageList>
       <MessageInputBox sendMessage={sendMessage} partyId={currentPartyId} />
     </>
