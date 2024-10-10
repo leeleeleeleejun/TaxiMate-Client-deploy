@@ -29,51 +29,6 @@ const MessageList = ({
   const [messageList, setMessageList] = useState<GroupMessage[]>([]);
   const [isVisible, setIsVisible] = useState(false);
   const [showUpButton, setShowUpButton] = useState(false);
-  const messageListRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    let previousHeight = window.visualViewport?.height || window.innerHeight;
-
-    const handleVisualViewPortResize = () => {
-      if (!messageListRef.current) return;
-
-      const currentHeight = window.visualViewport?.height || window.innerHeight;
-      const currentScrollTop = messageListRef.current.scrollTop;
-      const maxScrollTop =
-        messageListRef.current.scrollHeight -
-        messageListRef.current.clientHeight;
-
-      // 스크롤이 맨 아래에 있는지 여부 확인
-      const isAtBottom = currentScrollTop >= maxScrollTop;
-
-      if (isAtBottom) {
-        // 맨 아래에 있었다면, 키보드가 내려갈 때 다시 맨 아래로 스크롤
-        messageListRef.current.scrollTop =
-          messageListRef.current.scrollHeight -
-          messageListRef.current.clientHeight;
-      } else {
-        // 스크롤 위치를 높이 변화에 따라 보정
-        messageListRef.current.scrollTop += previousHeight - currentHeight;
-      }
-
-      // 이전 높이 갱신
-      previousHeight = currentHeight;
-    };
-
-    // 이벤트 리스너 추가
-    window.visualViewport?.addEventListener(
-      'resize',
-      handleVisualViewPortResize
-    );
-
-    return () => {
-      // 컴포넌트 언마운트 시 이벤트 리스너 제거
-      window.visualViewport?.removeEventListener(
-        'resize',
-        handleVisualViewPortResize
-      );
-    };
-  }, [messageListRef]);
 
   const handleNewMessage = (message: ChatMessage) => {
     if (message.partyId === Number(currentPartyId)) {
@@ -135,7 +90,7 @@ const MessageList = ({
 
   return (
     <>
-      <Container ref={messageListRef}>
+      <Container>
         1{children}2{children}3{children}4{children}5{children}6{children}7
         {children}8{children}9 {children}
         10{children}
