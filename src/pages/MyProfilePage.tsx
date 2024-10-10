@@ -10,10 +10,11 @@ import MenuItem from '@/components/myProfile/MenuItem.tsx';
 import FileIcon from '@/assets/icons/file-icon.svg?react';
 import NoticeIcon from '@/assets/icons/notice-icon.svg?react';
 import Toggle from '@/components/common/Toggle.tsx';
+import LoadingIcon from '@/components/common/LoadingIcon';
 
 const MyProfilePage = () => {
   const { data, isLoading } = useGetProfileQuery(null);
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <LoadingIcon />;
   if (!data) return <div>no data...</div>;
 
   return (

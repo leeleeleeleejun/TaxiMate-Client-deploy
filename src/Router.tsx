@@ -2,18 +2,11 @@ import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { CLIENT_PATH } from '@/constants/path.ts';
-
+import useStompClient from '@/hooks/useStompClient.ts';
+import AuthChecker from '@/AuthChecker.tsx';
 import Layout from '@/components/common/Layout';
-
-// import HomePage from '@/pages/HomePage';
-//import SearchPage from '@/pages/SearchPage.tsx';
-//import PostDetailPage from '@/pages/PostDetailPage.tsx';
-//import CreatePostPage from '@/pages/CreatePostPage';
-//import ChatListPage from '@/pages/ChatListPage.tsx';
-//import ChatRoomPage from '@/pages/ChatRoomPage.tsx';
-//import UsageHistoryPage from '@/pages/UsageHistoryPage.tsx';
-//import MyProfilePage from '@/pages/MyProfilePage.tsx';
-//import LoginPage from '@/pages/LoginPage.tsx';
+import LoadingIcon from '@/components/common/LoadingIcon';
+import InAppNotificationLayout from '@/components/common/InAppNotification/InAppNotificationLayout.tsx';
 
 const HomePage = lazy(() => import('@/pages/HomePage'));
 const SearchPage = lazy(() => import('@/pages/SearchPage'));
@@ -25,17 +18,13 @@ const UsageHistoryPage = lazy(() => import('@/pages/UsageHistoryPage'));
 const MyProfilePage = lazy(() => import('@/pages/MyProfilePage'));
 const LoginPage = lazy(() => import('@/pages/LoginPage'));
 const LoginLoadingPage = lazy(() => import('@/pages/LoginLoadingPage'));
-import LoadingPage from '@/pages/LoadingPage';
-import AuthChecker from '@/AuthChecker.tsx';
-import InAppNotificationLayout from '@/components/common/InAppNotification/InAppNotificationLayout.tsx';
-import useStompClient from '@/hooks/useStompClient.ts';
 
 const Router = () => {
   const client = useStompClient();
 
   return (
     <BrowserRouter>
-      <Suspense fallback={<LoadingPage />}>
+      <Suspense fallback={<LoadingIcon />}>
         <Routes>
           <Route element={<Layout />}>
             <Route element={<InAppNotificationLayout />}>
@@ -74,17 +63,17 @@ const Router = () => {
                 />
               </Route>
             </Route>
-          </Route>
-          <Route element={<AuthChecker />}>
-            <Route
-              path={CLIENT_PATH.CHAT_ROOM}
-              element={
-                <ChatRoomPage
-                  sendMessage={client.sendMessage}
-                  checkReceive={client.checkReceive}
-                />
-              }
-            />
+            <Route element={<AuthChecker />}>
+              <Route
+                path={CLIENT_PATH.CHAT_ROOM}
+                element={
+                  <ChatRoomPage
+                    sendMessage={client.sendMessage}
+                    checkReceive={client.checkReceive}
+                  />
+                }
+              />
+            </Route>
           </Route>
         </Routes>
       </Suspense>

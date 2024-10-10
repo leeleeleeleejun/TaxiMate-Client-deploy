@@ -8,11 +8,12 @@ import { HeaderItem } from '@/components/common/Layout/Header/Header.style.ts';
 import { Container, Divider } from '@/components/chatList/chatList.style.ts';
 
 import ChatIcon from '@/assets/icons/chat/chat-icon.svg?react';
+import LoadingIcon from '@/components/common/LoadingIcon';
 
 const ChatListPage = () => {
   const { data, isLoading } = useGetChatListQuery(null);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <LoadingIcon />;
   if (!data) return <div>no data...</div>;
 
   const progressChatRoom = data.filter((chat) => chat.isProgress);

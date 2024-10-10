@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { GroupMessage } from '@/types/chat.ts';
 import { CLIENT_PATH } from '@/constants/path.ts';
@@ -25,7 +25,7 @@ import {
 
 import ArrowLeftIcon from '@/assets/icons/arrow-left-icon.svg?react';
 import ArrowRightIcon from '@/assets/icons/arrow-right-icon.svg?react';
-import Container from '@/components/common/Layout/Layout.style.ts';
+import LoadingIcon from '@/components/common/LoadingIcon';
 
 const ChatRoomPage = ({
   sendMessage,
@@ -36,7 +36,6 @@ const ChatRoomPage = ({
 }) => {
   const navigate = useNavigate();
   const currentPartyId = useLocation().pathname.split('/')[2];
-  const divRef = useRef<HTMLDivElement>(null);
 
   const { data: userData, isLoading } = useGetProfileQuery(null);
   const { data: chatData, isLoading: chatIsLoading } =
@@ -88,11 +87,15 @@ const ChatRoomPage = ({
     setInitialChatMessage(array);
   }, [chatData]);
 
-  if (isLoading || chatIsLoading) return <div>Loading...</div>;
+  useEffect(() => {
+    console.log(initialChatMessage);
+  }, [initialChatMessage]);
+
+  if (isLoading || chatIsLoading) return <LoadingIcon />;
   if (!userData || !chatData) return <div>no data...</div>;
 
   return (
-    <Container ref={divRef}>
+    <>
       {notification && (
         <InAppNotification
           id={notification.id}
@@ -162,9 +165,15 @@ const ChatRoomPage = ({
             />
           )
         )}
+        <OthersMessageBox
+          name={'user'}
+          img={''}
+          messages={['안녕']}
+          time={'2024-10-10T22:24:11'}
+        />
       </MessageList>
       <MessageInputBox sendMessage={sendMessage} partyId={currentPartyId} />
-    </Container>
+    </>
   );
 };
 

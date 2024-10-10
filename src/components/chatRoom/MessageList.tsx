@@ -91,9 +91,7 @@ const MessageList = ({
   return (
     <>
       <Container>
-        1{children}2{children}3{children}4{children}5{children}6{children}7
-        {children}8{children}9 {children}
-        10{children}
+        {children}
         {messageList.map((message) =>
           message.type === 'SYSTEM' ? (
             message.chat.map((item) => <SystemMessage>{item}</SystemMessage>)

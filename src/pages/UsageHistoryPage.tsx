@@ -15,6 +15,7 @@ import { useGetClosePostsQuery, useGetJoinPostsQuery } from '@/api/localApi.ts';
 import PostListItem from '@/components/common/PostListItem';
 import reformatDate from '@/utils/reformatDate.ts';
 import NoData from '@/components/common/NoData.tsx';
+import LoadingIcon from '@/components/common/LoadingIcon';
 
 const UsageHistoryPage = () => {
   const [isActive, setIsActive] = useState('join');
@@ -25,7 +26,7 @@ const UsageHistoryPage = () => {
   const { data, isLoading } =
     isActive === 'join' ? getJoinPostsResult : getClosePostsResult;
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <LoadingIcon />;
 
   return (
     <>
