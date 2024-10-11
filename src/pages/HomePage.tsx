@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useLazyGetPostsQuery } from '@/api/localApi.ts';
 
+import getCurrentLocation from '@/utils/getCurrentlocation.ts';
+import reactNativePostMessage from '@/utils/reactNavtivePostMessage.ts';
+
 import Header from '@/components/common/Layout/Header';
 import { HeaderItem } from '@/components/common/Layout/Header/Header.style.ts';
 import Footer from '@/components/common/Layout/Footer';
@@ -10,11 +13,10 @@ import { Main } from '@/components/Home/Map/Map.style.ts';
 import SearchBar from '@/components/Home/SearchBar';
 import ResearchButton from '@/components/Home/ResearchButton';
 import MoveCurrentLocation from '@/components/Home/MoveCurrentLocation';
+import LoadingIcon from '@/components/common/LoadingIcon';
 
 import TaxiIcon from '@/assets/icons/header/taxi-icon.svg?react';
 import KnuLogoIcon from '@/assets/icons/header/knu-logo-icon.svg?react';
-import getCurrentLocation from '@/utils/getCurrentlocation.ts';
-import LoadingIcon from '@/components/common/LoadingIcon';
 
 const HomePage = () => {
   const [map, setMap] = useState<naver.maps.Map | null>(null);
@@ -64,7 +66,13 @@ const HomePage = () => {
           택시팟
           <TaxiIcon />
         </HeaderItem>
-        <KnuLogoIcon />
+        <button
+          onClick={() => {
+            reactNativePostMessage('like_knu');
+          }}
+        >
+          <KnuLogoIcon />
+        </button>
       </Header>
       <Main>
         <SearchBar path={'/search'} />
