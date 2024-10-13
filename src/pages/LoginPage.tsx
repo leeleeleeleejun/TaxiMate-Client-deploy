@@ -30,6 +30,11 @@ const IconWrap = styled.div`
 `;
 
 const LoginButton = styled.button`
+  width: 100%;
   position: fixed;
   bottom: 60px;
+
+  & > img {
+    margin: 0 auto;
+  }
 `;
