@@ -65,6 +65,7 @@ const baseQueryWithReauth: BaseQueryFn<
 // 배포 시 BASE URL 변경 필요
 export const localApi = createApi({
   reducerPath: 'localApi',
+  refetchOnFocus: true,
   baseQuery: baseQueryWithReauth,
   endpoints: (builder) => ({
     getPosts: builder.query<
