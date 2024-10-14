@@ -65,7 +65,7 @@ const baseQueryWithReauth: BaseQueryFn<
 // 배포 시 BASE URL 변경 필요
 export const localApi = createApi({
   reducerPath: 'localApi',
-  refetchOnFocus: true,
+  // refetchOnFocus: true,
   baseQuery: baseQueryWithReauth,
   endpoints: (builder) => ({
     getPosts: builder.query<
@@ -156,13 +156,13 @@ export const localApi = createApi({
       },
       keepUnusedDataFor: 0,
     }),
-    // setPushAlarm: builder.mutation<{ data: string }, string>({
-    //   query: (data: string) => ({
-    //     url: API_PATH.USER.SET_PUSH_ALARM,
-    //     method: 'POST',
-    //     body: data,
-    //   }),
-    // }),
+    setPushAlarm: builder.mutation<{ data: string }, string>({
+      query: (data: string) => ({
+        url: API_PATH.USER.SET_PUSH_ALARM,
+        method: 'POST',
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -180,5 +180,5 @@ export const {
   useGetProfileQuery,
   useGetChatListQuery,
   useGetChatQuery,
-  // useSetPushAlarmMutation,
+  useSetPushAlarmMutation,
 } = localApi;
