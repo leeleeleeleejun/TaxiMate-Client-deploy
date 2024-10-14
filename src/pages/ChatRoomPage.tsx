@@ -38,8 +38,10 @@ const ChatRoomPage = ({
   const currentPartyId = useLocation().pathname.split('/')[2];
 
   const { data: userData, isLoading } = useGetProfileQuery(null);
-  const { data: chatData, isLoading: chatIsLoading } =
-    useGetChatQuery(currentPartyId);
+  const { data: chatData, isLoading: chatIsLoading } = useGetChatQuery(
+    currentPartyId,
+    { refetchOnFocus: true }
+  );
   const {
     notification,
     showNotification,

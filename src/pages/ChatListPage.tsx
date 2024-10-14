@@ -11,7 +11,9 @@ import ChatIcon from '@/assets/icons/chat/chat-icon.svg?react';
 import LoadingIcon from '@/components/common/LoadingIcon';
 
 const ChatListPage = () => {
-  const { data, isLoading } = useGetChatListQuery(null);
+  const { data, isLoading } = useGetChatListQuery(null, {
+    refetchOnFocus: true,
+  });
 
   if (isLoading) return <LoadingIcon />;
   if (!data) return <div>no data...</div>;
