@@ -3,9 +3,9 @@ import { useGetChatListQuery } from '@/api/localApi.ts';
 import NoData from '@/components/common/NoData.tsx';
 import Header from '@/components/common/Layout/Header';
 import Footer from '@/components/common/Layout/Footer';
-import ChatListWrap from '@/components/chatList/ChatListWrap.tsx';
+import ChatListWrap from '@/components/ChatList/ChatListWrap.tsx';
 import { HeaderItem } from '@/components/common/Layout/Header/Header.style.ts';
-import { Container, Divider } from '@/components/chatList/chatList.style.ts';
+import { Container, Divider } from '@/components/ChatList/chatList.style.ts';
 
 import ChatIcon from '@/assets/icons/chat/chat-icon.svg?react';
 import LoadingIcon from '@/components/common/LoadingIcon';

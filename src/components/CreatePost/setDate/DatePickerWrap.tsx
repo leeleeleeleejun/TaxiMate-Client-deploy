@@ -1,4 +1,4 @@
-import { DatePickerContainer } from '@/components/CreatePost/setDate/SetDate.style.ts';
+import { DatePickerContainer } from '@/components/CreatePost/setDate/setDate.style.ts';
 import { DatePicker } from '@nextui-org/date-picker';
 import { ZonedDateTime } from '@internationalized/date';
 import { getLocalTimeZone, today } from '@internationalized/date';

@@ -9,7 +9,7 @@ import type {
   FetchArgs,
   FetchBaseQueryError,
 } from '@reduxjs/toolkit/query';
-import { setIsLogin } from '@/components/myProfile/userSlice.ts';
+import { setIsLogin } from '@/components/MyProfile/userSlice.ts';
 import { ChatList, ChatRoom } from '@/types/chat.ts';
 
 //const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;

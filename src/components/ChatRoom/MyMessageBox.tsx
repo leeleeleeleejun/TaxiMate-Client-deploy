@@ -4,7 +4,7 @@ import {
   MyMessageBoxContainer,
   MyMessageContainer,
   MyResentMessage,
-} from '@/components/chatRoom/chatRoom.style.ts';
+} from '@/components/ChatRoom/chatRoom.style.ts';
 import formatMongoDate from '@/utils/formatMongoDate.ts';
 
 const MyMessageBox = ({

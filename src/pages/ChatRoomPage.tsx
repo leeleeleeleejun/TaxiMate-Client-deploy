@@ -9,11 +9,11 @@ import useInAppNotificationHandler from '@/hooks/useInAppNotificationHandler.ts'
 import Header from '@/components/common/Layout/Header';
 import { PostBody } from '@/components/common/PostListItem';
 import PeopleCountTag from '@/components/common/PeopleCountTag';
-import MessageList from '@/components/chatRoom/MessageList.tsx';
-import MessageInputBox from '@/components/chatRoom/MessageInputBox.tsx';
+import MessageList from '@/components/ChatRoom/MessageList.tsx';
+import MessageInputBox from '@/components/ChatRoom/MessageInputBox.tsx';
 import InAppNotification from '@/components/common/InAppNotification';
-import MyMessageBox from '@/components/chatRoom/MyMessageBox.tsx';
-import OthersMessageBox from '@/components/chatRoom/OthersMessageBox.tsx';
+import MyMessageBox from '@/components/ChatRoom/MyMessageBox.tsx';
+import OthersMessageBox from '@/components/ChatRoom/OthersMessageBox.tsx';
 
 import { BackButton } from '@/components/common/Layout/Header/Header.style.ts';
 import {
@@ -21,7 +21,7 @@ import {
   NotificationHeader,
   RoomTitle,
   SystemMessage,
-} from '@/components/chatRoom/chatRoom.style.ts';
+} from '@/components/ChatRoom/chatRoom.style.ts';
 
 import ArrowLeftIcon from '@/assets/icons/arrow-left-icon.svg?react';
 import ArrowRightIcon from '@/assets/icons/arrow-right-icon.svg?react';

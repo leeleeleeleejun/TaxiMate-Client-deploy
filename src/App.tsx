@@ -5,7 +5,7 @@ import { NavermapsProvider } from 'react-naver-maps';
 //import { NextUIProvider } from '@nextui-org/system';
 import Router from '@/Router.tsx';
 import { useGetRefreshAccessTokenQuery } from '@/api/localApi.ts';
-import { setIsLogin } from '@/components/myProfile/userSlice.ts';
+import { setIsLogin } from '@/components/MyProfile/userSlice.ts';
 import GlobalStyle from '@/styles/GlobalStyle.ts';
 
 const naverMapApi = import.meta.env.VITE_NAVER_MAP_API;

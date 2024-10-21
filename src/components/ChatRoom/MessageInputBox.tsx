@@ -1,7 +1,7 @@
 import {
   MessageInput,
   MessageInputBoxContainer,
-} from '@/components/chatRoom/chatRoom.style.ts';
+} from '@/components/ChatRoom/chatRoom.style.ts';
 import { useRef, useState } from 'react';
 
 import ArrowUpIcon from '@/assets/icons/arrow-up-icon.svg?react';

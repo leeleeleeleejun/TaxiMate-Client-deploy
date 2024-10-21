@@ -7,7 +7,7 @@ import {
   ChatListItemHeader,
   MessageContent,
   MessageCounter,
-} from '@/components/chatList/chatList.style.ts';
+} from '@/components/ChatList/chatList.style.ts';
 import { ChatRoom } from '@/types/chat.ts';
 import reformatDetailDate from '@/utils/reformatDetailDate.ts';
 

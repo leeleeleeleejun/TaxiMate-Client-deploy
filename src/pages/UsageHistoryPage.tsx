@@ -7,7 +7,7 @@ import {
   ButtonContainer,
   Container,
   PostListContainer,
-} from '@/components/usageHistiory/usageHistory.style.ts';
+} from '@/components/UsageHistory/usageHistory.style.ts';
 
 import UsageHistoryIcon from '@/assets/icons/header/usage-history-icon.svg?react';
 import Footer from '@/components/common/Layout/Footer';

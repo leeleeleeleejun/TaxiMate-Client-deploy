@@ -4,7 +4,7 @@ import {
   useGetAccessTokenQuery,
   // useSetPushAlarmMutation,
 } from '@/api/localApi.ts';
-import { setIsLogin } from '@/components/myProfile/userSlice.ts';
+import { setIsLogin } from '@/components/MyProfile/userSlice.ts';
 import { useEffect } from 'react';
 
 const LoginLoadingPage = () => {

@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
-import { MessageContent } from '@/components/chatList/chatList.style.ts';
+import { MessageContent } from '@/components/ChatList/chatList.style.ts';
 import { Link } from 'react-router-dom';
 
 const slideDown = keyframes`

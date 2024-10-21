@@ -2,13 +2,13 @@ import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { ChatMessage, GroupMessage } from '@/types/chat.ts';
 import { useMessageSubscription } from '@/hooks/useMessageSubscription.ts';
 
-import MyMessageBox from '@/components/chatRoom/MyMessageBox.tsx';
-import OthersMessageBox from '@/components/chatRoom/OthersMessageBox.tsx';
+import MyMessageBox from '@/components/ChatRoom/MyMessageBox.tsx';
+import OthersMessageBox from '@/components/ChatRoom/OthersMessageBox.tsx';
 import {
   Container,
   SystemMessage,
-} from '@/components/chatRoom/chatRoom.style.ts';
-import GoNewMessageButton from '@/components/chatRoom/GoNewMessageButton.tsx';
+} from '@/components/ChatRoom/chatRoom.style.ts';
+import GoNewMessageButton from '@/components/ChatRoom/GoNewMessageButton.tsx';
 
 const MessageList = ({
   userId,

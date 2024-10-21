@@ -11,7 +11,7 @@ import TimePickerWrap from '@/components/CreatePost/setDate/TimePickerWrap.tsx';
 import {
   Container,
   DateStringContainer,
-} from '@/components/CreatePost/setDate/SetDate.style.ts';
+} from '@/components/CreatePost/setDate/setDate.style.ts';
 import { SubmitButton } from '@/components/CreatePost/createPost.style.ts';
 import checkDate from '@/utils/checkDate.ts';
 

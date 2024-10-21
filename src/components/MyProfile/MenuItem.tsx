@@ -1,4 +1,4 @@
-import { MenuItemContainer } from '@/components/myProfile/myProfile.style.ts';
+import { MenuItemContainer } from '@/components/MyProfile/myProfile.style.ts';
 import ArrowRightIcon from '@/assets/icons/arrow-right-icon.svg?react';
 import { ReactNode } from 'react';
 const MenuItem = ({
