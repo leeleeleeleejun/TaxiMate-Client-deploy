@@ -8,6 +8,8 @@ import ActiveMoveLocationIcon from '@/assets/icons/map/active-move-location-icon
 import NonActiveMoveLocationIcon from '@/assets/icons/map/non-active-move-location-icon.svg?react';
 import { Button } from '@/components/Home/MoveCurrentLocation/MoveCurrentLocation.style.ts';
 
+const windowHeight = window.innerHeight;
+
 const MoveCurrentLocation = ({
   map,
   activeButton,
@@ -23,7 +25,7 @@ const MoveCurrentLocation = ({
 
   useEffect(() => {
     if (activeMarker) {
-      setBottom(80);
+      setBottom(Math.floor(windowHeight * 0.2));
     }
   }, [activeMarker]);
 
@@ -70,8 +72,6 @@ const checkMax = (
   bottom: number,
   setIsMax: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
-  const windowHeight = window.innerHeight;
-
   if (bottom >= Math.floor(windowHeight * 0.9)) {
     setIsMax(true);
   } else {
