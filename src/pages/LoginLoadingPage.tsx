@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import {
   useGetAccessTokenQuery,
   // useSetPushAlarmMutation,
-} from '@/api/localApi.ts';
+} from '@/api/userApi';
 import { setIsLogin } from '@/components/MyProfile/userSlice.ts';
 import { useEffect } from 'react';
 

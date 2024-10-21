@@ -4,7 +4,7 @@ import { NavermapsProvider } from 'react-naver-maps';
 
 //import { NextUIProvider } from '@nextui-org/system';
 import Router from '@/Router.tsx';
-import { useGetRefreshAccessTokenQuery } from '@/api/localApi.ts';
+import { useGetRefreshAccessTokenQuery } from '@/api/userApi.ts';
 import { setIsLogin } from '@/components/MyProfile/userSlice.ts';
 import GlobalStyle from '@/styles/GlobalStyle.ts';
 

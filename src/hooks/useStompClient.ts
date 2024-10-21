@@ -3,7 +3,7 @@ import { Client } from '@stomp/stompjs';
 import { v4 as uuidv4 } from 'uuid';
 import SockJS from 'sockjs-client';
 
-import { accessToken } from '@/api/localApi.ts';
+import { getAccessToken } from '@/api/baseApi.ts';
 import { eventBus } from '@/utils/eventBus.ts';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
@@ -17,6 +17,7 @@ export const useStompClient = (): {
 } => {
   const clientRef = useRef<Client | null>(null);
   const isLogin = useSelector((state: RootState) => state.userSlice.isLogin);
+  const accessToken = getAccessToken();
 
   useEffect(() => {
     if (!isLogin) {

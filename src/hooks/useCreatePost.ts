@@ -2,7 +2,7 @@ import { RegisterData } from '@/types';
 import { useNavigate } from 'react-router-dom';
 import checkDate from '@/utils/checkDate.ts';
 import useErrorHandle from '@/hooks/useErrorHandle.ts';
-import { useCreatePostMutation } from '@/api/localApi.ts';
+import { useCreatePostMutation } from '@/api/postApi.ts';
 
 const useCreatePost = (registerData: RegisterData) => {
   const navigate = useNavigate();

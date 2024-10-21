@@ -1,4 +1,4 @@
-import { useGetChatListQuery } from '@/api/localApi.ts';
+import { useGetChatListQuery } from '@/api/chatApi.ts';
 
 import NoData from '@/components/common/NoData.tsx';
 import Header from '@/components/common/Layout/Header';

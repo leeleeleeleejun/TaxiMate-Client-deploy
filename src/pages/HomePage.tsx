@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLazyGetPostsQuery } from '@/api/localApi.ts';
+import { useLazyGetPostsQuery } from '@/api/postApi.ts';
 
 import getCurrentLocation from '@/utils/getCurrentlocation.ts';
 import reactNativePostMessage from '@/utils/reactNavtivePostMessage.ts';

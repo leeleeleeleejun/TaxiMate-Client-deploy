@@ -3,7 +3,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { GroupMessage } from '@/types/chat.ts';
 import { CLIENT_PATH } from '@/constants/path.ts';
 import reformatDate from '@/utils/reformatDate.ts';
-import { useGetChatQuery, useGetProfileQuery } from '@/api/localApi.ts';
+import { useGetChatQuery } from '@/api/chatApi.ts';
+import { useGetProfileQuery } from '@/api/userApi.ts';
 import useInAppNotificationHandler from '@/hooks/useInAppNotificationHandler.ts';
 
 import Header from '@/components/common/Layout/Header';

@@ -11,7 +11,7 @@ import {
 
 import UsageHistoryIcon from '@/assets/icons/header/usage-history-icon.svg?react';
 import Footer from '@/components/common/Layout/Footer';
-import { useGetClosePostsQuery, useGetJoinPostsQuery } from '@/api/localApi.ts';
+import { useGetClosePostsQuery, useGetJoinPostsQuery } from '@/api/postApi.ts';
 import PostListItem from '@/components/common/PostListItem';
 import reformatDate from '@/utils/reformatDate.ts';
 import NoData from '@/components/common/NoData.tsx';

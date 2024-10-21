@@ -3,11 +3,11 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import useErrorHandle from '@/hooks/useErrorHandle.ts';
 
+import { useGetPostByIdQuery } from '@/api/postApi.ts';
 import {
-  useGetPostByIdQuery,
   useLeaveChatMutation,
   useParticipationChatMutation,
-} from '@/api/localApi.ts';
+} from '@/api/chatApi.ts';
 import { CLIENT_PATH } from '@/constants/path.ts';
 import reformatDate from '@/utils/reformatDate.ts';
 import reformatDetailDate from '@/utils/reformatDetailDate.ts';
