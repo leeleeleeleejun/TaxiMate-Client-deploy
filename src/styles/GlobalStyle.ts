@@ -135,7 +135,7 @@ button {
 
 
 :root {
-  --rsbs-max-w: 400px;
+  --rsbs-max-w: 450px;
   --rsbs-ml: auto;
   --rsbs-mr: auto;
     
