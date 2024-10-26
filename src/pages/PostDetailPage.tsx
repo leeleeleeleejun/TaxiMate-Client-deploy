@@ -107,14 +107,14 @@ const PostDetailPage = () => {
         </S.ParticipantsBox>
         <S.ButtonBox>
           {checkStatus(data.status) ? (
-            <>
-              <S.JoinButton onClick={goChatRoom}>채팅방</S.JoinButton>
-              <S.LeaveButton onClick={leaveChatHandler}>나가기</S.LeaveButton>
-            </>
+            <S.JoinButton onClick={goChatRoom}>채팅방</S.JoinButton>
           ) : (
             <S.JoinButton onClick={participationChatHandler}>
               팟참여
             </S.JoinButton>
+          )}
+          {data.status === 'PARTICIPATING' && (
+            <S.LeaveButton onClick={leaveChatHandler}>나가기</S.LeaveButton>
           )}
         </S.ButtonBox>
       </S.PostDetailContainer>
