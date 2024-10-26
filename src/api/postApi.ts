@@ -29,12 +29,12 @@ const postApi = baseApi.injectEndpoints({
     getJoinPosts: builder.query<Post[], string>({
       query: () => API_PATH.POST.GET.JOIN_POSTS,
       transformResponse: (response: { data: Post[] }) => response.data,
-      keepUnusedDataFor: 0,
+      keepUnusedDataFor: 3,
     }),
     getClosePosts: builder.query<Post[], string>({
       query: () => API_PATH.POST.GET.CLOSE_POSTS,
       transformResponse: (response: { data: Post[] }) => response.data,
-      keepUnusedDataFor: 0,
+      keepUnusedDataFor: 3,
     }),
     createPost: builder.mutation<CreatePostRes, RegisterData>({
       query: (patch) => ({
