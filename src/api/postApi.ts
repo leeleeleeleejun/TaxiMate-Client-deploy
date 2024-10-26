@@ -24,7 +24,7 @@ const postApi = baseApi.injectEndpoints({
     getPostById: builder.query<PostDetail, string>({
       query: (id) => API_PATH.POST.GET.BY_ID.replace(':partyId', id),
       transformResponse: (response: { data: PostDetail }) => response.data,
-      keepUnusedDataFor: 5,
+      keepUnusedDataFor: 1,
     }),
     getJoinPosts: builder.query<Post[], string>({
       query: () => API_PATH.POST.GET.JOIN_POSTS,

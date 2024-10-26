@@ -44,20 +44,17 @@ const PostDetailPage = () => {
     if (!isLogin) {
       return navigate('/login');
     }
-    if (data.status !== 'PARTICIPATING') {
+    try {
       await participationChat(data.id).unwrap();
+      goChatRoom();
+    } catch {
       refetch();
-      goChatRoom();
-    } else if (data.status === 'PARTICIPATING') {
-      goChatRoom();
     }
   };
 
   const leaveChatHandler = async () => {
-    if (data.status === 'PARTICIPATING') {
-      await leaveChat(data.id).unwrap();
-      refetch();
-    }
+    await leaveChat(data.id).unwrap();
+    refetch();
   };
 
   const formatCreatedAt = reformatDetailDate(data.createdAt);
@@ -94,8 +91,7 @@ const PostDetailPage = () => {
         <S.ContentContainer>{data.explanation}</S.ContentContainer>
         <S.MoveInfoContainer>
           예상금액<span>{Number(data.taxi.fare).toLocaleString()}원</span>
-          소요시간
-          <span>{Math.ceil(Number(data.taxi.duration) / 60)}분</span>
+          소요시간<span>{Math.ceil(Number(data.taxi.duration) / 60)}분</span>
         </S.MoveInfoContainer>
         <S.ParticipantsBox>
           {[...data.participants] // 배열의 복사본을 생성
@@ -110,13 +106,15 @@ const PostDetailPage = () => {
             ))}
         </S.ParticipantsBox>
         <S.ButtonBox>
-          <S.JoinButton onClick={participationChatHandler}>
-            {data.status === 'PARTICIPATING' || data.status === 'TERMINATED'
-              ? '채팅방'
-              : '팟 참여'}
-          </S.JoinButton>
-          {data.status === 'PARTICIPATING' && (
-            <S.LeaveButton onClick={leaveChatHandler}>나가기</S.LeaveButton>
+          {checkStatus(data.status) ? (
+            <>
+              <S.JoinButton onClick={goChatRoom}>채팅방</S.JoinButton>
+              <S.LeaveButton onClick={leaveChatHandler}>나가기</S.LeaveButton>
+            </>
+          ) : (
+            <S.JoinButton onClick={participationChatHandler}>
+              팟참여
+            </S.JoinButton>
           )}
         </S.ButtonBox>
       </S.PostDetailContainer>
@@ -170,4 +168,8 @@ const PostDetailTitle = ({
       {reformatDate1} 출발
     </S.PostDetailTitleContainer>
   );
+};
+
+const checkStatus = (status: PostDetailStatus) => {
+  return status === 'PARTICIPATING' || status === 'TERMINATED';
 };
