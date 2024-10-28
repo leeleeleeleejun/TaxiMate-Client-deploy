@@ -28,7 +28,8 @@ const PostDetailPage = () => {
   const navigate = useNavigate();
   const id = useLocation().pathname.split('/')[2];
   const { data, isLoading, refetch } = useGetPostByIdQuery(id);
-  const [participationChat] = useParticipationChatMutation();
+  const [participationChat, { error: participationChatError }] =
+    useParticipationChatMutation();
   const [leaveChat, { error: leaveChatError }] = useLeaveChatMutation();
   const isLogin = useSelector((state: RootState) => state.userSlice.isLogin);
   const goChatRoom = () => {
@@ -36,6 +37,7 @@ const PostDetailPage = () => {
   };
 
   useErrorHandle(leaveChatError);
+  useErrorHandle(participationChatError);
 
   if (isLoading) return <LoadingIcon />;
   if (!data) return <div>no data...</div>;
