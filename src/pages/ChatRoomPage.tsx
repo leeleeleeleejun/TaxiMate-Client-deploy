@@ -6,7 +6,7 @@ import reformatDate from '@/utils/reformatDate.ts';
 import { useGetChatQuery } from '@/api/chatApi.ts';
 import { useGetProfileQuery } from '@/api/userApi.ts';
 import useInAppNotificationHandler from '@/hooks/useInAppNotificationHandler.ts';
-import formatDate from '@/utils/formatChatDate.ts';
+import formatChatDate from '@/utils/formatChatDate.ts';
 
 import Header from '@/components/common/Layout/Header';
 import { PostBody } from '@/components/common/PostListItem';
@@ -61,7 +61,7 @@ const ChatRoomPage = ({
     let currentDate = '';
 
     chatData.chats.forEach((message) => {
-      const messageDate = formatDate(message.createdAt);
+      const messageDate = formatChatDate(message.createdAt);
 
       if (messageDate !== currentDate) {
         currentDate = messageDate;

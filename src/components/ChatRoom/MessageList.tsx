@@ -1,12 +1,12 @@
 import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import formatDate from '@/utils/formatChatDate.ts';
 import { ChatMessage, GroupMessage } from '@/types/chat.ts';
 import { useMessageSubscription } from '@/hooks/useMessageSubscription.ts';
+import formatChatDate from '@/utils/formatChatDate.ts';
 
 import MyMessageBox from '@/components/ChatRoom/MyMessageBox.tsx';
 import OthersMessageBox from '@/components/ChatRoom/OthersMessageBox.tsx';
 import {
-  Container,
+  MessageListContainer,
   SystemMessage,
 } from '@/components/ChatRoom/chatRoom.style.ts';
 import GoNewMessageButton from '@/components/ChatRoom/GoNewMessageButton.tsx';
@@ -45,22 +45,19 @@ const MessageList = ({
   useMessageSubscription(handleNewMessage);
 
   useLayoutEffect(() => {
-    if (!messageEndRef.current) return; // Ref가 없으면 아무 작업도 하지 않음
+    if (!messageEndRef.current) return;
 
     const isLastMessageMine =
       messageList.length > 0 &&
       messageList[messageList.length - 1].sender?.id === userId;
 
     if (isVisible || isLastMessageMine) {
-      // 요소가 보이거나 마지막 메시지가 내 메시지일 경우
-      messageEndRef.current.scrollIntoView();
+      scrollToBottom();
     } else {
-      // 새로운 메시지가 있고 마지막 메시지가 다른 유저일 경우
       setShowUpButton(true);
     }
   }, [messageList]);
 
-  // Intersection Observer를 사용해 요소 가시성 감지
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -84,18 +81,24 @@ const MessageList = ({
   }, [isVisible]);
 
   useEffect(() => {
+    scrollToBottom();
+  }, [initialChatMessage]);
+
+  const scrollToBottom = () => {
     if (messageEndRef.current) {
       messageEndRef.current.scrollIntoView();
     }
-  }, [initialChatMessage]);
+  };
 
   return (
     <>
-      <Container>
+      <MessageListContainer>
         {children}
         {messageList.map((message) =>
           message.type === 'SYSTEM' ? (
-            message.chat.map((item) => <SystemMessage>{item}</SystemMessage>)
+            message.chat.map((item) => (
+              <SystemMessage key={item}>{item}</SystemMessage>
+            ))
           ) : message.sender?.id === userId ? (
             <MyMessageBox
               key={message.createdAt}
@@ -113,7 +116,7 @@ const MessageList = ({
           )
         )}
         <div ref={messageEndRef} style={{ height: '2px' }} />
-      </Container>
+      </MessageListContainer>
       {showUpButton && messageList.length > 0 && (
         <GoNewMessageButton
           img={messageList[messageList.length - 1].sender?.profileImage || ''}
@@ -123,9 +126,7 @@ const MessageList = ({
               messageList[messageList.length - 1].chat.length - 1
             ]
           }
-          onClick={() => {
-            messageEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-          }}
+          onClick={scrollToBottom}
         />
       )}
     </>
@@ -146,7 +147,7 @@ const chatHandler = (
   setMessageList: React.Dispatch<React.SetStateAction<GroupMessage[]>>
 ) => {
   const setMessage = { ...message, chat: [message.message] };
-  const messageDate = formatDate(message.createdAt);
+  const messageDate = formatChatDate(message.createdAt);
 
   setMessageList((prevState) => {
     if (prevState.length === 0) {

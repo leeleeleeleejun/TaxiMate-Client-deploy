@@ -12,11 +12,12 @@ export const RoomTitle = styled.h2`
   text-overflow: ellipsis;
 `;
 
-export const Container = styled.div`
+export const MessageListContainer = styled.div`
   height: 100%;
   overflow: auto;
 
   padding: 0 20px;
+  -webkit-overflow-scrolling: touch;
 `;
 
 export const NotificationContainer = styled(Link)`
