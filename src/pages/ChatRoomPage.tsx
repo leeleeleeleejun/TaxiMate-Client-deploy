@@ -96,7 +96,7 @@ const ChatRoomPage = ({
 
   return (
     <>
-      {notification && (
+      {notification && showNotification && (
         <InAppNotification
           id={notification.id}
           showNotification={showNotification}
