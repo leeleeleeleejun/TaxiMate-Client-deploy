@@ -1,4 +1,5 @@
 import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import formatDate from '@/utils/formatChatDate.ts';
 import { ChatMessage, GroupMessage } from '@/types/chat.ts';
 import { useMessageSubscription } from '@/hooks/useMessageSubscription.ts';
 
@@ -9,7 +10,6 @@ import {
   SystemMessage,
 } from '@/components/ChatRoom/chatRoom.style.ts';
 import GoNewMessageButton from '@/components/ChatRoom/GoNewMessageButton.tsx';
-import { formatDate } from '@/pages/ChatRoomPage.tsx';
 
 const MessageList = ({
   userId,
