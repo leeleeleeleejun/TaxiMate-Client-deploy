@@ -1,7 +1,8 @@
-import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { ChatMessage, GroupMessage } from '@/types/chat.ts';
 import { useMessageSubscription } from '@/hooks/useMessageSubscription.ts';
 import chatHandler from '@/utils/chatHandler.ts';
+import { MessageListProps } from '@/types/props';
 
 import MyMessageBox from '@/components/ChatRoom/MyMessageBox.tsx';
 import OthersMessageBox from '@/components/ChatRoom/OthersMessageBox.tsx';
@@ -18,14 +19,7 @@ const MessageList = ({
   initialChatMessage,
   checkReceive,
   children,
-}: {
-  userId: string;
-  currentPartyId: string;
-  inAppNotificationHandler: (message: ChatMessage) => void;
-  initialChatMessage: GroupMessage[];
-  checkReceive: (partyId: string, chatId: string) => void;
-  children: ReactNode;
-}) => {
+}: MessageListProps) => {
   const messageEndRef = useRef<HTMLDivElement>(null);
   const [messageList, setMessageList] = useState<GroupMessage[]>([]);
   const [isVisible, setIsVisible] = useState(false);

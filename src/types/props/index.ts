@@ -7,6 +7,7 @@ import {
   StepType,
 } from '@/types';
 import { Post } from '@/types/post.ts';
+import { ChatMessage, GroupMessage } from '@/types/chat.ts';
 
 export interface NavItemContainerProps {
   children: ReactNode;
@@ -108,4 +109,13 @@ export interface SetPlaceProps {
   setStep: SetStep;
   setRegisterDataFunc: SetRegisterDataFunc;
   comeBackMain: () => void;
+}
+
+export interface MessageListProps {
+  userId: string;
+  currentPartyId: string;
+  inAppNotificationHandler: (message: ChatMessage) => void;
+  initialChatMessage: GroupMessage[];
+  checkReceive: (partyId: string, chatId: string) => void;
+  children: ReactNode;
 }
