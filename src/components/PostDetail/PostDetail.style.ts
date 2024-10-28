@@ -104,13 +104,13 @@ const statusTag = styled.div`
   margin-left: 5px;
   padding: 8px;
   border-radius: 20px;
+  font-weight: var(--weight-semi-bold);
+  font-size: var(--font-small);
 `;
 
 export const ParticipationTag = styled(statusTag)`
   color: var(--color-available-text);
   background-color: var(--color-available-background);
-  font-weight: var(--weight-semi-bold);
-  font-size: var(--font-small);
 `;
 
 export const CloseTag = styled(statusTag)`
