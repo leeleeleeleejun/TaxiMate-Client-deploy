@@ -90,10 +90,6 @@ const ChatRoomPage = ({
     setInitialChatMessage(array);
   }, [chatData]);
 
-  useEffect(() => {
-    console.log(initialChatMessage);
-  }, [initialChatMessage]);
-
   if (isLoading || chatIsLoading) return <LoadingIcon />;
   if (!userData || !chatData) return <div>no data...</div>;
 
@@ -168,12 +164,6 @@ const ChatRoomPage = ({
             />
           )
         )}
-        <OthersMessageBox
-          name={'user'}
-          img={''}
-          messages={['안녕']}
-          time={'2024-10-10T22:24:11'}
-        />
       </MessageList>
       <MessageInputBox sendMessage={sendMessage} partyId={currentPartyId} />
     </>
@@ -182,7 +172,7 @@ const ChatRoomPage = ({
 
 export default ChatRoomPage;
 
-const formatDate = (dateString: string): string => {
+export const formatDate = (dateString: string): string => {
   const date = new Date(dateString);
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
