@@ -10,6 +10,8 @@ const DatePickerWrap = ({
   date: ZonedDateTime;
   setDate: React.Dispatch<React.SetStateAction<ZonedDateTime>>;
 }) => {
+  const minDate = today(getLocalTimeZone());
+
   return (
     <DatePickerContainer>
       <DatePicker
@@ -19,7 +21,8 @@ const DatePickerWrap = ({
         labelPlacement={'outside'}
         value={date}
         onChange={setDate}
-        minValue={today(getLocalTimeZone())}
+        minValue={minDate}
+        maxValue={minDate.add({ months: 1 })}
       />
     </DatePickerContainer>
   );
