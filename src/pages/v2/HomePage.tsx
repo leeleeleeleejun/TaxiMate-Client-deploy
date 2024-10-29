@@ -2,12 +2,15 @@ import Header from '@/components/common/Layout/Header';
 import { HeaderItem } from '@/components/common/Layout/Header/Header.style.ts';
 import reactNativePostMessage from '@/utils/reactNavtivePostMessage.ts';
 
-import TaxiIcon from '@/assets/icons/header/taxi-icon.svg?react';
-import KnuLogoIcon from '@/assets/icons/header/knu-logo-icon.svg?react';
 import Footer from '@/components/common/Layout/Footer';
 import OthersMessageBox from '@/components/v2/Home/OtherMessageBox.tsx';
-import { Main } from '@/components/v2/Home/Home.style.ts';
+import { ButtonBox, Main } from '@/components/v2/Home/Home.style.ts';
 import MyMessageBox from '@/components/v2/Home/MyMessageBox.tsx';
+
+import TaxiIcon from '@/assets/icons/header/taxi-icon.svg?react';
+import KnuLogoIcon from '@/assets/icons/header/knu-logo-icon.svg?react';
+import CreateButtonIcon from '@/assets/icons/footer/create-button-icon.svg?react';
+import RefreshButtonIcon from '@/assets/icons/refresh-icon.svg?react';
 
 const HomePage = () => {
   return (
@@ -59,6 +62,14 @@ const HomePage = () => {
           status={'PARTICIPATING'}
         />
       </Main>
+      <ButtonBox>
+        <button>
+          <RefreshButtonIcon />
+        </button>
+        <button>
+          <CreateButtonIcon />
+        </button>
+      </ButtonBox>
       <Footer />
     </>
   );

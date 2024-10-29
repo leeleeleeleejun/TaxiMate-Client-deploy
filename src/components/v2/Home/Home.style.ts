@@ -7,6 +7,12 @@ export const Main = styled.main`
   padding: 10px 20px 0;
 `;
 
+export const ButtonBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+`;
+
 export const MessageBox = styled.div`
   display: flex;
   max-width: 80%;
