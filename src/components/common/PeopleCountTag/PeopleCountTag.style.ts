@@ -11,7 +11,7 @@ export const PeopleCountTagContainer = styled.div<{
   width: fit-content;
   padding: 5px 8px;
 
-  font-size: var(--font-small);
+  font-size: var(--font-semi-micro);
   font-weight: var(--weight-semi-bold);
 
   right: 5%;

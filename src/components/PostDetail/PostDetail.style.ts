@@ -104,7 +104,7 @@ const statusTag = styled.div`
   padding: 8px;
   border-radius: 20px;
   font-weight: var(--weight-semi-bold);
-  font-size: var(--font-small);
+  font-size: var(--font-semi-micro);
   width: fit-content;
 `;
 

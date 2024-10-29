@@ -1,5 +1,5 @@
 import {
-  MessageContainer,
+  MyMessageContainer,
   MessageTime,
   MyMessageBoxContainer,
   ResentMessage,
@@ -44,7 +44,7 @@ const MyMessageBox = ({
   );
   return (
     <MyMessageBoxContainer onClick={participationChatHandler}>
-      <MessageContainer>
+      <MyMessageContainer>
         <ResentMessage>
           <MessageTime>{formatMongoDate(time)}</MessageTime>
           <MyMessage>
@@ -64,7 +64,7 @@ const MyMessageBox = ({
             <ArrowRightIcon />
           </MyMessage>
         </ResentMessage>
-      </MessageContainer>
+      </MyMessageContainer>
     </MyMessageBoxContainer>
   );
 };
