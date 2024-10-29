@@ -19,10 +19,34 @@ import TaxiIcon from '@/assets/icons/header/taxi-icon.svg?react';
 import KnuLogoIcon from '@/assets/icons/header/knu-logo-icon.svg?react';
 import CreateButtonIcon from '@/assets/icons/footer/create-button-icon.svg?react';
 import RefreshButtonIcon from '@/assets/icons/refresh-icon.svg?react';
+import { Post } from '@/types/v2/post.ts';
+import formatChatDate from '@/utils/formatChatDate.ts';
+import { SystemMessage } from '@/components/ChatRoom/chatRoom.style.ts';
+
+type PostOrString = Post | string;
+type PostArray = PostOrString[];
 
 const HomePage = () => {
+  const [parties, setParties] = useState<PostArray>([]);
   const { data, isLoading, isFetching, refetch } = useGetPostsV2Query(null);
   const [isSpinning, setIsSpinning] = useState(false);
+
+  useEffect(() => {
+    if (!data) return;
+    const array: PostArray = [];
+    let currentDate = '';
+
+    data.forEach((post) => {
+      const messageDate = formatChatDate(post.createdAt);
+      if (messageDate !== currentDate) {
+        currentDate = messageDate;
+        array.push(currentDate);
+      }
+      array.push(post);
+    });
+
+    setParties(array);
+  }, [data]);
 
   useEffect(() => {
     if (isFetching) {
@@ -59,31 +83,35 @@ const HomePage = () => {
         </button>
       </Header>
       <Main>
-        {data.map((post) =>
-          post.host.isMe ? (
-            <MyMessageBox
-              key={post.id}
-              id={post.id}
-              messages={post.title}
-              time={post.createdAt}
-              status={post.status}
-              currentParticipants={post.currentParticipants}
-              maxParticipants={post.maxParticipants}
-              refetchFunc={refetchFunc}
-            />
+        {parties.map((post) =>
+          typeof post !== 'string' ? (
+            post.host.isMe ? (
+              <MyMessageBox
+                key={post.id}
+                id={post.id}
+                messages={post.title}
+                time={post.createdAt}
+                status={post.status}
+                currentParticipants={post.currentParticipants}
+                maxParticipants={post.maxParticipants}
+                refetchFunc={refetchFunc}
+              />
+            ) : (
+              <OthersMessageBox
+                key={post.id}
+                id={post.id}
+                messages={post.title}
+                time={post.createdAt}
+                status={post.status}
+                name={post.host.nickname}
+                img={post.host.profileImage}
+                currentParticipants={post.currentParticipants}
+                maxParticipants={post.maxParticipants}
+                refetchFunc={refetchFunc}
+              />
+            )
           ) : (
-            <OthersMessageBox
-              key={post.id}
-              id={post.id}
-              messages={post.title}
-              time={post.createdAt}
-              status={post.status}
-              name={post.host.nickname}
-              img={post.host.profileImage}
-              currentParticipants={post.currentParticipants}
-              maxParticipants={post.maxParticipants}
-              refetchFunc={refetchFunc}
-            />
+            <SystemMessage key={post}>{post}</SystemMessage>
           )
         )}
       </Main>
