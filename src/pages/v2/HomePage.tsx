@@ -11,6 +11,7 @@ import TaxiIcon from '@/assets/icons/header/taxi-icon.svg?react';
 import KnuLogoIcon from '@/assets/icons/header/knu-logo-icon.svg?react';
 import CreateButtonIcon from '@/assets/icons/footer/create-button-icon.svg?react';
 import RefreshButtonIcon from '@/assets/icons/refresh-icon.svg?react';
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   return (
@@ -66,9 +67,9 @@ const HomePage = () => {
         <button>
           <RefreshButtonIcon />
         </button>
-        <button>
+        <Link to={'/create-post'}>
           <CreateButtonIcon />
-        </button>
+        </Link>
       </ButtonBox>
       <Footer />
     </>
