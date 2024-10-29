@@ -11,13 +11,25 @@ import { Container } from '@/components/v2/CreatePost/CreatePost.style.ts';
 import { useState } from 'react';
 import TitleWrap from '@/components/v2/CreatePost/TitleWrap.tsx';
 import MemberWrap from '@/components/v2/CreatePost/MemberWrap.tsx';
+import { useCreatePostMutation } from '@/api/v2/postApi.ts';
+import useErrorHandle from '@/hooks/useErrorHandle.ts';
 
 const CreatePage = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState('');
   const [maxParticipants, setMaxParticipants] = useState('4');
+  const [createPost, { error }] = useCreatePostMutation();
+  useErrorHandle(error);
 
-  const createPostSubmit = () => {};
+  const createPostSubmit = async () => {
+    if (!title.trim()) {
+      alert('제목을 입력해 주세요.');
+      return;
+    }
+
+    await createPost({ title, maxParticipants }).unwrap();
+    navigate('/');
+  };
 
   return (
     <>

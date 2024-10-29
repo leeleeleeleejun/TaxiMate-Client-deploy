@@ -21,22 +21,37 @@ import {
   OthersMessage,
   TagBox,
 } from '@/components/v2/Home/Home.style.ts';
+import useParticipationChatHandler from '@/hooks/v2/useParticipationChatHandler.tsx';
 
 const OthersMessageBox = ({
+  id,
   name,
   messages,
   time,
   img,
   status,
+  currentParticipants,
+  maxParticipants,
+  refetchFunc,
 }: {
+  id: string;
   name: string;
   messages: string;
   time: string;
   img: string;
   status: PostDetailStatus;
+  maxParticipants: number;
+  currentParticipants: number;
+  refetchFunc: () => void;
 }) => {
+  const participationChatHandler = useParticipationChatHandler(
+    status,
+    id,
+    refetchFunc
+  );
+
   return (
-    <MessageBox>
+    <MessageBox onClick={participationChatHandler}>
       {img ? <OthersProfile src={img} alt='profile' /> : <UserBasicImg />}
       <MessageContainer>
         <OthersName>{name}</OthersName>
@@ -45,7 +60,10 @@ const OthersMessageBox = ({
             <div>
               <MessageContent>{messages}</MessageContent>
               <TagBox>
-                <PeopleCountTag currentParticipants={4} maxParticipants={3} />
+                <PeopleCountTag
+                  currentParticipants={currentParticipants}
+                  maxParticipants={maxParticipants}
+                />
                 {status === 'PARTICIPATING' && (
                   <ParticipationTag>참여중인 팟</ParticipationTag>
                 )}

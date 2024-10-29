@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { GroupMessage } from '@/types/chat.ts';
-import { useGetChatQuery } from '@/api/chatApi.ts';
+import { useGetChatQuery } from '@/api/v2/chatApi.ts';
 import { useGetProfileQuery } from '@/api/userApi.ts';
 import useInAppNotificationHandler from '@/hooks/useInAppNotificationHandler.ts';
 import formatChatDate from '@/utils/formatChatDate.ts';
