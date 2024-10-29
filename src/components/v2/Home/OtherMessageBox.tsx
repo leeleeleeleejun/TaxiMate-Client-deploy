@@ -51,12 +51,12 @@ const OthersMessageBox = ({
   );
 
   return (
-    <MessageBox onClick={participationChatHandler}>
+    <MessageBox>
       {img ? <OthersProfile src={img} alt='profile' /> : <UserBasicImg />}
       <MessageContainer>
         <OthersName>{name}</OthersName>
         <ResentMessage>
-          <OthersMessage>
+          <OthersMessage onClick={participationChatHandler}>
             <div>
               <MessageContent>{messages}</MessageContent>
               <TagBox>

@@ -43,11 +43,11 @@ const MyMessageBox = ({
     refetchFunc
   );
   return (
-    <MyMessageBoxContainer onClick={participationChatHandler}>
+    <MyMessageBoxContainer>
       <MyMessageContainer>
         <ResentMessage>
           <MessageTime>{formatMongoDate(time)}</MessageTime>
-          <MyMessage>
+          <MyMessage onClick={participationChatHandler}>
             <div>
               <MessageContent>{messages}</MessageContent>
               <TagBox>

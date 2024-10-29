@@ -25,8 +25,11 @@ const useParticipationChatHandler = (
       if (status === 'PARTICIPATING') {
         navigate(chatRoomUrl);
       } else {
-        await participationChat(roomId).unwrap();
-        navigate(chatRoomUrl);
+        const answer = confirm('팟에 참여하시겠습니까?');
+        if (answer) {
+          await participationChat(roomId).unwrap();
+          navigate(chatRoomUrl);
+        }
       }
     } catch {
       refetch();

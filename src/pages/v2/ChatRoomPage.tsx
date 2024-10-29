@@ -44,7 +44,7 @@ const ChatRoomPage = ({
   useErrorHandle(leaveChatError);
 
   const leaveChatHandler = async () => {
-    const answer = confirm('정말로 팟을 나가시겠습니까?');
+    const answer = confirm('팟을 나가시겠습니까?');
     if (answer) {
       await leaveChat(currentPartyId).unwrap();
       navigate('/');
