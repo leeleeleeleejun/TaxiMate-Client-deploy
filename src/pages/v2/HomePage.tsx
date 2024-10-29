@@ -73,10 +73,8 @@ const HomePage = () => {
     }, 5000);
   };
 
+  if (isLoading) return <LoadingIcon />;
   if (!data) return <div>no data...</div>;
-  if (isLoading) {
-    return <LoadingIcon />;
-  }
 
   return (
     <>
