@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useGetPostsV2Query } from '@/api/v2/postApi.ts';
 
@@ -6,7 +7,11 @@ import { HeaderItem } from '@/components/common/Layout/Header/Header.style.ts';
 import reactNativePostMessage from '@/utils/reactNavtivePostMessage.ts';
 import Footer from '@/components/common/Layout/Footer';
 import OthersMessageBox from '@/components/v2/Home/OtherMessageBox.tsx';
-import { ButtonBox, Main } from '@/components/v2/Home/Home.style.ts';
+import {
+  ButtonBox,
+  Main,
+  RefreshButton,
+} from '@/components/v2/Home/Home.style.ts';
 import MyMessageBox from '@/components/v2/Home/MyMessageBox.tsx';
 import LoadingIcon from '@/components/common/LoadingIcon';
 
@@ -16,16 +21,27 @@ import CreateButtonIcon from '@/assets/icons/footer/create-button-icon.svg?react
 import RefreshButtonIcon from '@/assets/icons/refresh-icon.svg?react';
 
 const HomePage = () => {
-  const { data, isLoading, refetch } = useGetPostsV2Query(null);
+  const { data, isLoading, isFetching, refetch } = useGetPostsV2Query(null);
+  const [isSpinning, setIsSpinning] = useState(false);
+
+  useEffect(() => {
+    if (isFetching) {
+      setIsSpinning(true);
+    }
+  }, [isFetching]);
+
+  const handleAnimationEnd = () => {
+    setIsSpinning(false);
+  };
+
+  const refetchFunc = () => {
+    refetch();
+  };
 
   if (!data) return <div>no data...</div>;
   if (isLoading) {
     return <LoadingIcon />;
   }
-
-  const refetchFunc = () => {
-    refetch();
-  };
 
   return (
     <>
@@ -72,9 +88,9 @@ const HomePage = () => {
         )}
       </Main>
       <ButtonBox>
-        <button onClick={refetch}>
-          <RefreshButtonIcon />
-        </button>
+        <RefreshButton onClick={refetch} $isSpinning={isSpinning}>
+          <RefreshButtonIcon onAnimationEnd={handleAnimationEnd} />
+        </RefreshButton>
         <Link to={'/create-post'}>
           <CreateButtonIcon />
         </Link>

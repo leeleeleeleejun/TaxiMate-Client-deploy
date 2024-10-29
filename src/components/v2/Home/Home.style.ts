@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 export const Main = styled.main`
   height: 100%;
@@ -11,6 +11,34 @@ export const ButtonBox = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 10px 20px;
+`;
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+export const RefreshButton = styled.button<{ $isSpinning: boolean }>`
+  svg {
+    ${({ $isSpinning }) =>
+      $isSpinning &&
+      css`
+        animation: ${rotate} 0.5s linear;
+      `}
+    transition: all 0.3s ease;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 `;
 
 export const MessageBox = styled.div`
