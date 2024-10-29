@@ -13,7 +13,7 @@ const SearchPage = lazy(() => import('@/pages/SearchPage'));
 const PostDetailPage = lazy(() => import('@/pages/PostDetailPage'));
 const CreatePostPage = lazy(() => import('@/pages/v2/CreatePage.tsx'));
 const ChatListPage = lazy(() => import('@/pages/ChatListPage'));
-const ChatRoomPage = lazy(() => import('@/pages/ChatRoomPage'));
+const ChatRoomPage = lazy(() => import('@/pages/v2/ChatRoomPage'));
 const UsageHistoryPage = lazy(() => import('@/pages/UsageHistoryPage'));
 const MyProfilePage = lazy(() => import('@/pages/MyProfilePage'));
 const LoginPage = lazy(() => import('@/pages/LoginPage'));
