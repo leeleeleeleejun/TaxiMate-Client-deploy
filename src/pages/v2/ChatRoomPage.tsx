@@ -22,6 +22,8 @@ import {
 import ArrowLeftIcon from '@/assets/icons/arrow-left-icon.svg?react';
 import LoadingIcon from '@/components/common/LoadingIcon';
 import DropDown from '@/components/common/DropDown.tsx';
+import { useLeaveChatMutation } from '@/api/chatApi.ts';
+import useErrorHandle from '@/hooks/useErrorHandle.ts';
 
 const ChatRoomPage = ({
   sendMessage,
@@ -38,6 +40,17 @@ const ChatRoomPage = ({
     currentPartyId,
     { refetchOnFocus: true }
   );
+  const [leaveChat, { error: leaveChatError }] = useLeaveChatMutation();
+  useErrorHandle(leaveChatError);
+
+  const leaveChatHandler = async () => {
+    const answer = confirm('정말로 팟을 나가시겠습니까?');
+    if (answer) {
+      await leaveChat(currentPartyId).unwrap();
+      navigate('/');
+    }
+  };
+
   const {
     notification,
     showNotification,
@@ -114,7 +127,11 @@ const ChatRoomPage = ({
           <ArrowLeftIcon />
         </BackButton>
         <RoomTitle>{chatData.party.title}</RoomTitle>
-        <DropDown items={['']} danger={'나가기'} />
+        <DropDown
+          items={['']}
+          danger={'나가기'}
+          leaveChatHandler={leaveChatHandler}
+        />
       </Header>
       <MessageList
         userId={userData.id}

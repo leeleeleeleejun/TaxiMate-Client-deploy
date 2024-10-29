@@ -7,8 +7,17 @@ import {
 } from '@nextui-org/dropdown';
 import EllipsisVerticalIcon from '@/assets/icons/common/ellipsis-vertical-icon.svg?react';
 
-const DropDown = ({ items, danger }: { items: string[]; danger: string }) => {
+const DropDown = ({
+  items,
+  danger,
+  leaveChatHandler,
+}: {
+  items: string[];
+  danger: string;
+  leaveChatHandler: () => void;
+}) => {
   console.log(items);
+
   return (
     <Dropdown radius='sm' className={'min-w-[70px]'}>
       <DropdownTrigger>
@@ -27,7 +36,12 @@ const DropDown = ({ items, danger }: { items: string[]; danger: string }) => {
         {/*    </DropdownItem>*/}
         {/*  ))}*/}
         {/*</DropdownSection>*/}
-        <DropdownItem key='delete' className='text-danger ' color='danger'>
+        <DropdownItem
+          key='delete'
+          className='text-danger '
+          color='danger'
+          onClick={leaveChatHandler}
+        >
           {danger}
         </DropdownItem>
       </DropdownMenu>
