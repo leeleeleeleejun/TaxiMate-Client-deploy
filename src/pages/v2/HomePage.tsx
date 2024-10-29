@@ -28,6 +28,7 @@ type PostArray = PostOrString[];
 
 const HomePage = () => {
   const [parties, setParties] = useState<PostArray>([]);
+  const [isDisabled, setIsDisabled] = useState(false);
   const { data, isLoading, isFetching, refetch } = useGetPostsV2Query(null);
   const [isSpinning, setIsSpinning] = useState(false);
 
@@ -60,6 +61,16 @@ const HomePage = () => {
 
   const refetchFunc = () => {
     refetch();
+  };
+
+  const refetchHandler = () => {
+    if (!isDisabled) {
+      setIsDisabled(true);
+      refetch();
+    }
+    setTimeout(() => {
+      setIsDisabled(false);
+    }, 5000);
   };
 
   if (!data) return <div>no data...</div>;
@@ -116,7 +127,7 @@ const HomePage = () => {
         )}
       </Main>
       <ButtonBox>
-        <RefreshButton onClick={refetch} $isSpinning={isSpinning}>
+        <RefreshButton onClick={refetchHandler} $isSpinning={isSpinning}>
           <RefreshButtonIcon onAnimationEnd={handleAnimationEnd} />
         </RefreshButton>
         <Link to={'/create-post'}>
