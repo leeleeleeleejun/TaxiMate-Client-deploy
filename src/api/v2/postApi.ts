@@ -4,12 +4,12 @@ import { CreatePostRes, Post, RegisterData } from '@/types/v2/post.ts';
 
 const postApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getPosts: builder.query<Post[], null>({
+    getPostsV2: builder.query<Post[], null>({
       query: () => API_PATH.POST.GET.ALL,
       transformResponse: (response: { data: Post[] }) => response.data,
       keepUnusedDataFor: 0,
     }),
-    createPost: builder.mutation<CreatePostRes, RegisterData>({
+    createPostV2: builder.mutation<CreatePostRes, RegisterData>({
       query: (patch) => ({
         url: API_PATH.POST.POST,
         method: 'POST',
@@ -19,4 +19,4 @@ const postApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetPostsQuery, useCreatePostMutation } = postApi;
+export const { useGetPostsV2Query, useCreatePostV2Mutation } = postApi;

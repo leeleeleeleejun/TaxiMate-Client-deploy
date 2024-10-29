@@ -11,14 +11,14 @@ import { Container } from '@/components/v2/CreatePost/CreatePost.style.ts';
 import { useState } from 'react';
 import TitleWrap from '@/components/v2/CreatePost/TitleWrap.tsx';
 import MemberWrap from '@/components/v2/CreatePost/MemberWrap.tsx';
-import { useCreatePostMutation } from '@/api/v2/postApi.ts';
+import { useCreatePostV2Mutation } from '@/api/v2/postApi.ts';
 import useErrorHandle from '@/hooks/useErrorHandle.ts';
 
 const CreatePage = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState('');
   const [maxParticipants, setMaxParticipants] = useState('4');
-  const [createPost, { error }] = useCreatePostMutation();
+  const [createPost, { error }] = useCreatePostV2Mutation();
   useErrorHandle(error);
 
   const createPostSubmit = async () => {

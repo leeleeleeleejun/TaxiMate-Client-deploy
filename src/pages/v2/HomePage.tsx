@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useGetPostsQuery } from '@/api/v2/postApi.ts';
+import { useGetPostsV2Query } from '@/api/v2/postApi.ts';
 
 import Header from '@/components/common/Layout/Header';
 import { HeaderItem } from '@/components/common/Layout/Header/Header.style.ts';
@@ -16,7 +16,7 @@ import CreateButtonIcon from '@/assets/icons/footer/create-button-icon.svg?react
 import RefreshButtonIcon from '@/assets/icons/refresh-icon.svg?react';
 
 const HomePage = () => {
-  const { data, isLoading, refetch } = useGetPostsQuery(null);
+  const { data, isLoading, refetch } = useGetPostsV2Query(null);
 
   if (!data) return <div>no data...</div>;
   if (isLoading) {

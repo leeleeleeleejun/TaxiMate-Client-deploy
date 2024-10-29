@@ -4,7 +4,7 @@ import { ChatList } from '@/types/v2/chat.ts';
 
 const chatApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getChat: builder.query<ChatList, string>({
+    getChatV2: builder.query<ChatList, string>({
       query: (id) => API_PATH.CHAT.GET_CHAT.replace(':partyId', id),
       transformResponse: (response: { data: ChatList }) => {
         return response.data;
@@ -14,4 +14,4 @@ const chatApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetChatQuery } = chatApi;
+export const { useGetChatV2Query } = chatApi;

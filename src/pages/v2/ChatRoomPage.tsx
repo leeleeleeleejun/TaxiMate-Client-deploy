@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { GroupMessage } from '@/types/chat.ts';
-import { useGetChatQuery } from '@/api/v2/chatApi.ts';
+import { useGetChatV2Query } from '@/api/v2/chatApi.ts';
 import { useGetProfileQuery } from '@/api/userApi.ts';
 import useInAppNotificationHandler from '@/hooks/useInAppNotificationHandler.ts';
 import formatChatDate from '@/utils/formatChatDate.ts';
@@ -34,7 +34,7 @@ const ChatRoomPage = ({
   const currentPartyId = useLocation().pathname.split('/')[2];
 
   const { data: userData, isLoading } = useGetProfileQuery(null);
-  const { data: chatData, isLoading: chatIsLoading } = useGetChatQuery(
+  const { data: chatData, isLoading: chatIsLoading } = useGetChatV2Query(
     currentPartyId,
     { refetchOnFocus: true }
   );
