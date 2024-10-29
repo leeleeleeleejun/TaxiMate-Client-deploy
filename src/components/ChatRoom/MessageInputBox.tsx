@@ -23,8 +23,6 @@ const MessageInputBox = ({
       if (inputRef.current) {
         inputRef.current.focus();
       }
-    } else {
-      console.log('유효하지 않은 메시지이거나 파티입니다.');
     }
   };
 
