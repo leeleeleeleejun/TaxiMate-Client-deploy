@@ -1,7 +1,7 @@
 import Header from '@/components/common/Layout/Header';
 import Footer from '@/components/common/Layout/Footer';
 import UserContainer from '@/components/common/UserContainer';
-import {Bold, Container, EventExplain, Menu, SubmitButton} from '@/components/MyProfile/myProfile.style.ts';
+import {Bold, Container, EventExplain, Menu, ContentTitle, SubmitButton} from '@/components/MyProfile/myProfile.style.ts';
 import { HeaderItem } from '@/components/common/Layout/Header/Header.style.ts';
 
 import MyProfileIcon from '@/assets/icons/header/my-porfile-icon.svg?react';
@@ -13,7 +13,7 @@ import { useGetProfileQuery } from '@/api/userApi.ts';
 
 import LoadingIcon from '@/components/common/LoadingIcon';
 import {useEffect, useState} from "react";
-import {CheckLength, ContentContainer, ContentTitle, TitleInput} from "@/components/CreatePost/createPost.style.ts";
+import {CheckLength, ContentContainer, TitleInput} from "@/components/CreatePost/createPost.style.ts";
 import {useEventMutation} from "@/api/v2/eventApi.ts";
 
 const MyProfilePage = () => {

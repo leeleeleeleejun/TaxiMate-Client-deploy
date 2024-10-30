@@ -24,6 +24,37 @@ export const MenuItemContainer = styled.li`
   }
 `;
 
+export const ContentTitle = styled.h2`
+  padding: 10px 0 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: var(--weight-semi-bold);
+  font-size: 18px;
+  //flex-direction: column;
+
+  svg {
+    margin-left: 5px;
+  }
+
+  div {
+    display: flex;
+      
+      font-size: var(--font-semi-micro);
+      font-weight: var(--weight-regular);
+      color: var(--color-gray-100);
+  }
+
+  p {
+    padding-top: 10px;
+    font-size: var(--font-small);
+    font-weight: var(--weight-regular);
+    color: var(--color-gray-100);
+  }
+`;
+
+
 export const EventExplain = styled.p`
     padding-left: 6px;
     font-size: 13px;
