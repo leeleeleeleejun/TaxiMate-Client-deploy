@@ -28,8 +28,9 @@ export const ContentTitle = styled.h2`
   padding: 10px 0 20px;
 
   display: flex;
-  flex-direction: column;
-
+  justify-content: space-between;
+    align-items: center;
+  //flex-direction: column;
   font-weight: var(--weight-semi-bold);
   font-size: 18px;
 
@@ -39,6 +40,10 @@ export const ContentTitle = styled.h2`
 
   div {
     display: flex;
+      
+      font-size: var(--font-semi-micro);
+      font-weight: var(--weight-regular);
+      color: var(--color-gray-100);
   }
 
   p {
