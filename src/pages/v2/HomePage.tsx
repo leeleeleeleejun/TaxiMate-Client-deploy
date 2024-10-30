@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useRef, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { useGetPostsV2Query } from '@/api/v2/postApi.ts';
 
@@ -31,6 +31,7 @@ const HomePage = () => {
   const [isDisabled, setIsDisabled] = useState(false);
   const { data, isLoading, isFetching, refetch } = useGetPostsV2Query(null);
   const [isSpinning, setIsSpinning] = useState(false);
+  const endRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!data) return;
@@ -72,6 +73,12 @@ const HomePage = () => {
       setIsDisabled(false);
     }, 5000);
   };
+
+  useEffect(() => {
+      if (endRef.current) {
+        endRef.current.scrollIntoView();
+      }
+  }, [parties]);
 
   if (isLoading) return <LoadingIcon />;
   if (!data) return <div>no data...</div>;
@@ -123,6 +130,7 @@ const HomePage = () => {
             <SystemMessage key={post}>{post}</SystemMessage>
           )
         )}
+        <div ref={endRef} style={{height: '2px'}}/>
       </Main>
       <ButtonBox>
         <RefreshButton onClick={refetchHandler} $isSpinning={isSpinning}>
