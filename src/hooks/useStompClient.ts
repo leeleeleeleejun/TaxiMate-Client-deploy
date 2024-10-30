@@ -29,7 +29,7 @@ export const useStompClient = (): {
       webSocketFactory: () => new SockJS(API_BASE_URL + '/ws'),
       heartbeatIncoming: 4000,
       heartbeatOutgoing: 4000,
-      reconnectDelay: 5000,
+      reconnectDelay: 1000,
       onConnect: () => {
         console.log('Connected to STOMP');
         client.subscribe(
