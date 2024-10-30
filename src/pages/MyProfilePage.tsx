@@ -12,18 +12,26 @@ import { useGetProfileQuery } from '@/api/userApi.ts';
 // import Toggle from '@/components/common/Toggle.tsx';
 
 import LoadingIcon from '@/components/common/LoadingIcon';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {CheckLength, ContentContainer, ContentTitle, TitleInput} from "@/components/CreatePost/createPost.style.ts";
 import {useEventMutation} from "@/api/v2/eventApi.ts";
 
 const MyProfilePage = () => {
   const { data, isLoading } = useGetProfileQuery(null);
-  const [postEventTrigger] = useEventMutation();
+  const [postEventTrigger, {isSuccess}] = useEventMutation();
+
+  useEffect(() => {
+    if(isSuccess){
+      alert('응모가 완료되었습니다! 🎉')
+      localStorage.setItem('event', 'true');
+    }
+  }, [isSuccess]);
 
   const [value, setValue] = useState('');
   if (isLoading) return <LoadingIcon />;
   if (!data) return <div>no data...</div>;
   const isEvent = localStorage.getItem('event');
+
 
 
   return (
@@ -41,7 +49,6 @@ const MyProfilePage = () => {
           {/*  <Toggle />*/}
           {/*</MenuItem>*/}
           {/*<MenuItem content={'이용약관'} SvgIcon={FileIcon} />*/}
-
           <ContentContainer>
             <ContentTitle>
               🎉 이벤트
@@ -55,7 +62,6 @@ const MyProfilePage = () => {
                 setValue(e.target.value)
               }}
               placeholder={'- 없이 전화번호 입력'}
-              maxLength={11}
               type={'number'}
             />
             <CheckLength>{value.length} / 11</CheckLength>
@@ -66,8 +72,6 @@ const MyProfilePage = () => {
           </ContentContainer>
           <SubmitButton onClick={()=>{
             postEventTrigger(value);
-            alert('응모가 완료되었습니다! 🎉')
-            localStorage.setItem('event', 'true');
           }}>
             응모하기
           </SubmitButton>
