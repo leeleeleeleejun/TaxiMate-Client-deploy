@@ -11,11 +11,12 @@ import FileIcon from '@/assets/icons/myprofile/file-icon.svg?react';
 // import NoticeIcon from '@/assets/icons/notice-icon.svg?react';
 // import Toggle from '@/components/common/Toggle.tsx';
 import LoadingIcon from '@/components/common/LoadingIcon';
+import NoData from '@/components/common/NoData.tsx';
 
 const MyProfilePage = () => {
   const { data, isLoading } = useGetProfileQuery(null);
   if (isLoading) return <LoadingIcon />;
-  if (!data) return <div>no data...</div>;
+  if (!data) return <NoData>데이터를 찾을 수 없습니다</NoData>;
 
   return (
     <>

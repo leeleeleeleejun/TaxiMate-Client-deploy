@@ -23,6 +23,7 @@ import * as S from '@/components/PostDetail/PostDetail.style';
 
 import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
 import LoadingIcon from '@/components/common/LoadingIcon';
+import NoData from '@/components/common/NoData.tsx';
 
 const PostDetailPage = () => {
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ const PostDetailPage = () => {
   useErrorHandle(participationChatError);
 
   if (isLoading) return <LoadingIcon />;
-  if (!data) return <div>no data...</div>;
+  if (!data) return <NoData>데이터를 찾을 수 없습니다</NoData>;
 
   const participationChatHandler = async () => {
     if (!isLogin) {
