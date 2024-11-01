@@ -10,7 +10,7 @@ const NavItemContainer = ({
   const location = useLocation();
 
   return (
-    <NavItem to={path} $isActive={path === location.pathname}>
+    <NavItem to={path} replace={true} $isActive={path === location.pathname}>
       {children}
       {contentName && <span>{contentName}</span>}
     </NavItem>

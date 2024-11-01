@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useRef, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { useGetPostsV2Query } from '@/api/v2/postApi.ts';
 
@@ -8,7 +8,7 @@ import reactNativePostMessage from '@/utils/reactNavtivePostMessage.ts';
 import Footer from '@/components/common/Layout/Footer';
 import OthersMessageBox from '@/components/v2/Home/OtherMessageBox.tsx';
 import {
-  ButtonBox,
+  ButtonBox, EventBox,
   Main,
   RefreshButton,
 } from '@/components/v2/Home/Home.style.ts';
@@ -31,6 +31,7 @@ const HomePage = () => {
   const [isDisabled, setIsDisabled] = useState(false);
   const { data, isLoading, isFetching, refetch } = useGetPostsV2Query(null);
   const [isSpinning, setIsSpinning] = useState(false);
+  const endRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!data) return;
@@ -72,6 +73,12 @@ const HomePage = () => {
       setIsDisabled(false);
     }, 5000);
   };
+
+  useEffect(() => {
+      if (endRef.current) {
+        endRef.current.scrollIntoView();
+      }
+  }, [parties]);
 
   if (isLoading) return <LoadingIcon />;
   if (!data) return <div>no data...</div>;
@@ -123,11 +130,22 @@ const HomePage = () => {
             <SystemMessage key={post}>{post}</SystemMessage>
           )
         )}
+        <div ref={endRef} style={{height: '2px'}}/>
       </Main>
       <ButtonBox>
         <RefreshButton onClick={refetchHandler} $isSpinning={isSpinning}>
           <RefreshButtonIcon onAnimationEnd={handleAnimationEnd} />
         </RefreshButton>
+        <EventBox>
+          🎉 택시팟 출시 이벤트 🎉
+          <p>
+            치킨 🍗 : 1명<br/>
+            커피☕️ : 10명<br/>
+            <span>
+              자세한 내용은 내 정보에서 확인해주세요!
+            </span>
+          </p>
+        </EventBox>
         <Link to={'/create-post'}>
           <CreateButtonIcon />
         </Link>

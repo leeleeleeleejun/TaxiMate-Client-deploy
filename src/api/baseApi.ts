@@ -8,7 +8,7 @@ import type {
 } from '@reduxjs/toolkit/query';
 import { setIsLogin } from '@/components/MyProfile/userSlice.ts';
 
-// const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 //새로 고침 시 accessToken 변수 초기화 => refresh토큰으로 재요청
 let accessToken: string | null = null;
 
@@ -18,7 +18,7 @@ export const setAccessToken = (token: string | null) => {
 };
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: '/',
+  baseUrl: API_BASE_URL,
   credentials: 'include',
   prepareHeaders: (headers) => {
     headers.set('Accept', 'application/json');

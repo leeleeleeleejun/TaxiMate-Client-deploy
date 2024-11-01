@@ -123,7 +123,7 @@ const ChatRoomPage = ({
         />
       )}
       <Header>
-        <BackButton onClick={() => navigate(-1)}>
+        <BackButton onClick={() => navigate('/chat-list')}>
           <ArrowLeftIcon />
         </BackButton>
         <RoomTitle>{chatData.party.title}</RoomTitle>
