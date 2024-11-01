@@ -64,6 +64,7 @@ export const MyMessageContainer = styled(MessageContainer)`
 `;
 
 const Message = styled.div`
+  display: flex;
   width: fit-content;
   padding: 8px 12px;
   margin-bottom: 2px;
@@ -74,6 +75,16 @@ const Message = styled.div`
   word-wrap: break-word;
   overflow-wrap: break-word;
   word-break: break-word;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  & > svg {
+    margin-left: 6px;
+    margin-right: -6px;
+  }
 `;
 
 export const OthersMessage = styled(Message)`

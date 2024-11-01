@@ -29,7 +29,6 @@ export const ContentTitle = styled.h2`
 
   display: flex;
   flex-direction: column;
-
   font-weight: var(--weight-semi-bold);
   font-size: 18px;
 

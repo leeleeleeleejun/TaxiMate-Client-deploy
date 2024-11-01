@@ -101,11 +101,11 @@ export const LeaveButton = styled.button`
 `;
 
 const statusTag = styled.div`
-  margin-left: 5px;
   padding: 8px;
   border-radius: 20px;
   font-weight: var(--weight-semi-bold);
-  font-size: var(--font-small);
+  font-size: var(--font-semi-micro);
+  width: fit-content;
 `;
 
 export const ParticipationTag = styled(statusTag)`

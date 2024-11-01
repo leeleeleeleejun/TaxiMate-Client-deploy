@@ -76,6 +76,7 @@ const MessageList = ({
 
   useEffect(() => {
     scrollToBottom();
+    setMessageList([]);
   }, [initialChatMessage]);
 
   const scrollToBottom = () => {

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@nextui-org/date-picker": "^2.1.6",
+    "@nextui-org/dropdown": "^2.1.31",
     "@nextui-org/radio": "^2.1.4",
     "@nextui-org/switch": "^2.0.34",
     "@nextui-org/system": "^2.2.5",
