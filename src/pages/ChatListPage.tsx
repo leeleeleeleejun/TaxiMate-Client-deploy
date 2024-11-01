@@ -16,7 +16,7 @@ const ChatListPage = () => {
   });
 
   if (isLoading) return <LoadingIcon />;
-  if (!data) return <div>no data...</div>;
+  if (!data) return <NoData>데이터를 찾을 수 없습니다</NoData>;
 
   const progressChatRoom = data.filter((chat) => chat.isProgress);
   const closeChatRoom = data.filter((chat) => !chat.isProgress);

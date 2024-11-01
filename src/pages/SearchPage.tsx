@@ -7,7 +7,7 @@ import Header from '@/components/common/Layout/Header';
 import SearchList from '@/components/Search/SearchList.tsx';
 import { SearchInput } from '@/components/Search/Search.style.ts';
 import { BackButton } from '@/components/common/Layout/Header/Header.style';
-import ArrowLeftIcon from '@/assets/icons/arrow-left-icon.svg?react';
+import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
 
 const SearchPage = ({
   step,

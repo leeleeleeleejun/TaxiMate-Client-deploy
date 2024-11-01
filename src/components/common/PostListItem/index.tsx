@@ -9,7 +9,7 @@ import {
 import PeopleCountTag from '@/components/common/PeopleCountTag';
 
 import ClockIcon from '@/assets/icons/postList/clock-icon.svg?react';
-import ArrowRightIcon from '@/assets/icons/arrow-right-icon.svg?react';
+import ArrowRightIcon from '@/assets/icons/common/arrow-right-icon.svg?react';
 import LocationIcon from '@/assets/icons/postList/location-dot-icon.svg?react';
 import CaretRightIcon from '@/assets/icons/postList/caret-right-icon.svg?react';
 

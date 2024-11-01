@@ -5,7 +5,7 @@ import {
   MessageInputBoxContainer,
 } from '@/components/ChatRoom/chatRoom.style.ts';
 
-import ArrowUpIcon from '@/assets/icons/arrow-up-icon.svg?react';
+import ArrowUpIcon from '@/assets/icons/chat/arrow-up-icon.svg?react';
 
 const MessageInputBox = ({
                            sendMessage,

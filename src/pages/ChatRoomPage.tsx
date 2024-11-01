@@ -25,9 +25,10 @@ import {
   SystemMessage,
 } from '@/components/ChatRoom/chatRoom.style.ts';
 
-import ArrowLeftIcon from '@/assets/icons/arrow-left-icon.svg?react';
-import ArrowRightIcon from '@/assets/icons/arrow-right-icon.svg?react';
+import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
+import ArrowRightIcon from '@/assets/icons/common/arrow-right-icon.svg?react';
 import LoadingIcon from '@/components/common/LoadingIcon';
+import NoData from '@/components/common/NoData.tsx';
 
 const ChatRoomPage = ({
   sendMessage,
@@ -92,7 +93,7 @@ const ChatRoomPage = ({
   }, [chatData]);
 
   if (isLoading || chatIsLoading) return <LoadingIcon />;
-  if (!userData || !chatData) return <div>no data...</div>;
+  if (!userData || !chatData) return <NoData>데이터를 찾을 수 없습니다</NoData>;
 
   return (
     <>

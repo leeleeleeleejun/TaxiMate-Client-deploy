@@ -1,5 +1,5 @@
 import { MenuItemContainer } from '@/components/MyProfile/myProfile.style.ts';
-import ArrowRightIcon from '@/assets/icons/arrow-right-icon.svg?react';
+import ArrowRightIcon from '@/assets/icons/common/arrow-right-icon.svg?react';
 import { ReactNode } from 'react';
 const MenuItem = ({
   content,

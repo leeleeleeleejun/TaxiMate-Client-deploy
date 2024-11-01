@@ -5,7 +5,7 @@ import ContentWrap from '@/components/CreatePost/ContentWrap.tsx';
 import { DepartureTimeContainer } from '@/components/CreatePost/createPost.style.ts';
 
 import ClockIcon from '@/assets/icons/createPost/clock-icon.svg?react';
-import ArrowRightIcon from '@/assets/icons/arrow-right-icon.svg?react';
+import ArrowRightIcon from '@/assets/icons/common/arrow-right-icon.svg?react';
 import CalendarIcon from '@/assets/icons/createPost/calendar-icon.svg?react';
 
 const DateWrap = ({ value, setStep }: ContentWrapProps) => {
