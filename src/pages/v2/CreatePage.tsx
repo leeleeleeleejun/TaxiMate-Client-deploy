@@ -5,7 +5,7 @@ import {
 } from '@/components/common/Layout/Header/Header.style.ts';
 import { CreateSubmitButton } from '@/components/CreatePost/createPost.style.ts';
 
-import ArrowLeftIcon from '@/assets/icons/arrow-left-icon.svg?react';
+import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
 import { useNavigate } from 'react-router-dom';
 import { Container } from '@/components/v2/CreatePost/CreatePost.style.ts';
 import { useState } from 'react';

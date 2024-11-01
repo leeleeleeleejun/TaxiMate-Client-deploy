@@ -19,7 +19,7 @@ import {
   SystemMessage,
 } from '@/components/ChatRoom/chatRoom.style.ts';
 
-import ArrowLeftIcon from '@/assets/icons/arrow-left-icon.svg?react';
+import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
 import LoadingIcon from '@/components/common/LoadingIcon';
 import DropDown from '@/components/common/DropDown.tsx';
 import { useLeaveChatMutation } from '@/api/chatApi.ts';

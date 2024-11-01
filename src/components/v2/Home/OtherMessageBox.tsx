@@ -13,7 +13,7 @@ import {
   ParticipationTag,
 } from '@/components/PostDetail/PostDetail.style.ts';
 import { PostDetailStatus } from '@/types/post.ts';
-import ArrowRightIcon from '@/assets/icons/arrow-right-icon.svg?react';
+import ArrowRightIcon from '@/assets/icons/common/arrow-right-icon.svg?react';
 
 import {
   MessageBox,
