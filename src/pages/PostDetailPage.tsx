@@ -21,7 +21,7 @@ import LocationInfo from '@/components/common/LocationInfo';
 import UserContainer from '@/components/common/UserContainer';
 import * as S from '@/components/PostDetail/PostDetail.style';
 
-import ArrowLeftIcon from '@/assets/icons/arrow-left-icon.svg?react';
+import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
 import LoadingIcon from '@/components/common/LoadingIcon';
 
 const PostDetailPage = () => {

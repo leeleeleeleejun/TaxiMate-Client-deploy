@@ -3,7 +3,7 @@ import {
   LocationInfoContainer,
   LocationInfoHeader,
 } from '@/components/common/LocationInfo/LocationInfo.style.ts';
-import ArrowRightIcon from '@/assets/icons/arrow-right-icon.svg?react';
+import ArrowRightIcon from '@/assets/icons/common/arrow-right-icon.svg?react';
 
 const LocationInfo = ({
   keyWord,

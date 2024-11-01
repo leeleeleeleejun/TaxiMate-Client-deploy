@@ -7,7 +7,7 @@ import { HeaderItem } from '@/components/common/Layout/Header/Header.style.ts';
 import MyProfileIcon from '@/assets/icons/header/my-porfile-icon.svg?react';
 import { useGetProfileQuery } from '@/api/userApi.ts';
 import MenuItem from '@/components/MyProfile/MenuItem.tsx';
-import FileIcon from '@/assets/icons/file-icon.svg?react';
+import FileIcon from '@/assets/icons/myprofile/file-icon.svg?react';
 // import NoticeIcon from '@/assets/icons/notice-icon.svg?react';
 // import Toggle from '@/components/common/Toggle.tsx';
 import LoadingIcon from '@/components/common/LoadingIcon';

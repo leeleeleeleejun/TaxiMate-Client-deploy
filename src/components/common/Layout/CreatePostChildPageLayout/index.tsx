@@ -1,5 +1,5 @@
 import Header from '@/components/common/Layout/Header';
-import ArrowLeftIcon from '@/assets/icons/arrow-left-icon.svg?react';
+import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
 import { Container, SubTitle } from './CreatePostChildPageLayout.style.ts';
 import { ReactNode } from 'react';
 

@@ -25,8 +25,8 @@ import {
   SystemMessage,
 } from '@/components/ChatRoom/chatRoom.style.ts';
 
-import ArrowLeftIcon from '@/assets/icons/arrow-left-icon.svg?react';
-import ArrowRightIcon from '@/assets/icons/arrow-right-icon.svg?react';
+import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
+import ArrowRightIcon from '@/assets/icons/common/arrow-right-icon.svg?react';
 import LoadingIcon from '@/components/common/LoadingIcon';
 
 const ChatRoomPage = ({
