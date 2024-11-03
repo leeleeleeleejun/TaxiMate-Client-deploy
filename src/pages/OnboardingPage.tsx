@@ -21,7 +21,7 @@ const OnboardingPage = () => {
 
   const next = () => {
     if (sliderRef.current) {
-      if (currentSlide === 2) {
+      if (currentSlide === 4) {
         navigate('/');
       }
       sliderRef.current.slickNext();
@@ -36,7 +36,7 @@ const OnboardingPage = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    height: 100,
+    afterChange: (current: number) => setCurrentSlide(current),
   };
 
   return (
@@ -71,9 +71,15 @@ const OnboardingPage = () => {
           <div>
             <Image src={'/onboarding3.png'} />
           </div>
+          <div>
+            <Image src={'/onboarding4.png'} />
+          </div>
+          <div>
+            <Image src={'/onboarding5.png'} />
+          </div>
         </Slider>
         <NextButton onClick={next}>
-          {currentSlide === 2 ? '완료' : '다음'}
+          {currentSlide === 4 ? '완료' : '다음'}
         </NextButton>
       </Main>
     </>
