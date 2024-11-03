@@ -40,4 +40,5 @@ export const CLIENT_PATH = {
   MY_PROFILE: '/my-profile',
   LOGIN: '/login',
   LOGIN_LOADING: '/login-loading',
+  ONBOARDING: '/onboarding',
 };

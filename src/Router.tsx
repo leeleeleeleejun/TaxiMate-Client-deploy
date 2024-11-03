@@ -19,6 +19,8 @@ const MyProfilePage = lazy(() => import('@/pages/MyProfilePage'));
 const LoginPage = lazy(() => import('@/pages/LoginPage'));
 const LoginLoadingPage = lazy(() => import('@/pages/LoginLoadingPage'));
 
+const OnboardingPage = lazy(() => import('@/pages/OnboardingPage'));
+
 const Router = () => {
   const client = useStompClient();
 
@@ -27,6 +29,7 @@ const Router = () => {
       <Suspense fallback={<LoadingIcon />}>
         <Routes>
           <Route element={<Layout />}>
+            <Route path={CLIENT_PATH.ONBOARDING} element={<OnboardingPage />} />
             <Route element={<InAppNotificationLayout />}>
               <Route path={'/'} element={<HomePage />} />
               <Route path={CLIENT_PATH.SEARCH} element={<SearchPage />} />
