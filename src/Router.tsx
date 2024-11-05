@@ -73,12 +73,7 @@ const AppRouter = () => {
           <Route element={<AuthChecker />}>
             <Route
               path={CLIENT_PATH.CHAT_ROOM}
-              element={
-                <ChatRoomPage
-                  sendMessage={client.sendMessage}
-                  checkReceive={client.checkReceive}
-                />
-              }
+              element={<ChatRoomPage client={client} />}
             />
           </Route>
         </Route>

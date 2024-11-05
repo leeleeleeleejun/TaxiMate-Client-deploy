@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Client } from '@stomp/stompjs';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { GroupMessage } from '@/types/chat.ts';
 import { useGetProfileQuery } from '@/api/userApi.ts';
@@ -24,13 +25,7 @@ import {
 
 import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
 
-const ChatRoomPage = ({
-  sendMessage,
-  checkReceive,
-}: {
-  sendMessage: (partyId: string, message: string) => void;
-  checkReceive: (partyId: string, chatId: string) => void;
-}) => {
+const ChatRoomPage = ({ client }: { client: Client | null }) => {
   const navigate = useNavigate();
   const currentPartyId = useLocation().pathname.split('/')[2];
 
@@ -133,11 +128,11 @@ const ChatRoomPage = ({
         />
       </Header>
       <MessageList
+        client={client}
         userId={userData.id}
         currentPartyId={currentPartyId}
         inAppNotificationHandler={handleNewMessage}
         initialChatMessage={initialChatMessage}
-        checkReceive={checkReceive}
       >
         {initialChatMessage.map((message) =>
           message.type === 'SYSTEM' ? (
@@ -161,7 +156,7 @@ const ChatRoomPage = ({
           )
         )}
       </MessageList>
-      <MessageInputBox sendMessage={sendMessage} partyId={currentPartyId} />
+      <MessageInputBox client={client} partyId={currentPartyId} />
     </>
   );
 };
