@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { GroupMessage } from '@/types/chat.ts';
-import { useGetChatV2Query } from '@/api/v2/chatApi.ts';
 import { useGetProfileQuery } from '@/api/userApi.ts';
-import useInAppNotificationHandler from '@/hooks/useInAppNotificationHandler.ts';
+import { useLeaveChatMutation } from '@/api/chatApi.ts';
+import { useGetChatV2Query } from '@/api/v2/chatApi.ts';
 import formatChatDate from '@/utils/formatChatDate.ts';
+import useErrorHandle from '@/hooks/useErrorHandle.ts';
+import useInAppNotificationHandler from '@/hooks/useInAppNotificationHandler.ts';
 
 import Header from '@/components/common/Layout/Header';
 import MessageList from '@/components/ChatRoom/MessageList.tsx';
@@ -12,7 +14,8 @@ import MessageInputBox from '@/components/ChatRoom/MessageInputBox.tsx';
 import InAppNotification from '@/components/common/InAppNotification';
 import MyMessageBox from '@/components/ChatRoom/MyMessageBox.tsx';
 import OthersMessageBox from '@/components/ChatRoom/OthersMessageBox.tsx';
-
+import LoadingIcon from '@/components/common/LoadingIcon';
+import DropDown from '@/components/common/DropDown.tsx';
 import { BackButton } from '@/components/common/Layout/Header/Header.style.ts';
 import {
   RoomTitle,
@@ -20,10 +23,6 @@ import {
 } from '@/components/ChatRoom/chatRoom.style.ts';
 
 import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
-import LoadingIcon from '@/components/common/LoadingIcon';
-import DropDown from '@/components/common/DropDown.tsx';
-import { useLeaveChatMutation } from '@/api/chatApi.ts';
-import useErrorHandle from '@/hooks/useErrorHandle.ts';
 
 const ChatRoomPage = ({
   sendMessage,
