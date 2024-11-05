@@ -30,7 +30,7 @@ const AppRouter = () => {
       navigate(CLIENT_PATH.ONBOARDING);
       localStorage.setItem('onboarding', 'true');
     }
-  }, [navigate]);
+  }, []);
 
   return (
     <Suspense fallback={<LoadingIcon />}>

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useGetPostsV2Query } from '@/api/v2/postApi.ts';
-import reactNativePostMessage from '@/utils/reactNavtivePostMessage.ts';
+import reactNativePostMessage from '@/utils/reactNativePostMessage.ts';
 import { Post } from '@/types/v2/post.ts';
 import formatChatDate from '@/utils/formatChatDate.ts';
 
