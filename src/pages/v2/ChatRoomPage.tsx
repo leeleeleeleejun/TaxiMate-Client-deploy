@@ -122,7 +122,7 @@ const ChatRoomPage = ({ client }: { client: Client | null }) => {
         </BackButton>
         <RoomTitle>{chatData.party.title}</RoomTitle>
         <DropDown
-          items={['']}
+          // items={['']}
           danger={'나가기'}
           leaveChatHandler={leaveChatHandler}
         />
