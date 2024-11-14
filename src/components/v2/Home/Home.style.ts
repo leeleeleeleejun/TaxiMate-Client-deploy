@@ -98,23 +98,23 @@ export const TagBox = styled.div`
   gap: 6px;
 `;
 
-export const EventBox = styled.div`
-    margin: auto;
-    font-size: var(--font-small);
-    font-weight: var(--weight-semi-bold);
-    color: var(--color-warning-text);
-    line-height: 1.2;
-    text-align: center;
-
-    & > p {
-        color: var(--color-gray-100);
-        font-size: var(--font-semi-micro);
-        font-weight: var(--weight-medium);
-
-        & > span {
-            font-size: var(--font-micro);
-            font-weight: var(--weight-medium);
-        }
-    }
-    
-`
+// export const EventBox = styled.div`
+//     margin: auto;
+//     font-size: var(--font-small);
+//     font-weight: var(--weight-semi-bold);
+//     color: var(--color-warning-text);
+//     line-height: 1.2;
+//     text-align: center;
+//
+//     & > p {
+//         color: var(--color-gray-100);
+//         font-size: var(--font-semi-micro);
+//         font-weight: var(--weight-medium);
+//
+//         & > span {
+//             font-size: var(--font-micro);
+//             font-weight: var(--weight-medium);
+//         }
+//     }
+//
+// `

@@ -11,7 +11,7 @@ import Footer from '@/components/common/Layout/Footer';
 import OthersMessageBox from '@/components/v2/Home/OtherMessageBox.tsx';
 import {
   ButtonBox,
-  EventBox,
+  // EventBox,
   Main,
   RefreshButton,
 } from '@/components/v2/Home/Home.style.ts';
@@ -137,16 +137,6 @@ const HomePage = () => {
         <RefreshButton onClick={refetchHandler} $isSpinning={isSpinning}>
           <RefreshButtonIcon onAnimationEnd={handleAnimationEnd} />
         </RefreshButton>
-        <EventBox>
-          🎉 택시팟 출시 이벤트 🎉
-          <p>
-            치킨 🍗 : 1명
-            <br />
-            커피☕️ : 10명
-            <br />
-            <span>자세한 내용은 내 정보에서 확인해주세요!</span>
-          </p>
-        </EventBox>
         <Link to={'/create-post'}>
           <CreateButtonIcon />
         </Link>
