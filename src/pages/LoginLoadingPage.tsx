@@ -1,39 +1,38 @@
+import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import {
-  useGetAccessTokenQuery,
-  // useSetPushAlarmMutation,
-} from '@/api/userApi';
+
+import reactNativePostMessage from '@/utils/reactNativePostMessage.ts';
+import { useGetAccessTokenQuery } from '@/api/userApi.ts';
 import { setIsLogin } from '@/components/MyProfile/userSlice.ts';
-import { useEffect } from 'react';
+import useErrorHandle from '@/hooks/useErrorHandle.ts';
 
 const LoginLoadingPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const code = queryParams.get('code') || '';
+  const code = new URLSearchParams(location.search).get('code') || '';
 
-  // const [setPushAlarmTrigger] = useSetPushAlarmMutation();
-  const { isLoading, isSuccess } = useGetAccessTokenQuery({ code: code });
-  //
-  // useEffect(() => {
-  //   const handleMessage = (e: MessageEvent) => {
-  //     setPushAlarmTrigger(e.data);
-  //   };
-  //   window.addEventListener('message', handleMessage);
-  // }, []);
+  const {
+    isLoading: isTokenLoading,
+    isSuccess: isTokenSuccess,
+    isError: isTokenError,
+    error: tokenError,
+  } = useGetAccessTokenQuery({ code });
 
+  useErrorHandle(tokenError);
+
+  // 토큰이 성공적으로 받아졌을 때
   useEffect(() => {
-    if (!isLoading) {
-      if (isSuccess) {
-        dispatch(setIsLogin(true));
-        // window.ReactNativeWebView.postMessage('push_notification');
-      }
-      // 모든 작업이 완료된 후 네비게이션 수행
+    if (!isTokenLoading && isTokenSuccess) {
+      dispatch(setIsLogin(true));
+      reactNativePostMessage('push_notification');
       navigate('/');
+    } else if (isTokenError) {
+      alert('로그인에 실패했습니다.');
+      navigate('/login');
     }
-  }, [isSuccess, isLoading, dispatch, navigate]);
+  }, [isTokenLoading, isTokenSuccess, isTokenError]);
 
   return null;
 };
