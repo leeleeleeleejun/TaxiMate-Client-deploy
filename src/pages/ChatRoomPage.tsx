@@ -117,7 +117,7 @@ const ChatRoomPage = ({
         />
       )}
       <Header>
-        <BackButton onClick={() => navigate(-1)}>
+        <BackButton onClick={() => navigate(CLIENT_PATH.CHAT_LISTS)}>
           <ArrowLeftIcon />
         </BackButton>
         <RoomTitle>{chatData.party.title}</RoomTitle>
