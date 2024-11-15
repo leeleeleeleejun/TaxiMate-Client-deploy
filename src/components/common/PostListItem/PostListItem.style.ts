@@ -7,6 +7,11 @@ export const PostListItemContainer = styled.li`
   flex-direction: column;
 
   border-bottom: 1px solid var(--color-gray-300);
+
+  a {
+    width: 100%;
+    min-width: 0;
+  }
 `;
 
 export const PostHeaderContainer = styled.div`
@@ -14,18 +19,23 @@ export const PostHeaderContainer = styled.div`
   justify-content: space-between;
   margin-bottom: 5px;
 
-  div {
+  & > div {
     display: flex;
     align-items: center;
+    min-width: 0;
+
+    h2 {
+      font-weight: var(--weight-bold);
+      margin-right: 8px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   }
 
-  h2 {
-    font-weight: var(--weight-bold);
-    margin-right: 8px;
-    max-width: 250px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  & > svg {
+    margin-left: 6px;
+    flex-shrink: 0;
   }
 `;
 
