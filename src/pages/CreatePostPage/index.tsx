@@ -114,14 +114,15 @@ const initialRegisterData: RegisterData = (() => {
   const today = new Date();
   const ceilMinutes = Math.ceil(today.getMinutes() / 5) * 5;
   const departureTime = new Date(today.setMinutes(ceilMinutes)).toISOString();
+  const centerLocation = JSON.parse(localStorage.getItem('Location') || '');
 
   return {
     title: '',
     departureTime,
     explanation: '',
     originLocation: {
-      latitude: 36.4689627,
-      longitude: 127.1408071,
+      latitude: centerLocation.lat, // 36.4689627,
+      longitude: centerLocation.lng, // 127.1408071,
     },
     destinationLocation: {
       latitude: 36.8511811,
