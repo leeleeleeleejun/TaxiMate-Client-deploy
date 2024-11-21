@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Container as MapDiv, NaverMap, useNavermaps } from 'react-naver-maps';
 
 import MarkerContainer from '@/components/common/MarkerContainer';
+import NoData from '@/components/common/NoData.tsx';
 
 const Map = ({
   taxiRoute,
@@ -35,7 +36,7 @@ const Map = ({
     }
   }, []);
 
-  return (
+  return markerPlaces[0] ? (
     <MapDiv className={'map-wrapper'}>
       <NaverMap defaultBounds={bounds} ref={setMap} logoControl={false}>
         {markerPlaces.map((item, index) => (
@@ -51,6 +52,8 @@ const Map = ({
         ))}
       </NaverMap>
     </MapDiv>
+  ) : (
+    <NoData style={{ margin: 'auto' }}>경로 데이터를 찾을 수 없습니다</NoData>
   );
 };
 
