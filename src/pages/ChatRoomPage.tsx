@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Client } from '@stomp/stompjs';
 import { GroupMessage } from '@/types/chat.ts';
 import { CLIENT_PATH } from '@/constants/path.ts';
 import reformatDate from '@/utils/reformatDate.ts';
@@ -30,13 +31,7 @@ import ArrowRightIcon from '@/assets/icons/common/arrow-right-icon.svg?react';
 import LoadingIcon from '@/components/common/LoadingIcon';
 import NoData from '@/components/common/NoData.tsx';
 
-const ChatRoomPage = ({
-  sendMessage,
-  checkReceive,
-}: {
-  sendMessage: (partyId: string, message: string) => void;
-  checkReceive: (partyId: string, chatId: string) => void;
-}) => {
+const ChatRoomPage = ({ client }: { client: Client | null }) => {
   const navigate = useNavigate();
   const currentPartyId = useLocation().pathname.split('/')[2];
 
@@ -143,7 +138,7 @@ const ChatRoomPage = ({
         currentPartyId={currentPartyId}
         inAppNotificationHandler={handleNewMessage}
         initialChatMessage={initialChatMessage}
-        checkReceive={checkReceive}
+        client={client}
       >
         {initialChatMessage.map((message) =>
           message.type === 'SYSTEM' ? (
@@ -167,7 +162,7 @@ const ChatRoomPage = ({
           )
         )}
       </MessageList>
-      <MessageInputBox sendMessage={sendMessage} partyId={currentPartyId} />
+      <MessageInputBox client={client} partyId={currentPartyId} />
     </>
   );
 };

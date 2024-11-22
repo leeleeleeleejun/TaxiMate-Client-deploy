@@ -3,6 +3,7 @@ import { ChatMessage, GroupMessage } from '@/types/chat.ts';
 import { useMessageSubscription } from '@/hooks/useMessageSubscription.ts';
 import chatHandler from '@/utils/chatHandler.ts';
 import { MessageListProps } from '@/types/props';
+import checkReceive from '@/utils/checkReceive.ts';
 
 import MyMessageBox from '@/components/ChatRoom/MyMessageBox.tsx';
 import OthersMessageBox from '@/components/ChatRoom/OthersMessageBox.tsx';
@@ -13,11 +14,11 @@ import {
 import GoNewMessageButton from '@/components/ChatRoom/GoNewMessageButton.tsx';
 
 const MessageList = ({
+  client,
   userId,
   currentPartyId,
   inAppNotificationHandler,
   initialChatMessage,
-  checkReceive,
   children,
 }: MessageListProps) => {
   const messageEndRef = useRef<HTMLDivElement>(null);
@@ -29,7 +30,7 @@ const MessageList = ({
     if (message.partyId === Number(currentPartyId)) {
       chatHandler(initialChatMessage, message, setMessageList);
       if (message.sender.id !== userId) {
-        checkReceive(currentPartyId, message.id);
+        checkReceive(client, currentPartyId, message.id);
       }
     } else {
       inAppNotificationHandler(message);
