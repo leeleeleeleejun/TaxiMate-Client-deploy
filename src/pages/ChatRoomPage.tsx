@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Client } from '@stomp/stompjs';
-import { GroupMessage } from '@/types/chat.ts';
+import { ChatList, GroupMessage } from '@/types/chat.ts';
 import { CLIENT_PATH } from '@/constants/path.ts';
 import reformatDate from '@/utils/reformatDate.ts';
 import { useGetChatQuery } from '@/api/chatApi.ts';
@@ -52,39 +52,7 @@ const ChatRoomPage = ({ client }: { client: Client | null }) => {
 
   useEffect(() => {
     if (!chatData) return;
-
-    const array: GroupMessage[] = [];
-    let currentDate = '';
-
-    chatData.chats.forEach((message) => {
-      const messageDate = formatChatDate(message.createdAt);
-
-      if (messageDate !== currentDate) {
-        currentDate = messageDate;
-        array.push({
-          chat: [currentDate],
-          createdAt: '',
-          sender: null,
-          type: 'SYSTEM',
-        });
-      }
-
-      const lastMessage = array[array.length - 1];
-      const isSameUser = lastMessage.sender?.id === message.sender?.id;
-      const isSameTime =
-        lastMessage.createdAt.slice(0, 16) === message.createdAt?.slice(0, 16);
-      const isSameType = lastMessage.type === message.type;
-
-      if (isSameType && isSameUser && isSameTime) {
-        // 이전 메시지와 같은 유저, 같은 시간대의 메시지라면 chat 배열에 추가
-        lastMessage.chat.push(message.message);
-      } else {
-        // 새로운 유저이거나 시간이 다르면 새로운 그룹 추가
-        array.push({ ...message, chat: [message.message] });
-      }
-    });
-
-    setInitialChatMessage(array);
+    setInitialChatMessage(formatPrevChatData(chatData));
   }, [chatData]);
 
   if (isLoading || chatIsLoading) return <LoadingIcon />;
@@ -168,3 +136,38 @@ const ChatRoomPage = ({ client }: { client: Client | null }) => {
 };
 
 export default ChatRoomPage;
+
+const formatPrevChatData = (chatData: ChatList) => {
+  const array: GroupMessage[] = [];
+  let currentDate = '';
+
+  chatData.chats.forEach((message) => {
+    const messageDate = formatChatDate(message.createdAt);
+
+    if (messageDate !== currentDate) {
+      currentDate = messageDate;
+      array.push({
+        chat: [currentDate],
+        createdAt: '',
+        sender: null,
+        type: 'SYSTEM',
+      });
+    }
+
+    const lastMessage = array[array.length - 1];
+    const isSameUser = lastMessage.sender?.id === message.sender?.id;
+    const isSameTime =
+      lastMessage.createdAt.slice(0, 16) === message.createdAt?.slice(0, 16);
+    const isSameType = lastMessage.type === message.type;
+
+    if (isSameType && isSameUser && isSameTime) {
+      // 이전 메시지와 같은 유저, 같은 시간대의 메시지라면 chat 배열에 추가
+      lastMessage.chat.push(message.message);
+    } else {
+      // 새로운 유저이거나 시간이 다르면 새로운 그룹 추가
+      array.push({ ...message, chat: [message.message] });
+    }
+  });
+
+  return array;
+};
