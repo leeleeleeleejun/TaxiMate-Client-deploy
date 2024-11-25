@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Client } from '@stomp/stompjs';
 import { v4 as uuidv4 } from 'uuid';
 import SockJS from 'sockjs-client';
@@ -7,21 +7,20 @@ import { getAccessToken } from '@/api/baseApi.ts';
 import { eventBus } from '@/utils/eventBus.ts';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 export const uuid = uuidv4().replace('-', '');
 
-export const useStompClient = (): {
-  client: Client | null;
-  sendMessage: (partyId: string, message: string) => void;
-  checkReceive: (partyId: string, chatId: string) => void;
-} => {
+export const useStompClient = (): Client | null => {
   const clientRef = useRef<Client | null>(null);
+  const [isConnected, setIsConnected] = useState(false);
   const isLogin = useSelector((state: RootState) => state.userSlice.isLogin);
   const accessToken = getAccessToken();
 
   useEffect(() => {
     if (!isLogin) {
       console.log('Access token is missing, STOMP connection skipped.');
+      setIsConnected(false);
       return;
     }
 
@@ -32,6 +31,7 @@ export const useStompClient = (): {
       reconnectDelay: 5000,
       onConnect: () => {
         console.log('Connected to STOMP');
+        setIsConnected(true);
         client.subscribe(
           '/queue/messages/' + uuid,
           (message) => {
@@ -43,48 +43,25 @@ export const useStompClient = (): {
       },
       onStompError: (frame) => {
         console.error(frame);
+        setIsConnected(false);
       },
       onDisconnect: () => {
         console.log('Disconnected');
+        setIsConnected(false);
       },
     });
 
     client.activate();
-
     clientRef.current = client;
 
     return () => {
+      setIsConnected(false);
       client.deactivate();
+      clientRef.current = null;
     };
   }, [isLogin]);
 
-  const sendMessage = (partyId: string, message: string) => {
-    if (clientRef.current) {
-      clientRef.current.publish({
-        destination: '/app/messages',
-        headers: { Authorization: `Bearer ${accessToken}` },
-        body: JSON.stringify({
-          partyId,
-          message,
-        }),
-      });
-    }
-  };
-
-  const checkReceive = (partyId: string, chatId: string) => {
-    if (clientRef.current) {
-      clientRef.current.publish({
-        destination: '/app/received',
-        headers: { Authorization: `Bearer ${accessToken}` },
-        body: JSON.stringify({
-          partyId,
-          chatId,
-        }),
-      });
-    }
-  };
-
-  return { client: clientRef.current, sendMessage, checkReceive };
+  return isConnected ? clientRef.current : null;
 };
 
 export default useStompClient;

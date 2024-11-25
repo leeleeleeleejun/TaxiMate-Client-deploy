@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { GroupMessage } from '@/types/chat.ts';
+import { Client } from '@stomp/stompjs';
+import { ChatList, GroupMessage } from '@/types/chat.ts';
 import { CLIENT_PATH } from '@/constants/path.ts';
 import reformatDate from '@/utils/reformatDate.ts';
 import { useGetChatQuery } from '@/api/chatApi.ts';
@@ -30,13 +31,7 @@ import ArrowRightIcon from '@/assets/icons/common/arrow-right-icon.svg?react';
 import LoadingIcon from '@/components/common/LoadingIcon';
 import NoData from '@/components/common/NoData.tsx';
 
-const ChatRoomPage = ({
-  sendMessage,
-  checkReceive,
-}: {
-  sendMessage: (partyId: string, message: string) => void;
-  checkReceive: (partyId: string, chatId: string) => void;
-}) => {
+const ChatRoomPage = ({ client }: { client: Client | null }) => {
   const navigate = useNavigate();
   const currentPartyId = useLocation().pathname.split('/')[2];
 
@@ -57,39 +52,7 @@ const ChatRoomPage = ({
 
   useEffect(() => {
     if (!chatData) return;
-
-    const array: GroupMessage[] = [];
-    let currentDate = '';
-
-    chatData.chats.forEach((message) => {
-      const messageDate = formatChatDate(message.createdAt);
-
-      if (messageDate !== currentDate) {
-        currentDate = messageDate;
-        array.push({
-          chat: [currentDate],
-          createdAt: '',
-          sender: null,
-          type: 'SYSTEM',
-        });
-      }
-
-      const lastMessage = array[array.length - 1];
-      const isSameUser = lastMessage.sender?.id === message.sender?.id;
-      const isSameTime =
-        lastMessage.createdAt.slice(0, 16) === message.createdAt?.slice(0, 16);
-      const isSameType = lastMessage.type === message.type;
-
-      if (isSameType && isSameUser && isSameTime) {
-        // 이전 메시지와 같은 유저, 같은 시간대의 메시지라면 chat 배열에 추가
-        lastMessage.chat.push(message.message);
-      } else {
-        // 새로운 유저이거나 시간이 다르면 새로운 그룹 추가
-        array.push({ ...message, chat: [message.message] });
-      }
-    });
-
-    setInitialChatMessage(array);
+    setInitialChatMessage(formatPrevChatData(chatData));
   }, [chatData]);
 
   if (isLoading || chatIsLoading) return <LoadingIcon />;
@@ -143,7 +106,7 @@ const ChatRoomPage = ({
         currentPartyId={currentPartyId}
         inAppNotificationHandler={handleNewMessage}
         initialChatMessage={initialChatMessage}
-        checkReceive={checkReceive}
+        client={client}
       >
         {initialChatMessage.map((message) =>
           message.type === 'SYSTEM' ? (
@@ -167,9 +130,44 @@ const ChatRoomPage = ({
           )
         )}
       </MessageList>
-      <MessageInputBox sendMessage={sendMessage} partyId={currentPartyId} />
+      <MessageInputBox client={client} partyId={currentPartyId} />
     </>
   );
 };
 
 export default ChatRoomPage;
+
+const formatPrevChatData = (chatData: ChatList) => {
+  const array: GroupMessage[] = [];
+  let currentDate = '';
+
+  chatData.chats.forEach((message) => {
+    const messageDate = formatChatDate(message.createdAt);
+
+    if (messageDate !== currentDate) {
+      currentDate = messageDate;
+      array.push({
+        chat: [currentDate],
+        createdAt: '',
+        sender: null,
+        type: 'SYSTEM',
+      });
+    }
+
+    const lastMessage = array[array.length - 1];
+    const isSameUser = lastMessage.sender?.id === message.sender?.id;
+    const isSameTime =
+      lastMessage.createdAt.slice(0, 16) === message.createdAt?.slice(0, 16);
+    const isSameType = lastMessage.type === message.type;
+
+    if (isSameType && isSameUser && isSameTime) {
+      // 이전 메시지와 같은 유저, 같은 시간대의 메시지라면 chat 배열에 추가
+      lastMessage.chat.push(message.message);
+    } else {
+      // 새로운 유저이거나 시간이 다르면 새로운 그룹 추가
+      array.push({ ...message, chat: [message.message] });
+    }
+  });
+
+  return array;
+};
