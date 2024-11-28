@@ -74,7 +74,6 @@ export interface MarkerContainerProps {
 
 export interface CreateMainPageProps {
   registerData: RegisterData;
-  createPostSubmit: () => void;
   setRegisterDataFunc: SetRegisterDataFunc;
   setStep: SetStep;
 }

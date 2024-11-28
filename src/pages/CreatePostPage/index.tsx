@@ -1,7 +1,6 @@
 import { ReactNode, useState } from 'react';
 // import { useLocation } from 'react-router-dom';
 // import { useGetPostByIdQuery } from '@/api/baseApi.ts';
-import useCreatePost from '@/hooks/useCreatePost.ts';
 import { RegisterDataKey, RegisterData, StepType } from '@/types';
 
 import CreateMainPage from '@/pages/CreatePostPage/CreateMainPage.tsx';
@@ -33,8 +32,6 @@ const CreatePostPage = () => {
   const [registerData, setRegisterData] =
     useState<RegisterData>(initialRegisterData);
 
-  const createPostSubmit = useCreatePost(registerData);
-
   const comeBackMain = () => {
     setStep('main');
   };
@@ -55,7 +52,6 @@ const CreatePostPage = () => {
       <Step check={step === 'main'}>
         <CreateMainPage
           registerData={registerData}
-          createPostSubmit={createPostSubmit}
           setRegisterDataFunc={setRegisterDataFunc}
           setStep={setStep}
         />
