@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { CreateMainPageProps } from '@/types/props';
+import { useCreatePostMutation } from '@/api/postApi.ts';
+import validateRegisterData from '@/utils/validateRegisterData.ts';
 
 import Header from '@/components/common/Layout/Header';
 import TitleWrap from '@/components/CreatePost/main/TitleWrap.tsx';
@@ -15,16 +17,37 @@ import {
   Container,
   CreateSubmitButton,
 } from '@/components/CreatePost/createPost.style.ts';
+import LoadingIcon from '@/components/common/LoadingIcon';
 
 import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
 
 const CreateMainPage = ({
   registerData,
-  createPostSubmit,
   setRegisterDataFunc,
   setStep,
 }: CreateMainPageProps) => {
   const navigate = useNavigate();
+  const [createPost, { isLoading }] = useCreatePostMutation();
+
+  const createPostSubmit = async () => {
+    if (!validateRegisterData(registerData) || isLoading) return;
+    const formatDate = new Date(
+      new Date(registerData.departureTime).getTime() + 1000 * 60 * 60 * 9
+    ).toISOString();
+
+    try {
+      const result = await createPost({
+        ...registerData,
+        departureTime: formatDate,
+      }).unwrap();
+
+      navigate('/posts/' + result.data.partyId);
+    } catch (err) {
+      console.error('Post creation failed:', err);
+      alert('게시글 생성 중 문제가 발생했습니다.');
+    }
+  };
+
   return (
     <>
       <Header>
@@ -37,6 +60,7 @@ const CreateMainPage = ({
         </CreateSubmitButton>
       </Header>
       <Container>
+        {isLoading && <LoadingIcon />}
         <TitleWrap
           value={registerData.title}
           setRegisterDataFunc={setRegisterDataFunc}
