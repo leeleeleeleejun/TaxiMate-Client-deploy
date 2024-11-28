@@ -30,7 +30,11 @@ const Map = ({
   return (
     <Main>
       <Marker content={content} />
-      <MapDiv className={'map-wrapper'} onTouchEnd={onCenterChangedFunc}>
+      <MapDiv
+        className={'map-wrapper'}
+        onTouchEnd={onCenterChangedFunc}
+        onMouseUp={onCenterChangedFunc}
+      >
         <NaverMap
           ref={setMap}
           defaultCenter={defaultCenter}
