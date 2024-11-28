@@ -24,11 +24,16 @@ const SetPlacePage = ({
   };
 
   const MyLocationButtonClickHandle = async () => {
-    setIsLoading(true);
-    const { lat, lng } = await getCurrentLocation();
-    const registerKey = isOrigin ? 'originLocation' : 'destinationLocation';
-    setRegisterDataFunc(registerKey, { latitude: lat, longitude: lng });
-    isOrigin ? setStep('originMap') : setStep('destinationMap');
+    try {
+      setIsLoading(true);
+      const { lat, lng } = await getCurrentLocation();
+      const registerKey = isOrigin ? 'originLocation' : 'destinationLocation';
+      setRegisterDataFunc(registerKey, { latitude: lat, longitude: lng });
+      isOrigin ? setStep('originMap') : setStep('destinationMap');
+    } catch (e) {
+      setIsLoading(false);
+      alert('기기의 현재 내 위치 기능이 제한되어 있습니다.');
+    }
   };
 
   return (

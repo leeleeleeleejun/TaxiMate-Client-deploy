@@ -40,14 +40,19 @@ const MoveCurrentLocation = ({
   }, [postListHeight]);
 
   const moveCurrentLocationFunc = async () => {
-    if (map) {
-      setIsLoading(true);
-      const { lat, lng } = await getCurrentLocation();
-      const latLng = new naverMaps.LatLng(lat, lng);
-      map.setCenter(latLng);
+    try {
+      if (map) {
+        setIsLoading(true);
+        const { lat, lng } = await getCurrentLocation();
+        const latLng = new naverMaps.LatLng(lat, lng);
+        map.setCenter(latLng);
+        setIsLoading(false);
+      }
+      setActiveButton(true);
+    } catch (e) {
       setIsLoading(false);
+      alert('기기의 현재 내 위치 기능이 제한되어 있습니다.');
     }
-    setActiveButton(true);
   };
 
   return (

@@ -5,7 +5,13 @@ import getCurrentLocation from '@/utils/getCurrentlocation.ts';
 import MarkerContainer from '@/components/common/MarkerContainer';
 import { HomeMapProps } from '@/types/props';
 
-const defaultLocation = await getCurrentLocation();
+let defaultLocation;
+
+try {
+  defaultLocation = await getCurrentLocation();
+} catch (error) {
+  defaultLocation = { lat: 37.5666103, lng: 126.9783882 };
+}
 localStorage.setItem('Location', JSON.stringify(defaultLocation));
 
 const Map = ({
