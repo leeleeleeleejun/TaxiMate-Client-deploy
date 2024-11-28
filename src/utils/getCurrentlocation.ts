@@ -16,7 +16,6 @@ const getCurrentLocation = async (): Promise<{
           resolve(currentLocation);
         },
         (error) => {
-          alert('Unable to retrieve your location.');
           reject(error);
         }
       );
