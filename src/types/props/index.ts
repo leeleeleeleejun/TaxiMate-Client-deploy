@@ -49,6 +49,8 @@ export interface MoveCurrentLocationProps {
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+export type centerLocation = { lat: number; lng: number };
+
 export interface HomeMapProps {
   map: naver.maps.Map | null;
   setMap: React.Dispatch<React.SetStateAction<naver.maps.Map | null>>;
@@ -57,6 +59,7 @@ export interface HomeMapProps {
   activeMarker: string | null;
   setActiveMarker: SetActiveMarker;
   data: Post[];
+  centerLocation: centerLocation;
 }
 
 export interface MarkerContainerProps {
