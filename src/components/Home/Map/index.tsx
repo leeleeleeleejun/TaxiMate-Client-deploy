@@ -1,18 +1,8 @@
 import { Container as MapDiv, NaverMap } from 'react-naver-maps';
-
-import getCurrentLocation from '@/utils/getCurrentlocation.ts';
-
-import MarkerContainer from '@/components/common/MarkerContainer';
+import { useDispatch } from 'react-redux';
 import { HomeMapProps } from '@/types/props';
-
-let defaultLocation;
-
-try {
-  defaultLocation = await getCurrentLocation();
-} catch (error) {
-  defaultLocation = { lat: 37.5666103, lng: 126.9783882 };
-}
-localStorage.setItem('Location', JSON.stringify(defaultLocation));
+import MarkerContainer from '@/components/common/MarkerContainer';
+import { setCenterLocation } from '@/components/Home/Map/HomeMapSlice.ts';
 
 const Map = ({
   map,
@@ -22,14 +12,15 @@ const Map = ({
   setActiveMarker,
   setShowResearchButton,
   data,
+  centerLocation,
 }: HomeMapProps) => {
-  const centerLocation = JSON.parse(localStorage.getItem('Location') || '');
+  const dispatch = useDispatch();
 
   const onCenterChangedFunc = async () => {
     if (!map) return;
     // 현재 위치 참조
     const { x, y } = map.getCenter();
-    localStorage.setItem('Location', JSON.stringify({ lat: y, lng: x }));
+    dispatch(setCenterLocation({ lat: y, lng: x }));
 
     // 내 위치로 이동 버트 비활성화
     setActiveButton(false);
@@ -42,14 +33,16 @@ const Map = ({
       onClick={() => {
         setActiveMarker(null);
       }}
+      onMouseUp={onCenterChangedFunc}
+      onTouchEnd={onCenterChangedFunc}
     >
       <NaverMap
         defaultCenter={centerLocation}
         defaultZoom={15}
         minZoom={12}
         ref={setMap}
-        onCenterChanged={onCenterChangedFunc}
         logoControl={false}
+        onZoomChanged={onCenterChangedFunc}
       >
         {data.map((item) => (
           <MarkerContainer

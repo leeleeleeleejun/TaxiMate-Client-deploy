@@ -27,3 +27,12 @@ const getCurrentLocation = async (): Promise<{
 };
 
 export default getCurrentLocation;
+
+export const defaultLocation = async () => {
+  try {
+    const { lat, lng } = await getCurrentLocation();
+    return { lat, lng };
+  } catch (e) {
+    return { lat: 36.4689627, lng: 127.1408071 };
+  }
+};

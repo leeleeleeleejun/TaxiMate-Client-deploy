@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setCenterLocation } from '@/components/Home/Map/HomeMapSlice.ts';
 import { RegisterDataKey } from '@/types';
 import { SearchPageProps } from '@/types/props';
 
@@ -14,6 +16,7 @@ const SearchPage = ({
   setStep,
   setRegisterDataFunc,
 }: SearchPageProps) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState<string>('');
   const inputEl = useRef<HTMLInputElement>(null);
@@ -35,7 +38,7 @@ const SearchPage = ({
       setStep(nextStep);
     } else {
       //메인홈에서 검색 시 사용
-      localStorage.setItem('Location', JSON.stringify({ lat, lng }));
+      dispatch(setCenterLocation({ lat, lng }));
       navigate('/');
     }
   };

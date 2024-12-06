@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { RootState } from '@/store';
+import { useSelector } from 'react-redux';
 import { useLazyGetPostsQuery } from '@/api/postApi.ts';
 
 import getCurrentLocation from '@/utils/getCurrentlocation.ts';
@@ -25,6 +27,9 @@ const HomePage = () => {
   const [postListHeight, setPostListHeight] = useState(0);
   const [isLoading, setIsLoading] = useState(false); // 로딩 상태 관리
   const [showResearchButton, setShowResearchButton] = useState(false);
+  const centerLocation = useSelector(
+    (state: RootState) => state.homeMapSlice.centerLocation
+  );
 
   const [trigger, { data, isLoading: getPostsIsLoading }] =
     useLazyGetPostsQuery();
@@ -49,11 +54,13 @@ const HomePage = () => {
   }, [map]);
 
   useEffect(() => {
-    const centerLocation = JSON.parse(localStorage.getItem('Location') || '');
-
     (async () => {
-      const { lat, lng } = await getCurrentLocation();
-      if (!(centerLocation.lat === lat && centerLocation.lng === lng)) {
+      try {
+        const { lat, lng } = await getCurrentLocation();
+        if (!(centerLocation.lat === lat && centerLocation.lng === lng)) {
+          setActiveButton(false);
+        }
+      } catch (e) {
         setActiveButton(false);
       }
     })();
@@ -96,6 +103,7 @@ const HomePage = () => {
           setActiveMarker={setActiveMarker}
           setShowResearchButton={setShowResearchButton}
           data={data || []}
+          centerLocation={centerLocation}
         />
       </Main>
       <PostList

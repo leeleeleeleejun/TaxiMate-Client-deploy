@@ -1,16 +1,20 @@
 import { useState } from 'react';
+import { RootState } from '@/store';
+import { useSelector } from 'react-redux';
 import { SearchPlace } from '@/types';
 import { getSearchList } from '@/api/kakaoApi.ts';
 
 const useSearchData = () => {
   const [searchListsData, setSearchListsData] = useState<SearchPlace[]>([]);
-  const centerLocation = JSON.parse(localStorage.getItem('Location') || '');
+  const centerLocation = useSelector(
+    (state: RootState) => state.homeMapSlice.centerLocation
+  );
 
   const searchFunc = async (query: string) => {
     const result = await getSearchList(
       query,
-      centerLocation.lng,
-      centerLocation.lat
+      String(centerLocation.lng),
+      String(centerLocation.lat)
     );
 
     setSearchListsData([...result.documents]);
