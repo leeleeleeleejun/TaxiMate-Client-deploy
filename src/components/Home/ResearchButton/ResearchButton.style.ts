@@ -13,9 +13,9 @@ export const Container = styled.button`
   position: absolute;
   top: 81px;
   z-index: 2;
-  left: 30%;
-  right: 30%;
-
+  left: 0;
+  right: 0;
+  margin: auto;
   border-radius: 50px;
 
   font-size: var(--font-small);
