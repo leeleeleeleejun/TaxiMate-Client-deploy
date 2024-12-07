@@ -1,5 +1,8 @@
+import { useEffect } from 'react';
+import { RootState } from '@/store';
+import { useDispatch, useSelector } from 'react-redux';
 import { Container as MapDiv, NaverMap } from 'react-naver-maps';
-import { useDispatch } from 'react-redux';
+import getCurrentLocation from '@/utils/getCurrentlocation.ts';
 import { HomeMapProps } from '@/types/props';
 import MarkerContainer from '@/components/common/MarkerContainer';
 import { setCenterLocation } from '@/components/Home/Map/HomeMapSlice.ts';
@@ -12,9 +15,24 @@ const Map = ({
   setActiveMarker,
   setShowResearchButton,
   data,
-  centerLocation,
 }: HomeMapProps) => {
   const dispatch = useDispatch();
+  const centerLocation = useSelector(
+    (state: RootState) => state.homeMapSlice.centerLocation
+  );
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const { lat, lng } = await getCurrentLocation();
+        if (!(centerLocation.lat === lat && centerLocation.lng === lng)) {
+          setActiveButton(false);
+        }
+      } catch (e) {
+        setActiveButton(false);
+      }
+    })();
+  }, []);
 
   const onCenterChangedFunc = async () => {
     if (!map) return;

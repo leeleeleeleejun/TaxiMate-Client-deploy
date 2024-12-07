@@ -59,7 +59,6 @@ export interface HomeMapProps {
   activeMarker: string | null;
   setActiveMarker: SetActiveMarker;
   data: Post[];
-  centerLocation: centerLocation;
 }
 
 export interface MarkerContainerProps {
