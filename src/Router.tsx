@@ -34,10 +34,6 @@ const Router = () => {
                 path={CLIENT_PATH.POST_DETAIL}
                 element={<PostDetailPage />}
               />
-              <Route
-                path={CLIENT_PATH.UPDATE_POST}
-                element={<CreatePostPage />}
-              />
               <Route path={CLIENT_PATH.LOGIN} element={<LoginPage />} />
               <Route
                 path={CLIENT_PATH.LOGIN_LOADING}

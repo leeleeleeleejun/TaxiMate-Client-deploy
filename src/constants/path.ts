@@ -33,7 +33,6 @@ export const CLIENT_PATH = {
   SEARCH: '/search',
   POST_DETAIL: '/posts/:postId',
   CREATE_POST: '/create-post',
-  UPDATE_POST: '/update-post/:postId',
   CHAT_LISTS: '/chat-list',
   CHAT_ROOM: '/chat-list/:chatRoomId',
   USAGE_HISTORY: '/usage-history',
