@@ -7,6 +7,7 @@ import AuthChecker from '@/AuthChecker.tsx';
 import Layout from '@/components/common/Layout';
 import LoadingIcon from '@/components/common/LoadingIcon';
 import InAppNotificationLayout from '@/components/common/InAppNotification/InAppNotificationLayout.tsx';
+import ForwardHandler from '@/ForwardHandler.tsx';
 
 const HomePage = lazy(() => import('@/pages/HomePage'));
 const SearchPage = lazy(() => import('@/pages/SearchPage'));
@@ -24,6 +25,7 @@ const Router = () => {
 
   return (
     <BrowserRouter>
+      <ForwardHandler />
       <Suspense fallback={<LoadingIcon />}>
         <Routes>
           <Route element={<Layout />}>
