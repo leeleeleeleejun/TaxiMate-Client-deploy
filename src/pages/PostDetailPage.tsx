@@ -64,7 +64,7 @@ const PostDetailPage = () => {
   return (
     <>
       <Header>
-        <BackButton onClick={() => navigate('/')}>
+        <BackButton onClick={() => navigate('/', { replace: true })}>
           <ArrowLeftIcon />
         </BackButton>
       </Header>

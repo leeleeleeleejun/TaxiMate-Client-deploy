@@ -39,7 +39,7 @@ const SearchPage = ({
     } else {
       //메인홈에서 검색 시 사용
       dispatch(setCenterLocation({ lat, lng }));
-      navigate('/');
+      navigate('/', { replace: true });
     }
   };
 

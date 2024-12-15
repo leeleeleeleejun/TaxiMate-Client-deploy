@@ -1,17 +1,40 @@
-import TaxiIcon from '@/assets/icons/login/taxi-icon.svg?react';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import { getKakaoInga } from '@/api/kakaoApi.ts';
+import { BackButton } from '@/components/common/Layout/Header/Header.style.ts';
+import TaxiIcon from '@/assets/icons/login/taxi-icon.svg?react';
+import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+  const isLogin = useSelector((state: RootState) => state.userSlice.isLogin);
+
   return (
-    <IconWrap>
-      <TaxiIcon />
-      <div>공주대학교</div>
-      <span>택시팟</span>
-      <LoginButton onClick={getKakaoInga}>
-        <img src={'/kakao-login.png'} alt={'kakao-login-button'} />
-      </LoginButton>
-    </IconWrap>
+    <>
+      <Header>
+        <BackButton onClick={() => navigate('/', { replace: true })}>
+          <ArrowLeftIcon />
+        </BackButton>
+      </Header>
+      <IconWrap>
+        <TaxiIcon />
+        <div>공주대학교</div>
+        <span>택시팟</span>
+        <LoginButton
+          onClick={() => {
+            if (isLogin) {
+              navigate('/', { replace: true });
+            } else {
+              getKakaoInga();
+            }
+          }}
+        >
+          <img src={'/kakao-login.png'} alt={'kakao-login-button'} />
+        </LoginButton>
+      </IconWrap>
+    </>
   );
 };
 
@@ -37,4 +60,13 @@ const LoginButton = styled.button`
   & > img {
     margin: 0 auto;
   }
+`;
+
+const Header = styled.header`
+  padding: 10px 20px;
+  position: absolute;
+  top: 0;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
 `;
