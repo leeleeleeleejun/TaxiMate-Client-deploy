@@ -10,9 +10,6 @@ const getCurrentLocation = async (): Promise<{
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           };
-          console.log(
-            'Geolocation returned: ' + JSON.stringify(currentLocation)
-          );
           resolve(currentLocation);
         },
         (error) => {

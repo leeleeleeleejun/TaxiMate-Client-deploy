@@ -7,7 +7,7 @@ const AuthChecker = () => {
   const isLogin = useSelector((state: RootState) => state.userSlice.isLogin);
 
   if (!isLogin) {
-    return <Navigate to={CLIENT_PATH.LOGIN} />;
+    return <Navigate to={CLIENT_PATH.LOGIN} replace={true} state={'/'} />;
   }
   return isLogin && <Outlet />;
 };

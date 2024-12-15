@@ -41,7 +41,7 @@ const CreateMainPage = ({
         departureTime: formatDate,
       }).unwrap();
 
-      navigate('/posts/' + result.data.partyId);
+      navigate('/posts/' + result.data.partyId, { replace: true });
     } catch (err) {
       console.error('Post creation failed:', err);
       alert('게시글 생성 중 문제가 발생했습니다.');
@@ -51,7 +51,7 @@ const CreateMainPage = ({
   return (
     <>
       <Header>
-        <BackButton onClick={() => navigate('/')}>
+        <BackButton onClick={() => navigate('/', { replace: true })}>
           <ArrowLeftIcon />
         </BackButton>
         <HeaderItem>팟 생성</HeaderItem>
