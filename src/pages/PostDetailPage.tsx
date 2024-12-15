@@ -57,7 +57,10 @@ const PostDetailPage = () => {
 
   const leaveChatHandler = async () => {
     await leaveChat(data.id).unwrap();
-    refetch();
+    const result = await refetch();
+    if (result.data && result.data.currentParticipants === 0) {
+      navigate('/', { replace: true });
+    }
   };
 
   const formatCreatedAt = reformatDetailDate(data.createdAt);
