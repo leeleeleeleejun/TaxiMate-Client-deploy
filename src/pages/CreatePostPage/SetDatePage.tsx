@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { parseAbsoluteToLocal } from '@internationalized/date';
 
 import { SetDatePageProps } from '@/types/props';
-import reformatDate from '@/utils/reformatDate.ts';
+import formatDate from '@/utils/date/formatDate.ts';
 import setDepartureTimeValueFunc from '@/utils/setDepartureTimeValueFunc.ts';
 
 import CreatePostChilePageLayout from '@/components/common/Layout/CreatePostChildPageLayout';
@@ -13,7 +13,7 @@ import {
   DateStringContainer,
 } from '@/components/CreatePost/setDate/setDate.style.ts';
 import { SubmitButton } from '@/components/CreatePost/createPost.style.ts';
-import checkDate from '@/utils/checkDate.ts';
+import checkDate from '@/utils/date/checkDate.ts';
 
 const SetDatePage = ({
   value,
@@ -46,7 +46,7 @@ const SetDatePage = ({
       backHandle={comeBackMain}
     >
       <Container>
-        <DateStringContainer>{reformatDate(newDate)}</DateStringContainer>
+        <DateStringContainer>{formatDate(newDate)}</DateStringContainer>
         <DatePickerWrap date={date} setDate={setDate} />
         <TimePickerWrap time={time} setTime={setTime} />
         <SubmitButton onClick={submitTimeFunc}>완료</SubmitButton>

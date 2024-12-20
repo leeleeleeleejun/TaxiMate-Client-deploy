@@ -3,11 +3,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Client } from '@stomp/stompjs';
 import { ChatList, GroupMessage } from '@/types/chat.ts';
 import { CLIENT_PATH } from '@/constants/path.ts';
-import reformatDate from '@/utils/reformatDate.ts';
+import formatDate from '@/utils/date/formatDate.ts';
 import { useGetChatQuery } from '@/api/chatApi.ts';
 import { useGetProfileQuery } from '@/api/userApi.ts';
 import useInAppNotificationHandler from '@/hooks/useInAppNotificationHandler.ts';
-import formatChatDate from '@/utils/formatChatDate.ts';
+import formatDateForSystemMessage from '@/utils/date/formatDateForSystemMessage.ts';
 
 import Header from '@/components/common/Layout/Header';
 import { PostBody } from '@/components/common/PostListItem';
@@ -98,7 +98,7 @@ const ChatRoomPage = ({ client }: { client: Client | null }) => {
           <ArrowRightIcon />
         </NotificationHeader>
         <PostBody
-          departureTime={reformatDate(chatData.party.departureTime) || ''}
+          departureTime={formatDate(chatData.party.departureTime) || ''}
           origin={chatData.party.origin || ''}
           destination={chatData.party.destination || ''}
         />
@@ -144,7 +144,7 @@ const formatPrevChatData = (chatData: ChatList) => {
   let currentDate = '';
 
   chatData.chats.forEach((message) => {
-    const messageDate = formatChatDate(message.createdAt);
+    const messageDate = formatDateForSystemMessage(message.createdAt);
 
     if (messageDate !== currentDate) {
       currentDate = messageDate;

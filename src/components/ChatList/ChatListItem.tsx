@@ -9,7 +9,7 @@ import {
   MessageCounter,
 } from '@/components/ChatList/chatList.style.ts';
 import { ChatRoom } from '@/types/chat.ts';
-import reformatDetailDate from '@/utils/reformatDetailDate.ts';
+import formatDateForDetailPost from '@/utils/date/formatDateForDetailPost.ts';
 
 const ChatListItem = ({
   title,
@@ -21,7 +21,7 @@ const ChatListItem = ({
   id,
   isProgress,
 }: ChatRoom) => {
-  const formatTime = reformatDetailDate(recentMessageTime);
+  const formatTime = formatDateForDetailPost(recentMessageTime);
   return (
     <ChatListItemContainer>
       <Link to={'/chat-list/' + id}>

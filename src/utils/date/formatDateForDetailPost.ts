@@ -1,4 +1,4 @@
-const reformatDetailDate = (timestamp: string) => {
+const formatDateForDetailPost = (timestamp: string) => {
   const now = new Date();
   const past = new Date(timestamp);
   const diffInMilliseconds = now.getTime() - past.getTime();
@@ -24,4 +24,4 @@ const reformatDetailDate = (timestamp: string) => {
   }
 };
 
-export default reformatDetailDate;
+export default formatDateForDetailPost;

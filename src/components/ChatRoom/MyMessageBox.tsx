@@ -5,7 +5,7 @@ import {
   MyMessageContainer,
   MyResentMessage,
 } from '@/components/ChatRoom/chatRoom.style.ts';
-import formatMongoDate from '@/utils/formatMongoDate.ts';
+import formatDateForChatMessage from '@/utils/date/formatDateForChatMessage.ts';
 
 const MyMessageBox = ({
   messages,
@@ -22,7 +22,7 @@ const MyMessageBox = ({
             <MyMessage key={index}>{message}</MyMessage>
           ) : (
             <MyResentMessage key={index}>
-              <MessageTime>{formatMongoDate(time)}</MessageTime>
+              <MessageTime>{formatDateForChatMessage(time)}</MessageTime>
               <MyMessage>{message}</MyMessage>
             </MyResentMessage>
           )

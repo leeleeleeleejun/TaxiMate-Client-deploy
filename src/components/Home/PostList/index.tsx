@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import 'react-spring-bottom-sheet/dist/style.css';
 import { BottomSheet, BottomSheetRef } from 'react-spring-bottom-sheet';
 
-import reformatDate from '@/utils/reformatDate.ts';
+import formatDate from '@/utils/date/formatDate.ts';
 
 import {
   PostListContainer,
@@ -33,7 +33,7 @@ const PostList = ({
           title={targetData.title}
           currentParticipants={targetData.currentParticipants}
           maxParticipants={targetData.maxParticipants}
-          departureTime={reformatDate(targetData.departureTime)}
+          departureTime={formatDate(targetData.departureTime)}
           origin={targetData.origin}
           destination={targetData.destination}
           activePostList
@@ -64,7 +64,7 @@ const PostList = ({
               title={post.title}
               currentParticipants={post.currentParticipants}
               maxParticipants={post.maxParticipants}
-              departureTime={reformatDate(post.departureTime)}
+              departureTime={formatDate(post.departureTime)}
               origin={post.origin}
               destination={post.destination}
             />

@@ -13,7 +13,7 @@ import UsageHistoryIcon from '@/assets/icons/header/usage-history-icon.svg?react
 import Footer from '@/components/common/Layout/Footer';
 import { useGetClosePostsQuery, useGetJoinPostsQuery } from '@/api/postApi.ts';
 import PostListItem from '@/components/common/PostListItem';
-import reformatDate from '@/utils/reformatDate.ts';
+import formatDate from '@/utils/date/formatDate.ts';
 import NoData from '@/components/common/NoData.tsx';
 import LoadingIcon from '@/components/common/LoadingIcon';
 
@@ -64,7 +64,7 @@ const UsageHistoryPage = () => {
                 title={post.title}
                 currentParticipants={post.currentParticipants}
                 maxParticipants={post.maxParticipants}
-                departureTime={reformatDate(post.departureTime)}
+                departureTime={formatDate(post.departureTime)}
                 origin={post.origin}
                 destination={post.destination}
                 isClose={isActive === 'close'}

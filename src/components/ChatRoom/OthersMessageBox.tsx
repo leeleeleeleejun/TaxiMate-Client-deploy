@@ -8,7 +8,7 @@ import {
   ResentMessage,
 } from '@/components/ChatRoom/chatRoom.style.ts';
 import UserBasicImg from '@/components/common/userBasicImg';
-import formatMongoDate from '@/utils/formatMongoDate.ts';
+import formatDateForChatMessage from '@/utils/date/formatDateForChatMessage.ts';
 
 const OthersMessageBox = ({
   name,
@@ -32,7 +32,7 @@ const OthersMessageBox = ({
           ) : (
             <ResentMessage key={index}>
               <OthersMessage>{messages[messages.length - 1]}</OthersMessage>
-              <MessageTime>{formatMongoDate(time)}</MessageTime>
+              <MessageTime>{formatDateForChatMessage(time)}</MessageTime>
             </ResentMessage>
           )
         )}

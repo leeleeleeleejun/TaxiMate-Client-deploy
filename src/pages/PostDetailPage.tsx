@@ -9,8 +9,8 @@ import {
   useParticipationChatMutation,
 } from '@/api/chatApi.ts';
 import { CLIENT_PATH } from '@/constants/path.ts';
-import reformatDate from '@/utils/reformatDate.ts';
-import reformatDetailDate from '@/utils/reformatDetailDate.ts';
+import formatDate from '@/utils/date/formatDate.ts';
+import formatDateForDetailPost from '@/utils/date/formatDateForDetailPost.ts';
 import { PostDetailStatus } from '@/types/post.ts';
 
 import Header from '@/components/common/Layout/Header';
@@ -63,7 +63,7 @@ const PostDetailPage = () => {
     }
   };
 
-  const formatCreatedAt = reformatDetailDate(data.createdAt);
+  const formatCreatedAt = formatDateForDetailPost(data.createdAt);
   return (
     <>
       <Header>
@@ -167,7 +167,7 @@ const PostDetailTitle = ({
   title: string;
   departureTime: string;
 }) => {
-  const reformatDate1 = reformatDate(departureTime);
+  const reformatDate1 = formatDate(departureTime);
   return (
     <S.PostDetailTitleContainer>
       <h2>{title}</h2>

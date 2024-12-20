@@ -1,5 +1,5 @@
 import { RegisterData } from '@/types';
-import checkDate from '@/utils/checkDate.ts';
+import checkDate from '@/utils/date/checkDate.ts';
 
 const validateRegisterData = (registerData: RegisterData) => {
   const {

@@ -1,5 +1,5 @@
 import { ChatMessage, GroupMessage } from '@/types/chat.ts';
-import formatChatDate from '@/utils/formatChatDate.ts';
+import formatDateForSystemMessage from '@/utils/date/formatDateForSystemMessage.ts';
 
 const createDateSeparator = (messageDate: string): GroupMessage => ({
   chat: [messageDate],
@@ -14,7 +14,7 @@ const chatHandler = (
   setMessageList: React.Dispatch<React.SetStateAction<GroupMessage[]>>
 ) => {
   const setMessage = { ...message, chat: [message.message] };
-  const messageDate = formatChatDate(message.createdAt);
+  const messageDate = formatDateForSystemMessage(message.createdAt);
 
   setMessageList((prevState) => {
     if (prevState.length === 0) {

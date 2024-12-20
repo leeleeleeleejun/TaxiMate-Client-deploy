@@ -1,4 +1,4 @@
-const formatChatDate = (dateString: string): string => {
+const formatDateForSystemMessage = (dateString: string): string => {
   const date = new Date(dateString);
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -7,4 +7,4 @@ const formatChatDate = (dateString: string): string => {
   return `${year}년 ${month}월 ${day}일 ${dayOfWeek}요일`;
 };
 
-export default formatChatDate;
+export default formatDateForSystemMessage;

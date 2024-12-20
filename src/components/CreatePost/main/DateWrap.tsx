@@ -1,5 +1,5 @@
 import { ContentWrapProps } from '@/types/props';
-import reformatDate from '@/utils/reformatDate.ts';
+import formatDate from '@/utils/date/formatDate.ts';
 
 import ContentWrap from '@/components/CreatePost/ContentWrap.tsx';
 import { DepartureTimeContainer } from '@/components/CreatePost/createPost.style.ts';
@@ -21,7 +21,7 @@ const DateWrap = ({ value, setStep }: ContentWrapProps) => {
       >
         <div>
           <CalendarIcon />
-          {reformatDate(value)}
+          {formatDate(value)}
         </div>
         <ArrowRightIcon />
       </DepartureTimeContainer>

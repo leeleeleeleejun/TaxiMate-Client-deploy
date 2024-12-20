@@ -1,4 +1,4 @@
-const reformatDate = (timestamp: string): string => {
+const formatDate = (timestamp: string): string => {
   const date = new Date(timestamp);
   const today = new Date();
   const tomorrow = new Date(today);
@@ -32,4 +32,4 @@ const reformatDate = (timestamp: string): string => {
   return `${month}월 ${day}일(${dayOfWeek}) ${formatTime(date)} 쯤`;
 };
 
-export default reformatDate;
+export default formatDate;
