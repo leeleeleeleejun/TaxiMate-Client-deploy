@@ -1,11 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { RootState } from '@/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container as MapDiv, NaverMap } from 'react-naver-maps';
-import getCurrentLocation from '@/utils/getCurrentlocation.ts';
 import { HomeMapProps } from '@/types/props';
-import MarkerContainer from '@/components/common/MarkerContainer';
 import { setCenterLocation } from '@/components/Home/Map/HomeMapSlice.ts';
+import getCurrentLocation from '@/utils/getCurrentlocation.ts';
+import MarkerContainer from '@/components/common/MarkerContainer';
+import UserCurrentLocationMarker from '@/components/common/UserCurrentLocationMarker';
 
 const Map = ({
   map,
@@ -20,11 +21,13 @@ const Map = ({
   const centerLocation = useSelector(
     (state: RootState) => state.homeMapSlice.centerLocation
   );
+  const userCurrentLocation = useRef<{ lat: number; lng: number } | null>(null);
 
   useEffect(() => {
     (async () => {
       try {
         const { lat, lng } = await getCurrentLocation();
+        userCurrentLocation.current = { lat, lng };
         if (!(centerLocation.lat === lat && centerLocation.lng === lng)) {
           setActiveButton(false);
         }
@@ -62,6 +65,9 @@ const Map = ({
         logoControl={false}
         onZoomChanged={onCenterChangedFunc}
       >
+        {userCurrentLocation.current && (
+          <UserCurrentLocationMarker position={userCurrentLocation.current} />
+        )}
         {data.map((item) => (
           <MarkerContainer
             key={item.id}

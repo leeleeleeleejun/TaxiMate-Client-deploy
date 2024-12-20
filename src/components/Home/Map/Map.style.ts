@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import MarkerContainerStyle from '@/components/common/MarkerContainer/MarkerContainer.style.ts';
+import UserCurrentLocationMarkerStyle from '@/components/common/UserCurrentLocationMarker/UserCurrentLocationMarker.style.ts';
 
 export const Main = styled.main`
   position: relative;
@@ -8,4 +9,6 @@ export const Main = styled.main`
     height: calc(100vh - (var(--header-height) + var(--footer-height)));
   }
   ${MarkerContainerStyle}
+
+  ${UserCurrentLocationMarkerStyle}
 `;
