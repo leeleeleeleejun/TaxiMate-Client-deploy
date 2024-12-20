@@ -5,7 +5,7 @@ const UserCurrentLocationMarkerStyle = `
     width: 40px;
     height: 40px;
     border-radius: 50%;  
-    background-color: rgba(49, 130, 247, 0.4);
+    background-color: rgba(49, 130, 247, 0.3);
   }
   .user-marker-icon {
     margin: auto;
