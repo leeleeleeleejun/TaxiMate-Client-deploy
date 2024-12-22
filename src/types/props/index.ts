@@ -97,6 +97,8 @@ export interface SetPlaceMapPageProps {
   comeBackMain: () => void;
   setRegisterDataFunc: SetRegisterDataFunc;
   backHandle: () => void;
+  isMyLocationSelected: boolean;
+  setIsMyLocationSelected: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface SetDatePageProps {
@@ -110,6 +112,7 @@ export interface SetPlaceProps {
   setStep: SetStep;
   setRegisterDataFunc: SetRegisterDataFunc;
   comeBackMain: () => void;
+  setIsMyLocationSelected: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface MessageListProps {

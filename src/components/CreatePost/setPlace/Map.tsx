@@ -5,6 +5,7 @@ import {
   MarkerContainer,
 } from '@/components/CreatePost/setPlace/setPlace.style.ts';
 import { Location } from '@/types/props';
+import UserCurrentLocationMarker from '@/components/common/UserCurrentLocationMarker';
 
 const Map = ({
   map,
@@ -12,12 +13,14 @@ const Map = ({
   setAddressInfo,
   defaultCenter,
   isOrigin,
+  isMyLocationSelected,
 }: {
   map: naver.maps.Map | null;
   setMap: React.Dispatch<React.SetStateAction<naver.maps.Map | null>>;
   setAddressInfo: (lng: number, lat: number) => void;
   defaultCenter: Location;
   isOrigin: boolean;
+  isMyLocationSelected: boolean;
 }) => {
   const content = isOrigin ? '출발' : '도착';
 
@@ -43,7 +46,11 @@ const Map = ({
           minZoom={15}
           logoControl={false}
           onZoomChanged={onCenterChangedFunc}
-        ></NaverMap>
+        >
+          {isMyLocationSelected && (
+            <UserCurrentLocationMarker position={defaultCenter} />
+          )}
+        </NaverMap>
       </MapDiv>
     </Main>
   );

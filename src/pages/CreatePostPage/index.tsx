@@ -13,7 +13,7 @@ const CreatePostPage = () => {
   const [step, setStep] = useState<StepType>('main');
   const [registerData, setRegisterData] =
     useState<RegisterData>(initialRegisterData);
-
+  const [isMyLocationSelected, setIsMyLocationSelected] = useState(false);
   const comeBackMain = () => {
     setStep('main');
   };
@@ -51,6 +51,7 @@ const CreatePostPage = () => {
           setStep={setStep}
           setRegisterDataFunc={setRegisterDataFunc}
           comeBackMain={comeBackMain}
+          setIsMyLocationSelected={setIsMyLocationSelected}
         />
       </Step>
       <Step check={step === 'searchOrigin' || step === 'searchDestination'}>
@@ -71,6 +72,8 @@ const CreatePostPage = () => {
           setRegisterDataFunc={setRegisterDataFunc}
           comeBackMain={comeBackMain}
           backHandle={setPlaceMapPageBackHandle}
+          isMyLocationSelected={isMyLocationSelected}
+          setIsMyLocationSelected={setIsMyLocationSelected}
         />
       </Step>
     </>

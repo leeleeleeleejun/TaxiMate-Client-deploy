@@ -13,6 +13,7 @@ const SetPlacePage = ({
   setStep,
   setRegisterDataFunc,
   comeBackMain,
+  setIsMyLocationSelected,
 }: SetPlaceProps) => {
   const [isLoading, setIsLoading] = useState(false); // 로딩 상태 관리
 
@@ -29,6 +30,7 @@ const SetPlacePage = ({
       const { lat, lng } = await getCurrentLocation();
       const registerKey = isOrigin ? 'originLocation' : 'destinationLocation';
       setRegisterDataFunc(registerKey, { latitude: lat, longitude: lng });
+      setIsMyLocationSelected(true);
       isOrigin ? setStep('originMap') : setStep('destinationMap');
     } catch (err) {
       setIsLoading(false);

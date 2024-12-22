@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { getAddress } from '@/api/kakaoApi.ts';
 import { SetPlaceMapPageProps } from '@/types/props';
 
@@ -25,10 +25,17 @@ const SetPlaceMapPage = ({
   comeBackMain,
   setRegisterDataFunc,
   backHandle,
+  isMyLocationSelected,
+  setIsMyLocationSelected,
 }: SetPlaceMapPageProps) => {
   const [map, setMap] = useState<naver.maps.Map | null>(null);
   const [address, setAddress] = useState('');
   const [place, setPlace] = useState('');
+  const isMyLocationSelectedRef = useRef(isMyLocationSelected);
+
+  useEffect(() => {
+    return setIsMyLocationSelected(false);
+  }, []);
 
   const isOrigin = step === 'originMap';
   const { keyWord, content } = isOrigin
@@ -73,6 +80,7 @@ const SetPlaceMapPage = ({
         setAddressInfo={setAddressInfo}
         isOrigin={isOrigin}
         defaultCenter={{ lat: value.latitude, lng: value.longitude }}
+        isMyLocationSelected={isMyLocationSelectedRef.current}
       />
       <SubmitContainer>
         <LocationInfo keyWord={keyWord} place={place} address={address} />
