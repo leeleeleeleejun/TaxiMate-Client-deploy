@@ -4,6 +4,7 @@ import {
   Main,
   MarkerContainer,
 } from '@/components/CreatePost/setPlace/setPlace.style.ts';
+import { Location } from '@/types/props';
 
 const Map = ({
   map,
@@ -15,7 +16,7 @@ const Map = ({
   map: naver.maps.Map | null;
   setMap: React.Dispatch<React.SetStateAction<naver.maps.Map | null>>;
   setAddressInfo: (lng: number, lat: number) => void;
-  defaultCenter: { lat: number; lng: number };
+  defaultCenter: Location;
   isOrigin: boolean;
 }) => {
   const content = isOrigin ? '출발' : '도착';

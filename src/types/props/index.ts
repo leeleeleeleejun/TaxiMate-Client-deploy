@@ -49,7 +49,7 @@ export interface MoveCurrentLocationProps {
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export type centerLocation = { lat: number; lng: number };
+export type Location = { lat: number; lng: number };
 
 export interface HomeMapProps {
   map: naver.maps.Map | null;
