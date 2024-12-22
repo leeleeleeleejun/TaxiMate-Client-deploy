@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useLazyGetPostsQuery } from '@/api/postApi.ts';
+import { useDispatch } from 'react-redux';
+import { useNavermaps } from 'react-naver-maps';
 
+import { useLazyGetPostsQuery } from '@/api/postApi.ts';
+import useWatchLocation from '@/hooks/useWatchLocation.ts';
 import reactNativePostMessage from '@/utils/reactNativePostMessage.ts';
+import { setCenterLocation } from '@/components/Home/Map/HomeMapSlice.ts';
 
 import Header from '@/components/common/Layout/Header';
 import { HeaderItem } from '@/components/common/Layout/Header/Header.style.ts';
@@ -18,12 +22,26 @@ import TaxiIcon from '@/assets/icons/header/taxi-icon.svg?react';
 import KnuLogoIcon from '@/assets/icons/header/knu-logo-icon.svg?react';
 
 const HomePage = () => {
+  const naverMaps = useNavermaps();
+  const dispatch = useDispatch();
+  const { userLocation } = useWatchLocation();
+
   const [map, setMap] = useState<naver.maps.Map | null>(null);
   const [activeButton, setActiveButton] = useState<boolean>(true);
   const [activeMarker, setActiveMarker] = useState<string | null>(null);
   const [postListHeight, setPostListHeight] = useState(0);
-  const [isLoading, setIsLoading] = useState(false); // 로딩 상태 관리
   const [showResearchButton, setShowResearchButton] = useState(false);
+
+  const moveCurrentLocationFunc = async () => {
+    if (map && userLocation) {
+      const latLng = new naverMaps.LatLng(userLocation);
+      dispatch(setCenterLocation(userLocation));
+      map.setCenter(latLng);
+      setActiveButton(true);
+    } else {
+      alert('위치 접근 권한이 거부되었습니다.');
+    }
+  };
 
   const [trigger, { data, isLoading: getPostsIsLoading }] =
     useLazyGetPostsQuery();
@@ -67,14 +85,12 @@ const HomePage = () => {
         {showResearchButton && (
           <ResearchButton onClick={getPostsQueryTrigger} />
         )}
-        {(isLoading || getPostsIsLoading) && <LoadingIcon />}
+        {getPostsIsLoading && <LoadingIcon />}
         <MoveCurrentLocation
-          map={map}
+          moveCurrentLocationFunc={moveCurrentLocationFunc}
           activeButton={activeButton}
-          setActiveButton={setActiveButton}
           activeMarker={activeMarker}
           postListHeight={postListHeight}
-          setIsLoading={setIsLoading}
         />
         <Map
           map={map}
@@ -83,6 +99,7 @@ const HomePage = () => {
           activeMarker={activeMarker}
           setActiveMarker={setActiveMarker}
           setShowResearchButton={setShowResearchButton}
+          userLocation={userLocation || null}
           data={data || []}
         />
       </Main>

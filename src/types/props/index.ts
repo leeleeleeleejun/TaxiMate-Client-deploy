@@ -41,12 +41,10 @@ export interface PostListItemProps
 }
 
 export interface MoveCurrentLocationProps {
-  map: naver.maps.Map | null;
+  moveCurrentLocationFunc: () => void;
   activeButton: boolean;
-  setActiveButton: React.Dispatch<React.SetStateAction<boolean>>;
   activeMarker: string | null;
   postListHeight: number;
-  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export type Location = { lat: number; lng: number };
@@ -59,6 +57,7 @@ export interface HomeMapProps {
   activeMarker: string | null;
   setActiveMarker: SetActiveMarker;
   data: Post[];
+  userLocation: Location | null;
 }
 
 export interface MarkerContainerProps {
