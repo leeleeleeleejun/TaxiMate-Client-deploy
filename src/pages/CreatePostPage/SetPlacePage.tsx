@@ -30,9 +30,9 @@ const SetPlacePage = ({
       const registerKey = isOrigin ? 'originLocation' : 'destinationLocation';
       setRegisterDataFunc(registerKey, { latitude: lat, longitude: lng });
       isOrigin ? setStep('originMap') : setStep('destinationMap');
-    } catch (e) {
+    } catch (err) {
       setIsLoading(false);
-      alert('기기의 현재 내 위치 기능이 제한되어 있습니다.');
+      alert(err);
     }
   };
 
