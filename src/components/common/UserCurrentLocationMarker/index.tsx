@@ -9,6 +9,7 @@ const UserCurrentLocationMarker = ({ position }: { position: Location }) => {
       position={new naverMaps.LatLng(position.lat, position.lng)}
       icon={{
         content: MarkerIcon,
+        anchor: [20, 20],
       }}
     />
   );
