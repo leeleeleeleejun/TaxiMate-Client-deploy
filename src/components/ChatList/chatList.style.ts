@@ -29,6 +29,7 @@ export const ChatListItemHeader = styled.div`
     margin-right: 5px;
     overflow: hidden;
     text-overflow: ellipsis;
+    line-height: 1.5;
   }
 
   span {

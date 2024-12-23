@@ -30,6 +30,7 @@ export const PostHeaderContainer = styled.div`
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      line-height: 1.5;
     }
   }
 
