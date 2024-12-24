@@ -32,7 +32,7 @@ export const SearchListItemContainer = styled.li`
     font-weight: var(--weight-semi-bold);
 
     svg {
-      padding-right: 5px;
+      margin-right: 5px;
     }
   }
 
