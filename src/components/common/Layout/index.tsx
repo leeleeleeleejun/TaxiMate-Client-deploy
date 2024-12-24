@@ -14,8 +14,7 @@ const Layout = () => {
     const handleMessage = (e: MessageEvent) => {
       if (
         e.origin === 'https://vercel.live' ||
-        e.data.source === 'react-devtools-content-script' ||
-        e.data.source === 'react-devtools-bridge'
+        /^react-devtools/.test(e.data.source)
       ) {
         return;
       }
