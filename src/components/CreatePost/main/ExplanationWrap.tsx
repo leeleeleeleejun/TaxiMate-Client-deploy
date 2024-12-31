@@ -22,7 +22,7 @@ const ExplanationWrap = ({ value, setRegisterDataFunc }: ContentWrapProps) => {
     >
       <TextArea
         value={value}
-        placeholder={'~~ 해주세요'}
+        placeholder={'학교 정문 앞에서 탑승할게요!'}
         onChange={setExplanationValue}
         maxLength={500}
       />
