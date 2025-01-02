@@ -22,7 +22,7 @@ const DatePickerWrap = ({
         value={date}
         onChange={setDate}
         classNames={{
-          base: 'base-classes',
+          base: 'relative z-[111111] pb-[20px]',
         }}
         minValue={minDate}
         maxValue={minDate.add({ months: 1 })}

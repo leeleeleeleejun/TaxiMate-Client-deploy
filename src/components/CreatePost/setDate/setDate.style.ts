@@ -17,9 +17,4 @@ export const DateStringContainer = styled.div`
 
 export const DatePickerContainer = styled.div`
   margin-bottom: 300px;
-
-  .base-classes {
-    position: relative;
-    z-index: 111111;
-  }
 `;
