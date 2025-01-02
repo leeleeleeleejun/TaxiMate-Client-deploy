@@ -1,13 +1,17 @@
-const checkDate = (newDate: string) => {
+const checkDate = (newDate: string): boolean => {
   const targetDate = new Date(newDate);
   const currentDate = new Date();
+  const oneMonthLater = new Date();
+  oneMonthLater.setMonth(currentDate.getMonth() + 1);
+  oneMonthLater.setDate(currentDate.getDate() - 1);
 
-  if (currentDate <= targetDate) {
-    return true;
-  } else {
+  const isValid = currentDate <= targetDate && targetDate <= oneMonthLater;
+
+  if (!isValid) {
     alert('올바르지 않은 시각입니다.');
-    return false;
   }
+
+  return isValid;
 };
 
 export default checkDate;

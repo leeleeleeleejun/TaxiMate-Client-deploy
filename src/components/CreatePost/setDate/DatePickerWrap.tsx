@@ -21,6 +21,9 @@ const DatePickerWrap = ({
         labelPlacement={'outside'}
         value={date}
         onChange={setDate}
+        classNames={{
+          base: 'base-classes',
+        }}
         minValue={minDate}
         maxValue={minDate.add({ months: 1 })}
       />
