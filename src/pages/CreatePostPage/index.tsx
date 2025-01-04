@@ -1,5 +1,5 @@
 import { ReactNode, useState } from 'react';
-
+import { defaultLocation } from '@/utils/getCurrentlocation.ts';
 import { RegisterDataKey, RegisterData, StepType } from '@/types';
 
 import CreateMainPage from '@/pages/CreatePostPage/CreateMainPage.tsx';
@@ -7,12 +7,32 @@ import SetDatePage from '@/pages/CreatePostPage/SetDatePage.tsx';
 import SetPlacePage from '@/pages/CreatePostPage/SetPlacePage.tsx';
 import SetPlaceMapPage from '@/pages/CreatePostPage/SetPlaceMapPage.tsx';
 import SearchPage from '@/pages/SearchPage.tsx';
-import { defaultLocation } from '@/utils/getCurrentlocation.ts';
+
+// 출발지 초기 위치
+const { lat: latitude, lng: longitude } = await defaultLocation();
 
 const CreatePostPage = () => {
   const [step, setStep] = useState<StepType>('main');
-  const [registerData, setRegisterData] =
-    useState<RegisterData>(initialRegisterData);
+  const [registerData, setRegisterData] = useState<RegisterData>(() => {
+    const today = new Date();
+    const ceilMinutes = Math.ceil(today.getMinutes() / 5) * 5;
+    const departureTime = new Date(today.setMinutes(ceilMinutes)).toISOString();
+
+    return {
+      title: '',
+      departureTime,
+      explanation: '',
+      originLocation: {
+        latitude,
+        longitude,
+      },
+      destinationLocation: {
+        latitude: 36.8511811,
+        longitude: 127.1511352,
+      },
+      maxParticipants: '4',
+    };
+  });
   const [isMyLocationSelected, setIsMyLocationSelected] = useState(false);
   const comeBackMain = () => {
     setStep('main');
@@ -89,27 +109,3 @@ const Step = ({ check, children }: { check: boolean; children: ReactNode }) => {
 
   return null;
 };
-
-const { lat: latitude, lng: longitude } = await defaultLocation();
-
-// 상태 초기화 유틸리티 함수
-const initialRegisterData: RegisterData = (() => {
-  const today = new Date();
-  const ceilMinutes = Math.ceil(today.getMinutes() / 5) * 5;
-  const departureTime = new Date(today.setMinutes(ceilMinutes)).toISOString();
-
-  return {
-    title: '',
-    departureTime,
-    explanation: '',
-    originLocation: {
-      latitude,
-      longitude,
-    },
-    destinationLocation: {
-      latitude: 36.8511811,
-      longitude: 127.1511352,
-    },
-    maxParticipants: '4',
-  };
-})();
