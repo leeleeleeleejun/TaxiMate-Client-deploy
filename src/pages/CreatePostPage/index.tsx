@@ -33,6 +33,8 @@ const CreatePostPage = () => {
       maxParticipants: '4',
     };
   });
+
+  // 출도착지 내 위치로 선택할 경우 지도에 현위치 마커 표시
   const [isMyLocationSelected, setIsMyLocationSelected] = useState(false);
   const comeBackMain = () => {
     setStep('main');
