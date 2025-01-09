@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { eventBus } from '@/utils/eventBus.ts';
+import { eventBus } from '@/utils/chat/eventBus.ts';
 import { ChatMessage } from '@/types/chat.ts';
 
 export const useMessageSubscription = (

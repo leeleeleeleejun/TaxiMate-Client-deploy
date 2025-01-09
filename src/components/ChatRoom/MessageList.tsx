@@ -1,9 +1,9 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { ChatMessage, GroupMessage } from '@/types/chat.ts';
 import { useMessageSubscription } from '@/hooks/useMessageSubscription.ts';
-import chatHandler from '@/utils/chatHandler.ts';
+import chatHandler from '@/utils/chat/chatHandler.ts';
 import { MessageListProps } from '@/types/props';
-import checkReceive from '@/utils/checkReceive.ts';
+import checkReceive from '@/utils/chat/checkReceive.ts';
 
 import MyMessageBox from '@/components/ChatRoom/MyMessageBox.tsx';
 import OthersMessageBox from '@/components/ChatRoom/OthersMessageBox.tsx';

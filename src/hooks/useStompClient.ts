@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import SockJS from 'sockjs-client';
 
 import { getAccessToken } from '@/api/baseApi.ts';
-import { eventBus } from '@/utils/eventBus.ts';
+import { eventBus } from '@/utils/chat/eventBus.ts';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
 

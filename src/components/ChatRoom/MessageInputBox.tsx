@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { Client } from '@stomp/stompjs';
-import sendMessage from '@/utils/sendMessage.ts';
+import sendMessage from '@/utils/chat/sendMessage.ts';
 import {
   MessageInput,
   MessageInputBoxContainer,
