@@ -15,7 +15,7 @@ import PostList from '@/components/Home/PostList';
 import { Main } from '@/components/Home/Map/Map.style.ts';
 import SearchBar from '@/components/Home/SearchBar';
 import ResearchButton from '@/components/Home/ResearchButton';
-import MoveCurrentLocationButton from 'src/components/Home/MoveCurrentLocationButton';
+import MoveCurrentLocationButton from '@/components/Home/MoveCurrentLocationButton';
 import LoadingIcon from '@/components/common/LoadingIcon';
 
 import TaxiIcon from '@/assets/icons/header/taxi-icon.svg?react';
@@ -38,7 +38,7 @@ const HomePage = () => {
   const [trigger, { data, isLoading: getPostsIsLoading }] =
     useLazyGetPostsQuery();
 
-  const moveCurrentLocationFunc = async () => {
+  const moveCurrentLocationFunc = () => {
     if (map && userLocation) {
       const latLng = new naverMaps.LatLng(userLocation);
       dispatch(setCenterLocation(userLocation));
@@ -65,13 +65,15 @@ const HomePage = () => {
     setShowResearchButton(false);
   };
 
+  // 비동기로 사용자 현재 위치 받아오는 Effect
   useEffect(() => {
     if (isFirstLoading && map) {
       (async () => {
-        const data = await defaultLocation();
-        map.setCenter(data);
-        dispatch(setCenterLocation(data));
+        const { lat, lng, isUserLocation } = await defaultLocation();
+        map.setCenter({ lat, lng });
+        dispatch(setCenterLocation({ lat, lng }));
         getPostsQueryTrigger();
+        setIsActiveMyLocationButton(isUserLocation);
         isFirstLoading = false;
       })();
     }
@@ -114,6 +116,7 @@ const HomePage = () => {
           setShowResearchButton={setShowResearchButton}
           userLocation={userLocation || null}
           data={data || []}
+          isFirstLoading={isFirstLoading}
         />
       </Main>
       <PostList

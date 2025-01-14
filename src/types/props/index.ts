@@ -58,6 +58,7 @@ export interface HomeMapProps {
   setIsActivePostItem: SetActiveMarker;
   data: Post[];
   userLocation: Location | null;
+  isFirstLoading: boolean;
 }
 
 export interface MarkerContainerProps {

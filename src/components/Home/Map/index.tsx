@@ -1,7 +1,9 @@
+import { useEffect } from 'react';
 import { RootState } from '@/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container as MapDiv, NaverMap } from 'react-naver-maps';
 import { HomeMapProps } from '@/types/props';
+import getCurrentLocation from '@/utils/getCurrentlocation.ts';
 
 import { setCenterLocation } from '@/components/Home/Map/HomeMapSlice.ts';
 import MarkerContainer from '@/components/common/MarkerContainer';
@@ -16,6 +18,7 @@ const Map = ({
   setShowResearchButton,
   data,
   userLocation,
+  isFirstLoading,
 }: HomeMapProps) => {
   const dispatch = useDispatch();
   const centerLocation = useSelector(
@@ -32,6 +35,21 @@ const Map = ({
     setIsActiveMyLocationButton(false);
     setShowResearchButton(true);
   };
+
+  useEffect(() => {
+    if (isFirstLoading) return;
+    const isMatch = async () => {
+      try {
+        const { lat, lng } = await getCurrentLocation();
+        if (!(centerLocation.lat === lat && centerLocation.lng === lng)) {
+          setIsActiveMyLocationButton(false);
+        }
+      } catch (e) {
+        setIsActiveMyLocationButton(false);
+      }
+    };
+    isMatch();
+  }, []);
 
   return (
     <MapDiv

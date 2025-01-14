@@ -48,8 +48,8 @@ export default getCurrentLocation;
 export const defaultLocation = async () => {
   try {
     const { lat, lng } = await getCurrentLocation();
-    return { lat, lng };
+    return { lat, lng, isUserLocation: true };
   } catch (e) {
-    return { lat: 36.4689627, lng: 127.1408071 };
+    return { lat: 36.4689627, lng: 127.1408071, isUserLocation: false };
   }
 };
