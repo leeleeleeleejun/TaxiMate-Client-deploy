@@ -30,7 +30,8 @@ const HomePage = () => {
   const { userLocation } = useWatchLocation();
 
   const [map, setMap] = useState<naver.maps.Map | null>(null);
-  const [activeButton, setActiveButton] = useState<boolean>(true);
+  const [isActiveMyLocationButton, setIsActiveMyLocationButton] =
+    useState<boolean>(true);
   const [activeMarker, setActiveMarker] = useState<string | null>(null);
   const [postListHeight, setPostListHeight] = useState(0);
   const [showResearchButton, setShowResearchButton] = useState(false);
@@ -43,7 +44,7 @@ const HomePage = () => {
       dispatch(setCenterLocation(userLocation));
       map.setCenter(latLng);
       getPostsQueryTrigger();
-      setActiveButton(true);
+      setIsActiveMyLocationButton(true);
     } else {
       alert('위치 접근 권한이 거부되었습니다.');
     }
@@ -100,14 +101,14 @@ const HomePage = () => {
         {(getPostsIsLoading || isFirstLoading) && <LoadingIcon />}
         <MoveCurrentLocation
           moveCurrentLocationFunc={moveCurrentLocationFunc}
-          activeButton={activeButton}
+          isActiveMyLocationButton={isActiveMyLocationButton}
           activeMarker={activeMarker}
           postListHeight={postListHeight}
         />
         <Map
           map={map}
           setMap={setMap}
-          setActiveButton={setActiveButton}
+          setIsActiveMyLocationButton={setIsActiveMyLocationButton}
           activeMarker={activeMarker}
           setActiveMarker={setActiveMarker}
           setShowResearchButton={setShowResearchButton}

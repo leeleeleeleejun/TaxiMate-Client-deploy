@@ -10,7 +10,7 @@ import UserCurrentLocationMarker from '@/components/common/UserCurrentLocationMa
 const Map = ({
   map,
   setMap,
-  setActiveButton,
+  setIsActiveMyLocationButton,
   activeMarker,
   setActiveMarker,
   setShowResearchButton,
@@ -29,7 +29,7 @@ const Map = ({
     dispatch(setCenterLocation({ lat: y, lng: x }));
 
     // 내 위치로 이동 버트 비활성화
-    setActiveButton(false);
+    setIsActiveMyLocationButton(false);
     setShowResearchButton(true);
   };
 
