@@ -32,7 +32,7 @@ const HomePage = () => {
   const [map, setMap] = useState<naver.maps.Map | null>(null);
   const [isActiveMyLocationButton, setIsActiveMyLocationButton] =
     useState<boolean>(true);
-  const [activeMarker, setActiveMarker] = useState<string | null>(null);
+  const [isActivePostItem, setIsActivePostItem] = useState<string | null>(null);
   const [postListHeight, setPostListHeight] = useState(0);
   const [showResearchButton, setShowResearchButton] = useState(false);
   const [trigger, { data, isLoading: getPostsIsLoading }] =
@@ -102,22 +102,22 @@ const HomePage = () => {
         <MoveCurrentLocation
           moveCurrentLocationFunc={moveCurrentLocationFunc}
           isActiveMyLocationButton={isActiveMyLocationButton}
-          activeMarker={activeMarker}
+          isActivePostItem={isActivePostItem}
           postListHeight={postListHeight}
         />
         <Map
           map={map}
           setMap={setMap}
           setIsActiveMyLocationButton={setIsActiveMyLocationButton}
-          activeMarker={activeMarker}
-          setActiveMarker={setActiveMarker}
+          isActivePostItem={isActivePostItem}
+          setIsActivePostItem={setIsActivePostItem}
           setShowResearchButton={setShowResearchButton}
           userLocation={userLocation || null}
           data={data || []}
         />
       </Main>
       <PostList
-        activeMarker={activeMarker}
+        isActivePostItem={isActivePostItem}
         data={data || []}
         setPostListHeight={setPostListHeight}
       />

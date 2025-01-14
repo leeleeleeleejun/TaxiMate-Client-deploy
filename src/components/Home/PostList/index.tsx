@@ -13,18 +13,18 @@ import { Post } from '@/types/post.ts';
 import NoData from '@/components/common/NoData.tsx';
 
 const PostList = ({
-  activeMarker,
+  isActivePostItem,
   data,
   setPostListHeight,
 }: {
-  activeMarker: string | null;
+  isActivePostItem: string | null;
   data: Post[];
   setPostListHeight: React.Dispatch<React.SetStateAction<number>>;
 }) => {
   const sheetRef = useRef<BottomSheetRef | null>(null);
 
-  if (activeMarker) {
-    const targetData = data.filter((item) => item.id === activeMarker)[0];
+  if (isActivePostItem) {
+    const targetData = data.filter((item) => item.id === isActivePostItem)[0];
 
     return (
       <ActivePostListContainer>

@@ -43,7 +43,7 @@ export interface PostListItemProps
 export interface MoveCurrentLocationProps {
   moveCurrentLocationFunc: () => void;
   isActiveMyLocationButton: boolean;
-  activeMarker: string | null;
+  isActivePostItem: string | null;
   postListHeight: number;
 }
 
@@ -54,8 +54,8 @@ export interface HomeMapProps {
   setMap: React.Dispatch<React.SetStateAction<naver.maps.Map | null>>;
   setIsActiveMyLocationButton: React.Dispatch<React.SetStateAction<boolean>>;
   setShowResearchButton: React.Dispatch<React.SetStateAction<boolean>>;
-  activeMarker: string | null;
-  setActiveMarker: SetActiveMarker;
+  isActivePostItem: string | null;
+  setIsActivePostItem: SetActiveMarker;
   data: Post[];
   userLocation: Location | null;
 }

@@ -11,8 +11,8 @@ const Map = ({
   map,
   setMap,
   setIsActiveMyLocationButton,
-  activeMarker,
-  setActiveMarker,
+  isActivePostItem,
+  setIsActivePostItem,
   setShowResearchButton,
   data,
   userLocation,
@@ -37,7 +37,7 @@ const Map = ({
     <MapDiv
       className={'map-wrapper'}
       onClick={() => {
-        setActiveMarker(null);
+        setIsActivePostItem(null);
       }}
       onMouseUp={onCenterChangedFunc}
       onTouchEnd={onCenterChangedFunc}
@@ -59,8 +59,8 @@ const Map = ({
             title={item.destination}
             anchor={[item.destination.length * 6 + 22, 53]}
             showPlace
-            activeMarker={activeMarker}
-            setActiveMarker={setActiveMarker}
+            activeMarker={isActivePostItem}
+            setActiveMarker={setIsActivePostItem}
           />
         ))}
       </NaverMap>

@@ -9,7 +9,7 @@ const windowHeight = window.innerHeight;
 const MoveCurrentLocation = ({
   moveCurrentLocationFunc,
   isActiveMyLocationButton,
-  activeMarker,
+  isActivePostItem,
   postListHeight,
 }: MoveCurrentLocationProps) => {
   return (
@@ -17,7 +17,7 @@ const MoveCurrentLocation = ({
       onClick={moveCurrentLocationFunc}
       $bottom={postListHeight}
       $isMax={postListHeight >= Math.floor(windowHeight * 0.9)}
-      $activeMarker={activeMarker}
+      $activeMarker={isActivePostItem}
     >
       {isActiveMyLocationButton ? (
         <ActiveMoveLocationIcon />
