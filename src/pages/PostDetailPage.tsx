@@ -9,21 +9,21 @@ import {
   useParticipationChatMutation,
 } from '@/api/chatApi.ts';
 import { CLIENT_PATH } from '@/constants/path.ts';
-import formatDate from '@/utils/date/formatDate.ts';
 import formatDateForDetailPost from '@/utils/date/formatDateForDetailPost.ts';
 import { PostDetailStatus } from '@/types/post.ts';
 
 import Header from '@/components/common/Layout/Header';
-import { BackButton } from '@/components/common/Layout/Header/Header.style.ts';
-import Map from '@/components/PostDetail/Map';
-import PeopleCountTag from '@/components/common/PeopleCountTag';
 import LocationInfo from '@/components/common/LocationInfo';
 import UserContainer from '@/components/common/UserContainer';
+import { BackButton } from '@/components/common/Layout/Header/Header.style.ts';
+import Map from '@/components/PostDetail/Map';
+import PostDetailHeader from '@/components/PostDetail/PostDetailHeader.tsx';
+import PostDetailTitle from '@/components/PostDetail/PostDetailTitle.tsx';
 import * as S from '@/components/PostDetail/PostDetail.style';
+import NoData from '@/components/common/NoData.tsx';
 
 import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
 import LoadingIcon from '@/components/common/LoadingIcon';
-import NoData from '@/components/common/NoData.tsx';
 
 const PostDetailPage = () => {
   const navigate = useNavigate();
@@ -129,52 +129,6 @@ const PostDetailPage = () => {
 };
 
 export default PostDetailPage;
-
-const PostDetailHeader = ({
-  currentParticipants,
-  maxParticipants,
-  status,
-  createdAt,
-  views,
-}: {
-  currentParticipants: number;
-  maxParticipants: number;
-  status: PostDetailStatus;
-  createdAt: string;
-  views: string;
-}) => {
-  return (
-    <S.PostDetailHeaderContainer>
-      <div>
-        <PeopleCountTag
-          currentParticipants={currentParticipants}
-          maxParticipants={maxParticipants}
-        />
-        {status === 'PARTICIPATING' && (
-          <S.ParticipationTag>참여중인 팟</S.ParticipationTag>
-        )}
-        {status === 'TERMINATED' && <S.CloseTag>종료된 팟</S.CloseTag>}
-      </div>
-      {createdAt} • 조회 {views}
-    </S.PostDetailHeaderContainer>
-  );
-};
-
-const PostDetailTitle = ({
-  title,
-  departureTime,
-}: {
-  title: string;
-  departureTime: string;
-}) => {
-  const reformatDate1 = formatDate(departureTime);
-  return (
-    <S.PostDetailTitleContainer>
-      <h2>{title}</h2>
-      {reformatDate1} 출발
-    </S.PostDetailTitleContainer>
-  );
-};
 
 const checkStatus = (status: PostDetailStatus) => {
   return status === 'PARTICIPATING' || status === 'TERMINATED';
