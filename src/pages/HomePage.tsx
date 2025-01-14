@@ -20,6 +20,9 @@ import LoadingIcon from '@/components/common/LoadingIcon';
 
 import TaxiIcon from '@/assets/icons/header/taxi-icon.svg?react';
 import KnuLogoIcon from '@/assets/icons/header/knu-logo-icon.svg?react';
+import { defaultLocation } from '@/utils/getCurrentlocation.ts';
+
+let isFirstLoading = true;
 
 const HomePage = () => {
   const naverMaps = useNavermaps();
@@ -31,20 +34,20 @@ const HomePage = () => {
   const [activeMarker, setActiveMarker] = useState<string | null>(null);
   const [postListHeight, setPostListHeight] = useState(0);
   const [showResearchButton, setShowResearchButton] = useState(false);
+  const [trigger, { data, isLoading: getPostsIsLoading }] =
+    useLazyGetPostsQuery();
 
   const moveCurrentLocationFunc = async () => {
     if (map && userLocation) {
       const latLng = new naverMaps.LatLng(userLocation);
       dispatch(setCenterLocation(userLocation));
       map.setCenter(latLng);
+      getPostsQueryTrigger();
       setActiveButton(true);
     } else {
       alert('위치 접근 권한이 거부되었습니다.');
     }
   };
-
-  const [trigger, { data, isLoading: getPostsIsLoading }] =
-    useLazyGetPostsQuery();
 
   const getPostsQueryTrigger = () => {
     if (!map) return;
@@ -62,6 +65,15 @@ const HomePage = () => {
   };
 
   useEffect(() => {
+    if (isFirstLoading && map) {
+      (async () => {
+        const data = await defaultLocation();
+        map.setCenter(data);
+        dispatch(setCenterLocation(data));
+        getPostsQueryTrigger();
+        isFirstLoading = false;
+      })();
+    }
     getPostsQueryTrigger();
   }, [map]);
 
@@ -85,7 +97,7 @@ const HomePage = () => {
         {showResearchButton && (
           <ResearchButton onClick={getPostsQueryTrigger} />
         )}
-        {getPostsIsLoading && <LoadingIcon />}
+        {(getPostsIsLoading || isFirstLoading) && <LoadingIcon />}
         <MoveCurrentLocation
           moveCurrentLocationFunc={moveCurrentLocationFunc}
           activeButton={activeButton}

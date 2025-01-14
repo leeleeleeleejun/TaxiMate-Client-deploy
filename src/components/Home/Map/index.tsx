@@ -1,15 +1,11 @@
-import { useEffect } from 'react';
 import { RootState } from '@/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container as MapDiv, NaverMap } from 'react-naver-maps';
 import { HomeMapProps } from '@/types/props';
-import { defaultLocation } from '@/utils/getCurrentlocation.ts';
 
 import { setCenterLocation } from '@/components/Home/Map/HomeMapSlice.ts';
 import MarkerContainer from '@/components/common/MarkerContainer';
 import UserCurrentLocationMarker from '@/components/common/UserCurrentLocationMarker';
-
-let firstLoading = true;
 
 const Map = ({
   map,
@@ -25,18 +21,6 @@ const Map = ({
   const centerLocation = useSelector(
     (state: RootState) => state.homeMapSlice.centerLocation
   );
-
-  useEffect(() => {
-    if (firstLoading) {
-      (async () => {
-        const data = await defaultLocation();
-        if (map) {
-          map.setCenter(data);
-          firstLoading = false;
-        }
-      })();
-    }
-  }, [map]);
 
   const onCenterChangedFunc = async () => {
     if (!map) return;
