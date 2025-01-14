@@ -1,10 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { defaultLocation } from '@/utils/getCurrentlocation.ts';
-
-const centerLocation = await defaultLocation();
 
 const initialState = {
-  centerLocation,
+  centerLocation: { lat: 36.4689627, lng: 127.1408071 },
 };
 
 const homeMapSlice = createSlice({
