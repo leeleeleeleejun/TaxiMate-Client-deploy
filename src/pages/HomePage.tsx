@@ -15,7 +15,7 @@ import PostList from '@/components/Home/PostList';
 import { Main } from '@/components/Home/Map/Map.style.ts';
 import SearchBar from '@/components/Home/SearchBar';
 import ResearchButton from '@/components/Home/ResearchButton';
-import MoveCurrentLocation from '@/components/Home/MoveCurrentLocation';
+import MoveCurrentLocationButton from 'src/components/Home/MoveCurrentLocationButton';
 import LoadingIcon from '@/components/common/LoadingIcon';
 
 import TaxiIcon from '@/assets/icons/header/taxi-icon.svg?react';
@@ -99,7 +99,7 @@ const HomePage = () => {
           <ResearchButton onClick={getPostsQueryTrigger} />
         )}
         {(getPostsIsLoading || isFirstLoading) && <LoadingIcon />}
-        <MoveCurrentLocation
+        <MoveCurrentLocationButton
           moveCurrentLocationFunc={moveCurrentLocationFunc}
           isActiveMyLocationButton={isActiveMyLocationButton}
           isActivePostItem={isActivePostItem}

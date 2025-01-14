@@ -40,7 +40,7 @@ export interface PostListItemProps
   id: string;
 }
 
-export interface MoveCurrentLocationProps {
+export interface MoveCurrentLocationButtonProps {
   moveCurrentLocationFunc: () => void;
   isActiveMyLocationButton: boolean;
   isActivePostItem: string | null;

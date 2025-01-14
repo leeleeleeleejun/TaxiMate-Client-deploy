@@ -1,17 +1,17 @@
-import { MoveCurrentLocationProps } from '@/types/props/index.ts';
-import { Button } from '@/components/Home/MoveCurrentLocation/MoveCurrentLocation.style.ts';
+import { MoveCurrentLocationButtonProps } from '@/types/props/index.ts';
+import { Button } from '@/components/Home/MoveCurrentLocationButton/MoveCurrentLocation.style.ts';
 
 import ActiveMoveLocationIcon from '@/assets/icons/map/active-move-location-icon.svg?react';
 import NonActiveMoveLocationIcon from '@/assets/icons/map/non-active-move-location-icon.svg?react';
 
 const windowHeight = window.innerHeight;
 
-const MoveCurrentLocation = ({
+const MoveCurrentLocationButton = ({
   moveCurrentLocationFunc,
   isActiveMyLocationButton,
   isActivePostItem,
   postListHeight,
-}: MoveCurrentLocationProps) => {
+}: MoveCurrentLocationButtonProps) => {
   return (
     <Button
       onClick={moveCurrentLocationFunc}
@@ -28,4 +28,4 @@ const MoveCurrentLocation = ({
   );
 };
 
-export default MoveCurrentLocation;
+export default MoveCurrentLocationButton;
