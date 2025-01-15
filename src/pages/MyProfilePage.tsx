@@ -12,6 +12,7 @@ import FileIcon from '@/assets/icons/myprofile/file-icon.svg?react';
 // import Toggle from '@/components/common/Toggle.tsx';
 import LoadingIcon from '@/components/common/LoadingIcon';
 import NoData from '@/components/common/NoData.tsx';
+import { Link } from 'react-router-dom';
 
 const MyProfilePage = () => {
   const { data, isLoading } = useGetProfileQuery(null);
@@ -32,7 +33,13 @@ const MyProfilePage = () => {
           {/*<MenuItem content={'알림설정'} SvgIcon={NoticeIcon}>*/}
           {/*  <Toggle />*/}
           {/*</MenuItem>*/}
-          <MenuItem content={'이용약관'} SvgIcon={FileIcon} />
+          <Link
+            to={
+              'https://www.notion.so/woopaca/722d2e1180f94eeead36ec09436d4576?pvs=4'
+            }
+          >
+            <MenuItem content={'이용약관'} SvgIcon={FileIcon} />
+          </Link>
         </Menu>
       </Container>
       <Footer />
