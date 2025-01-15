@@ -16,7 +16,7 @@ export type PostDetailStatus =
   | 'WARNED'
   | 'BANNED';
 
-interface Participants {
+export interface Participant {
   id: string;
   nickname: string;
   profileImage: string;
@@ -31,7 +31,7 @@ export interface PostDetail extends Post {
   status: PostDetailStatus;
   createdAt: string;
   views: string;
-  participants: Participants[];
+  participants: Participant[];
   taxi: {
     route: { latitude: number; longitude: number }[];
     fare: string;
