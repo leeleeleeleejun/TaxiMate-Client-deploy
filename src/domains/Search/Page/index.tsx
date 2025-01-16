@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import Header from '@/components/common/Layout/Header';
-import SearchList from '@/components/Search/SearchList.tsx';
-import { SearchInput } from '@/components/Search/Search.style.ts';
+import SearchList from '@/components/common/SearchList';
+import { SearchInput } from './Search.style.ts';
 import { BackButton } from '@/components/common/Layout/Header/Header.style';
 import { setCenterLocation } from '@/domains/Home/components/Map/HomeMapSlice.ts';
 import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';

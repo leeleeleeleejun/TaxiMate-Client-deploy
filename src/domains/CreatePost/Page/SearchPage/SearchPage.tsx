@@ -6,8 +6,7 @@ import { CreatePostSearchPageProps } from '@/types/props';
 import Header from '@/components/common/Layout/Header';
 import { BackButton } from '@/components/common/Layout/Header/Header.style.ts';
 import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
-
-import SearchList from '@/components/Search/SearchList.tsx';
+import SearchList from '@/components/common/SearchList';
 import { SearchInput } from './Search.style.ts';
 
 const SearchPage = ({

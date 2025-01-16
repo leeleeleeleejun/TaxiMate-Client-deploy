@@ -12,16 +12,16 @@ import ForwardHandler from '@/ForwardHandler.tsx';
 const HomePage = lazy(() => import('@/domains/Home/Page'));
 const ChatListPage = lazy(() => import('@/domains/ChatList/Page'));
 const ChatRoomPage = lazy(() => import('@/domains/ChatRoom/Page'));
-const UsageHistoryPage = lazy(() => import('@/pages/UsageHistoryPage'));
 const LoginPage = lazy(() => import('@/domains/Login/Page'));
 const LoginLoadingPage = lazy(
   () => import('@/domains/Login/Page/LoginLoadingPage.tsx')
 );
-
-const SearchPage = lazy(() => import('@/pages/SearchPage'));
-const PostDetailPage = lazy(() => import('@/pages/PostDetailPage'));
+const SearchPage = lazy(() => import('@/domains/Search/Page'));
 const CreatePostPage = lazy(() => import('@/domains/CreatePost/Page'));
 const MyProfilePage = lazy(() => import('@/domains/MyProfile/Page'));
+
+const PostDetailPage = lazy(() => import('@/pages/PostDetailPage'));
+const UsageHistoryPage = lazy(() => import('@/pages/UsageHistoryPage'));
 
 const Router = () => {
   const client = useStompClient();
