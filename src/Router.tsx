@@ -10,15 +10,18 @@ import InAppNotificationLayout from '@/components/common/InAppNotification/InApp
 import ForwardHandler from '@/ForwardHandler.tsx';
 
 const HomePage = lazy(() => import('@/domains/Home/Page'));
-const SearchPage = lazy(() => import('@/pages/SearchPage'));
-const PostDetailPage = lazy(() => import('@/pages/PostDetailPage'));
-const CreatePostPage = lazy(() => import('@/pages/CreatePostPage'));
 const ChatListPage = lazy(() => import('@/domains/ChatList/Page'));
 const ChatRoomPage = lazy(() => import('@/domains/ChatRoom/Page'));
 const UsageHistoryPage = lazy(() => import('@/pages/UsageHistoryPage'));
+const LoginPage = lazy(() => import('@/domains/Login/Page'));
+const LoginLoadingPage = lazy(
+  () => import('@/domains/Login/Page/LoginLoadingPage.tsx')
+);
+
+const SearchPage = lazy(() => import('@/pages/SearchPage'));
+const PostDetailPage = lazy(() => import('@/pages/PostDetailPage'));
+const CreatePostPage = lazy(() => import('@/pages/CreatePostPage'));
 const MyProfilePage = lazy(() => import('@/pages/MyProfilePage'));
-const LoginPage = lazy(() => import('@/pages/LoginPage'));
-const LoginLoadingPage = lazy(() => import('@/pages/LoginLoadingPage'));
 
 const Router = () => {
   const client = useStompClient();
