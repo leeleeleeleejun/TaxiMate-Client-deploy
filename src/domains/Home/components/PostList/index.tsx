@@ -7,7 +7,7 @@ import formatDate from '@/utils/date/formatDate.ts';
 import {
   PostListContainer,
   ActivePostListContainer,
-} from '@/components/Home/PostList/PostList.style.ts';
+} from './PostList.style.ts';
 import PostListItem from '@/components/common/PostListItem';
 import { Post } from '@/types/post.ts';
 import NoData from '@/components/common/NoData.tsx';

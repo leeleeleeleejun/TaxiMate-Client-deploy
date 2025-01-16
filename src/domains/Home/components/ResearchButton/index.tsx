@@ -1,4 +1,4 @@
-import { Container } from '@/components/Home/ResearchButton/ResearchButton.style.ts';
+import { Container } from './ResearchButton.style.ts';
 import ResearchIcon from '@/assets/icons/map/research-icon.svg?react';
 
 const ResearchButton = ({ onClick }: { onClick: () => void }) => {

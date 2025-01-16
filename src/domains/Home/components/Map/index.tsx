@@ -5,7 +5,7 @@ import { Container as MapDiv, NaverMap } from 'react-naver-maps';
 import { HomeMapProps } from '@/types/props';
 import getCurrentLocation from '@/utils/getCurrentlocation.ts';
 
-import { setCenterLocation } from '@/components/Home/Map/HomeMapSlice.ts';
+import { setCenterLocation } from './HomeMapSlice.ts';
 import MarkerContainer from '@/components/common/MarkerContainer';
 import UserCurrentLocationMarker from '@/components/common/UserCurrentLocationMarker';
 
