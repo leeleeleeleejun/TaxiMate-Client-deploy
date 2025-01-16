@@ -20,8 +20,7 @@ const SearchPage = lazy(() => import('@/domains/Search/Page'));
 const CreatePostPage = lazy(() => import('@/domains/CreatePost/Page'));
 const MyProfilePage = lazy(() => import('@/domains/MyProfile/Page'));
 const PostDetailPage = lazy(() => import('@/domains/PostDetail/Page'));
-
-const UsageHistoryPage = lazy(() => import('@/pages/UsageHistoryPage'));
+const UsageHistoryPage = lazy(() => import('@/domains/UsageHistory/Page'));
 
 const Router = () => {
   const client = useStompClient();

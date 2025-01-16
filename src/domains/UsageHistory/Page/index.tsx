@@ -1,21 +1,21 @@
 import { useState } from 'react';
+import formatDate from '@/utils/date/formatDate.ts';
+import { useGetClosePostsQuery, useGetJoinPostsQuery } from '@/api/postApi.ts';
 
 import Header from '@/components/common/Layout/Header';
 import { HeaderItem } from '@/components/common/Layout/Header/Header.style.ts';
+import Footer from '@/components/common/Layout/Footer';
+import PostListItem from '@/components/common/PostListItem';
+import NoData from '@/components/common/NoData.tsx';
+import LoadingIcon from '@/components/common/LoadingIcon';
+import UsageHistoryIcon from '@/assets/icons/header/usage-history-icon.svg?react';
+
 import {
   Button,
   ButtonContainer,
   Container,
   PostListContainer,
-} from '@/components/UsageHistory/usageHistory.style.ts';
-
-import UsageHistoryIcon from '@/assets/icons/header/usage-history-icon.svg?react';
-import Footer from '@/components/common/Layout/Footer';
-import { useGetClosePostsQuery, useGetJoinPostsQuery } from '@/api/postApi.ts';
-import PostListItem from '@/components/common/PostListItem';
-import formatDate from '@/utils/date/formatDate.ts';
-import NoData from '@/components/common/NoData.tsx';
-import LoadingIcon from '@/components/common/LoadingIcon';
+} from './page.style.ts';
 
 const UsageHistoryPage = () => {
   const [isActive, setIsActive] = useState('join');
