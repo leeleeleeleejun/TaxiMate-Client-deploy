@@ -6,9 +6,10 @@ import {
   OthersName,
   OthersProfile,
   ResentMessage,
-} from '@/components/ChatRoom/chatRoom.style.ts';
+} from './MessageBox.style.ts';
+import formatDateForChatMessage from '../../utils/formatDateForChatMessage.ts';
+
 import UserBasicImg from '@/components/common/userBasicImg';
-import formatDateForChatMessage from '@/utils/date/formatDateForChatMessage.ts';
 
 const OthersMessageBox = ({
   name,

@@ -1,35 +1,34 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Client } from '@stomp/stompjs';
-import { ChatList, GroupMessage } from '@/types/chat.ts';
+import { GroupMessage } from '@/types/chat.ts';
 import { CLIENT_PATH } from '@/constants/path.ts';
 import formatDate from '@/utils/date/formatDate.ts';
 import { useGetChatQuery } from '@/api/chatApi.ts';
 import { useGetProfileQuery } from '@/api/userApi.ts';
 import useInAppNotificationHandler from '@/hooks/useInAppNotificationHandler.ts';
-import formatDateForSystemMessage from '@/utils/date/formatDateForSystemMessage.ts';
 
+import NoData from '@/components/common/NoData.tsx';
+import LoadingIcon from '@/components/common/LoadingIcon';
 import Header from '@/components/common/Layout/Header';
 import { PostBody } from '@/components/common/PostListItem';
 import PeopleCountTag from '@/components/common/PeopleCountTag';
-import MessageList from '@/components/ChatRoom/MessageList.tsx';
-import MessageInputBox from '@/components/ChatRoom/MessageInputBox.tsx';
 import InAppNotification from '@/components/common/InAppNotification';
-import MyMessageBox from '@/components/ChatRoom/MyMessageBox.tsx';
-import OthersMessageBox from '@/components/ChatRoom/OthersMessageBox.tsx';
-
 import { BackButton } from '@/components/common/Layout/Header/Header.style.ts';
+import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
+import ArrowRightIcon from '@/assets/icons/common/arrow-right-icon.svg?react';
+
 import {
   NotificationContainer,
   NotificationHeader,
   RoomTitle,
-  SystemMessage,
-} from '@/components/ChatRoom/chatRoom.style.ts';
-
-import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
-import ArrowRightIcon from '@/assets/icons/common/arrow-right-icon.svg?react';
-import LoadingIcon from '@/components/common/LoadingIcon';
-import NoData from '@/components/common/NoData.tsx';
+} from './page.style.ts';
+import { SystemMessage } from '../components/SystemMessage.tsx';
+import MessageList from '../components/MessageList';
+import MessageInputBox from '../components/MessageInputBox';
+import MyMessageBox from '../components/MessageBox/MyMessageBox.tsx';
+import OthersMessageBox from '../components/MessageBox/OthersMessageBox.tsx';
+import formatPrevChatData from '../utils/formatPrevChatData.ts';
 
 const ChatRoomPage = ({ client }: { client: Client | null }) => {
   const navigate = useNavigate();
@@ -138,38 +137,3 @@ const ChatRoomPage = ({ client }: { client: Client | null }) => {
 };
 
 export default ChatRoomPage;
-
-const formatPrevChatData = (chatData: ChatList) => {
-  const array: GroupMessage[] = [];
-  let currentDate = '';
-
-  chatData.chats.forEach((message) => {
-    const messageDate = formatDateForSystemMessage(message.createdAt);
-
-    if (messageDate !== currentDate) {
-      currentDate = messageDate;
-      array.push({
-        chat: [currentDate],
-        createdAt: '',
-        sender: null,
-        type: 'SYSTEM',
-      });
-    }
-
-    const lastMessage = array[array.length - 1];
-    const isSameUser = lastMessage.sender?.id === message.sender?.id;
-    const isSameTime =
-      lastMessage.createdAt.slice(0, 16) === message.createdAt?.slice(0, 16);
-    const isSameType = lastMessage.type === message.type;
-
-    if (isSameType && isSameUser && isSameTime) {
-      // 이전 메시지와 같은 유저, 같은 시간대의 메시지라면 chat 배열에 추가
-      lastMessage.chat.push(message.message);
-    } else {
-      // 새로운 유저이거나 시간이 다르면 새로운 그룹 추가
-      array.push({ ...message, chat: [message.message] });
-    }
-  });
-
-  return array;
-};

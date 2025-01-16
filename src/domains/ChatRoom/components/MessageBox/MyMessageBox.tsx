@@ -4,8 +4,8 @@ import {
   MyMessageBoxContainer,
   MyMessageContainer,
   MyResentMessage,
-} from '@/components/ChatRoom/chatRoom.style.ts';
-import formatDateForChatMessage from '@/utils/date/formatDateForChatMessage.ts';
+} from './MessageBox.style.ts';
+import formatDateForChatMessage from '../../utils/formatDateForChatMessage.ts';
 
 const MyMessageBox = ({
   messages,

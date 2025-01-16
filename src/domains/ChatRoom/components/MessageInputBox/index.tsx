@@ -1,11 +1,9 @@
 import { useRef, useState } from 'react';
 import { Client } from '@stomp/stompjs';
-import sendMessage from '@/utils/chat/sendMessage.ts';
-import {
-  MessageInput,
-  MessageInputBoxContainer,
-} from '@/components/ChatRoom/chatRoom.style.ts';
 import ArrowUpIcon from '@/assets/icons/chat/arrow-up-icon.svg?react';
+
+import sendMessage from '../../utils/sendMessage';
+import { Container, Input } from './MessageInputBox.style.ts';
 
 const MessageInputBox = ({
   client,
@@ -30,8 +28,8 @@ const MessageInputBox = ({
   };
 
   return (
-    <MessageInputBoxContainer>
-      <MessageInput
+    <Container>
+      <Input
         placeholder={'메세지를 입력해주세요!'}
         value={input}
         onChange={(e) => setInput(e.target.value)}
@@ -45,7 +43,7 @@ const MessageInputBox = ({
       <button onClick={sendMessageFunc}>
         <ArrowUpIcon />
       </button>
-    </MessageInputBoxContainer>
+    </Container>
   );
 };
 

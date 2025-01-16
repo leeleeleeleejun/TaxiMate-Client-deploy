@@ -1,12 +1,11 @@
-import {
-  GoNewMessageButtonContainer,
-  OthersProfile,
-} from '@/components/ChatRoom/chatRoom.style.ts';
 import UserBasicImg from '@/components/common/userBasicImg';
 import { Message } from '@/components/common/InAppNotification/InAppNotification.style.ts';
 import ArrowDownIcon from '@/assets/icons/chat/arrow-down-icon.svg?react';
 
-const GoNewMessageButton = ({
+import { Container } from './ScrollToNewMessage.style.ts';
+import { OthersProfile } from '../MessageBox/MessageBox.style.ts';
+
+const ScrollToNewMessage = ({
   img,
   name,
   message,
@@ -18,15 +17,15 @@ const GoNewMessageButton = ({
   onClick: () => void;
 }) => {
   return (
-    <GoNewMessageButtonContainer onClick={onClick}>
+    <Container onClick={onClick}>
       <div>
         {img ? <OthersProfile src={img} alt='profile' /> : <UserBasicImg />}
         <span>{name}</span>
       </div>
       <Message>{message}</Message>
       <ArrowDownIcon />
-    </GoNewMessageButtonContainer>
+    </Container>
   );
 };
 
-export default GoNewMessageButton;
+export default ScrollToNewMessage;

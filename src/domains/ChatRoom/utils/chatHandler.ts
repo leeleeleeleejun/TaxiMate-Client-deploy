@@ -1,5 +1,5 @@
 import { ChatMessage, GroupMessage } from '@/types/chat.ts';
-import formatDateForSystemMessage from '@/utils/date/formatDateForSystemMessage.ts';
+import formatDateForSystemMessage from '@/domains/ChatRoom/utils/formatDateForSystemMessage.ts';
 
 const createDateSeparator = (messageDate: string): GroupMessage => ({
   chat: [messageDate],

@@ -1,17 +1,15 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { ChatMessage, GroupMessage } from '@/types/chat.ts';
 import { useMessageSubscription } from '@/hooks/useMessageSubscription.ts';
-import chatHandler from '@/utils/chat/chatHandler.ts';
 import { MessageListProps } from '@/types/props';
-import checkReceive from '@/utils/chat/checkReceive.ts';
 
-import MyMessageBox from '@/components/ChatRoom/MyMessageBox.tsx';
-import OthersMessageBox from '@/components/ChatRoom/OthersMessageBox.tsx';
-import {
-  MessageListContainer,
-  SystemMessage,
-} from '@/components/ChatRoom/chatRoom.style.ts';
-import GoNewMessageButton from '@/components/ChatRoom/GoNewMessageButton.tsx';
+import { SystemMessage } from '../SystemMessage.tsx';
+import ScrollToNewMessage from '../ScrollToNewMessage';
+import { Container } from './MessageList.style.ts';
+import MyMessageBox from '../MessageBox/MyMessageBox.tsx';
+import OthersMessageBox from '../MessageBox/OthersMessageBox.tsx';
+import chatHandler from '../../utils/chatHandler.ts';
+import checkReceive from '../../utils/checkReceive.ts';
 
 const MessageList = ({
   client,
@@ -88,7 +86,7 @@ const MessageList = ({
 
   return (
     <>
-      <MessageListContainer>
+      <Container>
         {children}
         {messageList.map((message) =>
           message.type === 'SYSTEM' ? (
@@ -112,9 +110,9 @@ const MessageList = ({
           )
         )}
         <div ref={messageEndRef} style={{ height: '2px' }} />
-      </MessageListContainer>
+      </Container>
       {showUpButton && messageList.length > 0 && (
-        <GoNewMessageButton
+        <ScrollToNewMessage
           img={messageList[messageList.length - 1].sender?.profileImage || ''}
           name={messageList[messageList.length - 1].sender?.nickname || ''}
           message={
