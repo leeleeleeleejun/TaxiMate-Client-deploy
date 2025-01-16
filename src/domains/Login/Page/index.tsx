@@ -5,7 +5,7 @@ import { BackButton } from '@/components/common/Layout/Header/Header.style.ts';
 import TaxiIcon from '@/assets/icons/login/taxi-icon.svg?react';
 import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
 
-import { Header, IconWrap, LoginButton } from './Login.style.ts';
+import { Header, IconWrap, LoginButton } from './page.style.ts';
 import { getKakaoInga } from '../api/getKakaoInga.ts';
 
 const Index = () => {

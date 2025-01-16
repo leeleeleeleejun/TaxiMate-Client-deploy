@@ -1,6 +1,7 @@
-import { MenuItemContainer } from '@/components/MyProfile/myProfile.style.ts';
-import ArrowRightIcon from '@/assets/icons/common/arrow-right-icon.svg?react';
 import { ReactNode } from 'react';
+import { Container } from './MenuItem.style.ts';
+import ArrowRightIcon from '@/assets/icons/common/arrow-right-icon.svg?react';
+
 const MenuItem = ({
   content,
   SvgIcon,
@@ -11,13 +12,13 @@ const MenuItem = ({
   children?: ReactNode;
 }) => {
   return (
-    <MenuItemContainer>
+    <Container>
       <div>
         <SvgIcon />
         {content}
       </div>
       {children || <ArrowRightIcon />}
-    </MenuItemContainer>
+    </Container>
   );
 };
 

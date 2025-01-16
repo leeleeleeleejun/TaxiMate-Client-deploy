@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import reactNativePostMessage from '@/utils/reactNativePostMessage.ts';
 import { useGetAccessTokenQuery } from '@/api/userApi.ts';
-import { setIsLogin } from '@/components/MyProfile/userSlice.ts';
+import { setIsLogin } from '@/domains/MyProfile/Slice/userSlice.ts';
 import useErrorHandle from '@/hooks/useErrorHandle.ts';
 
 const LoginLoadingPage = () => {

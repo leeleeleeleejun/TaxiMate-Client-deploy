@@ -6,7 +6,7 @@ import type {
   FetchArgs,
   FetchBaseQueryError,
 } from '@reduxjs/toolkit/query';
-import { setIsLogin } from '@/components/MyProfile/userSlice.ts';
+import { setIsLogin } from '@/domains/MyProfile/Slice/userSlice.ts';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 //새로 고침 시 accessToken 변수 초기화 => refresh토큰으로 재요청

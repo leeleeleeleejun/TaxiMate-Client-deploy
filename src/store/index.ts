@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { baseApi } from '@/api/baseApi.ts';
-import userSlice from '@/components/MyProfile/userSlice.ts';
+import userSlice from '@/domains/MyProfile/Slice/userSlice.ts';
 import homeMapSlice from '@/domains/Home/components/Map/HomeMapSlice.ts';
 
 export const store = configureStore({

@@ -21,7 +21,7 @@ const LoginLoadingPage = lazy(
 const SearchPage = lazy(() => import('@/pages/SearchPage'));
 const PostDetailPage = lazy(() => import('@/pages/PostDetailPage'));
 const CreatePostPage = lazy(() => import('@/pages/CreatePostPage'));
-const MyProfilePage = lazy(() => import('@/pages/MyProfilePage'));
+const MyProfilePage = lazy(() => import('@/domains/MyProfile/Page'));
 
 const Router = () => {
   const client = useStompClient();
