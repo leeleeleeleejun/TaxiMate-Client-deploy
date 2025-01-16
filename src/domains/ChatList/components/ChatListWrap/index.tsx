@@ -1,4 +1,4 @@
-import ChatListItem from '@/components/ChatList/ChatListItem.tsx';
+import ChatListItem from '../ChatListItem';
 import { useEffect, useState } from 'react';
 import { ChatMessage, ChatRoom } from '@/types/chat.ts';
 import { useMessageSubscription } from '@/hooks/useMessageSubscription.ts';
