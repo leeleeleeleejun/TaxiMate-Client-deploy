@@ -3,24 +3,25 @@ import { useDispatch } from 'react-redux';
 import { useNavermaps } from 'react-naver-maps';
 
 import { useLazyGetPostsQuery } from '@/api/postApi.ts';
-import useWatchLocation from '@/hooks/useWatchLocation.ts';
 import reactNativePostMessage from '@/utils/reactNativePostMessage.ts';
-import { setCenterLocation } from '@/components/Home/Map/HomeMapSlice.ts';
+import { defaultLocation } from '@/utils/getCurrentlocation.ts';
 
 import Header from '@/components/common/Layout/Header';
 import { HeaderItem } from '@/components/common/Layout/Header/Header.style.ts';
 import Footer from '@/components/common/Layout/Footer';
-import Map from '@/components/Home/Map';
-import PostList from '@/components/Home/PostList';
-import { Main } from '@/components/Home/Map/Map.style.ts';
-import SearchBar from '@/components/Home/SearchBar';
-import ResearchButton from '@/components/Home/ResearchButton';
-import MoveCurrentLocationButton from '@/components/Home/MoveCurrentLocationButton';
 import LoadingIcon from '@/components/common/LoadingIcon';
+
+import Map from '@/domains/Home/components/Map';
+import PostList from '@/domains/Home/components/PostList';
+import { Main } from '@/domains/Home/components/Map/Map.style.ts';
+import SearchBar from '@/domains/Home/components/SearchBar';
+import ResearchButton from '@/domains/Home/components/ResearchButton';
+import MoveCurrentLocationButton from '@/domains/Home/components/MoveCurrentLocationButton';
+import useWatchLocation from '@/domains/Home/hooks/useWatchLocation.ts';
+import { setCenterLocation } from '@/domains/Home/components/Map/HomeMapSlice.ts';
 
 import TaxiIcon from '@/assets/icons/header/taxi-icon.svg?react';
 import KnuLogoIcon from '@/assets/icons/header/knu-logo-icon.svg?react';
-import { defaultLocation } from '@/utils/getCurrentlocation.ts';
 
 let isFirstLoading = true;
 

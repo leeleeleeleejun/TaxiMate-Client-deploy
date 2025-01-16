@@ -9,7 +9,7 @@ import LoadingIcon from '@/components/common/LoadingIcon';
 import InAppNotificationLayout from '@/components/common/InAppNotification/InAppNotificationLayout.tsx';
 import ForwardHandler from '@/ForwardHandler.tsx';
 
-const HomePage = lazy(() => import('@/pages/HomePage'));
+const HomePage = lazy(() => import('@/domains/Home/Page'));
 const SearchPage = lazy(() => import('@/pages/SearchPage'));
 const PostDetailPage = lazy(() => import('@/pages/PostDetailPage'));
 const CreatePostPage = lazy(() => import('@/pages/CreatePostPage'));
