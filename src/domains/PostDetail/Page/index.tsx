@@ -6,20 +6,22 @@ import { PostDetail } from '@/types/post.ts';
 import Header from '@/components/common/Layout/Header';
 import LocationInfo from '@/components/common/LocationInfo';
 import { BackButton } from '@/components/common/Layout/Header/Header.style.ts';
-import Map from '@/components/PostDetail/Map';
-import PostDetailHeader from '@/components/PostDetail/PostDetailHeader.tsx';
-import PostDetailTitle from '@/components/PostDetail/PostDetailTitle.tsx';
-import ParticipantsBox from '@/components/PostDetail/ParticipantsBox.tsx';
-import ChatActionButtonBox from '@/components/PostDetail/ChatActionButtonBox.tsx';
+import Map from '../components/Map';
 import NoData from '@/components/common/NoData.tsx';
+
+import PostDetailHeader from '../components/PostDetailHeader';
+import PostDetailTitle from '../components/PostDetailTitle';
+import ParticipantsBox from '../components/ParticipantsBox';
+import ChatActionButtonBox from '../components/ChatActionButtonBox';
+
+import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
+import LoadingIcon from '@/components/common/LoadingIcon';
+
 import {
   ContentContainer,
   MoveInfoContainer,
   PostDetailContainer,
-} from '@/components/PostDetail/PostDetail.style.ts';
-
-import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
-import LoadingIcon from '@/components/common/LoadingIcon';
+} from './page.style';
 
 const PostDetailPage = () => {
   const navigate = useNavigate();

@@ -7,11 +7,12 @@ import {
   useLeaveChatMutation,
   useParticipationChatMutation,
 } from '@/api/chatApi.ts';
+
 import {
   ButtonBox,
   JoinButton,
   LeaveButton,
-} from '@/components/PostDetail/PostDetail.style.ts';
+} from './ChatActionButton.style.ts';
 
 const ChatActionButtonBox = ({
   status,

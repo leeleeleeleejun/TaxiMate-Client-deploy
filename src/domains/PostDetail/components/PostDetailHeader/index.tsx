@@ -1,7 +1,10 @@
 import { PostDetailStatus } from '@/types/post.ts';
-import * as S from '@/components/PostDetail/PostDetail.style.ts';
 import PeopleCountTag from '@/components/common/PeopleCountTag';
-import { PostDetailHeaderContainer } from '@/components/PostDetail/PostDetail.style.ts';
+import {
+  PostDetailHeaderContainer,
+  ParticipationTag,
+  CloseTag,
+} from './PostDeailHeader.style.ts';
 
 const PostDetailHeader = ({
   currentParticipants,
@@ -24,9 +27,9 @@ const PostDetailHeader = ({
           maxParticipants={maxParticipants}
         />
         {status === 'PARTICIPATING' && (
-          <S.ParticipationTag>참여중인 팟</S.ParticipationTag>
+          <ParticipationTag>참여중인 팟</ParticipationTag>
         )}
-        {status === 'TERMINATED' && <S.CloseTag>종료된 팟</S.CloseTag>}
+        {status === 'TERMINATED' && <CloseTag>종료된 팟</CloseTag>}
       </div>
       {createdAt} • 조회 {views}
     </PostDetailHeaderContainer>
