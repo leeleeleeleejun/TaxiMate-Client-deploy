@@ -1,16 +1,20 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { RegisterDataKey } from '@/types';
+import { CreatePostSearchPageProps } from '@/types/props';
 
 import Header from '@/components/common/Layout/Header';
-import SearchList from '@/components/Search/SearchList.tsx';
-import { SearchInput } from '@/components/Search/Search.style.ts';
-import { BackButton } from '@/components/common/Layout/Header/Header.style';
-import { setCenterLocation } from '@/domains/Home/components/Map/HomeMapSlice.ts';
+import { BackButton } from '@/components/common/Layout/Header/Header.style.ts';
 import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
 
-const SearchPage = () => {
-  const dispatch = useDispatch();
+import SearchList from '@/components/Search/SearchList.tsx';
+import { SearchInput } from './Search.style.ts';
+
+const SearchPage = ({
+  step,
+  setStep,
+  setRegisterDataFunc,
+}: CreatePostSearchPageProps) => {
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState<string>('');
   const inputEl = useRef<HTMLInputElement>(null);
@@ -20,13 +24,25 @@ const SearchPage = () => {
   }, []);
 
   const listClickHandler = (lat: number, lng: number) => {
-    //메인홈에서 검색 시 사용
-    dispatch(setCenterLocation({ lat, lng }));
-    navigate('/', { replace: true });
+    if (step && setStep && setRegisterDataFunc) {
+      // 팟생성에서 검색 시 사용
+      const nextStep = step === 'searchOrigin' ? 'originMap' : 'destinationMap';
+
+      const registerKey: RegisterDataKey =
+        step === 'searchOrigin' ? 'originLocation' : 'destinationLocation';
+
+      setRegisterDataFunc(registerKey, { latitude: lat, longitude: lng });
+
+      setStep(nextStep);
+    }
   };
 
   const backButtonClickHandler = () => {
-    navigate(-1);
+    if (step && setStep) {
+      step === 'searchOrigin' ? setStep('origin') : setStep('destination');
+    } else {
+      navigate(-1);
+    }
   };
 
   const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {

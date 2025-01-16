@@ -86,10 +86,10 @@ export interface ContentWrapProps {
   setStep?: SetStep;
 }
 
-export interface SearchPageProps {
-  step?: StepType;
-  setStep?: SetStep;
-  setRegisterDataFunc?: SetRegisterDataFunc;
+export interface CreatePostSearchPageProps {
+  step: StepType;
+  setStep: SetStep;
+  setRegisterDataFunc: SetRegisterDataFunc;
 }
 
 export interface SetPlaceMapPageProps {

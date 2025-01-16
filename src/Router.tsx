@@ -20,7 +20,7 @@ const LoginLoadingPage = lazy(
 
 const SearchPage = lazy(() => import('@/pages/SearchPage'));
 const PostDetailPage = lazy(() => import('@/pages/PostDetailPage'));
-const CreatePostPage = lazy(() => import('@/pages/CreatePostPage'));
+const CreatePostPage = lazy(() => import('@/domains/CreatePost/Page'));
 const MyProfilePage = lazy(() => import('@/domains/MyProfile/Page'));
 
 const Router = () => {

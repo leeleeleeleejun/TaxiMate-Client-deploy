@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import useSearchData from '@/hooks/useSearchData.ts';
-import { SearchListContainer } from '@/components/Search/Search.style.ts';
+import { SearchListContainer } from './SearchList.style.ts';
 import SearchListItem from '@/components/common/SearchList/SearchListItem.tsx';
 
 const SearchList = ({
