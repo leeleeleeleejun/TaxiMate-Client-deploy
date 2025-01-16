@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { ChatRoom } from '@/types/chat.ts';
+import formatDateForDetailPost from '@/utils/date/formatDateForDetailPost.ts';
 
 import PeopleCountTag from '@/components/common/PeopleCountTag';
 import {
@@ -7,9 +9,7 @@ import {
   ChatListItemHeader,
   MessageContent,
   MessageCounter,
-} from '@/components/ChatList/chatList.style.ts';
-import { ChatRoom } from '@/types/chat.ts';
-import formatDateForDetailPost from '@/utils/date/formatDateForDetailPost.ts';
+} from './ChatListItem.style';
 
 const ChatListItem = ({
   title,

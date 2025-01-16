@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 
-export const Container = styled.ul`
-  height: 100%;
-  padding: 0 20px;
-  overflow: auto;
+export const ChatListItemBody = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: var(--font-small);
+  color: var(--color-gray-100);
 `;
 
 export const ChatListItemContainer = styled.li`
@@ -58,15 +61,6 @@ export const MessageContent = styled.p`
   -webkit-box-orient: vertical;
 `;
 
-export const ChatListItemBody = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  font-size: var(--font-small);
-  color: var(--color-gray-100);
-`;
-
 export const MessageCounter = styled.span`
   height: 100%;
   margin-left: 20px;
@@ -77,15 +71,4 @@ export const MessageCounter = styled.span`
 
   font-size: var(--font-semi-micro);
   color: var(--color-white);
-`;
-
-export const Divider = styled.div`
-  width: 100%;
-  background-color: var(--color-gray-300);
-  color: var(--color-gray-100);
-  padding: 6px 8px;
-  font-size: var(--font-small);
-  font-weight: var(--weight-medium);
-  border-radius: 4px;
-  margin-top: 10px;
 `;
