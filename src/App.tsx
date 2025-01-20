@@ -4,7 +4,7 @@ import { NavermapsProvider } from 'react-naver-maps';
 import { Analytics } from '@vercel/analytics/react';
 import Router from '@/Router.tsx';
 import { useGetRefreshAccessTokenQuery } from '@/api/userApi.ts';
-import { setIsLogin } from '@/components/MyProfile/userSlice.ts';
+import { setIsLogin } from '@/domains/MyProfile/Slice/userSlice.ts';
 import GlobalStyle from '@/styles/GlobalStyle.ts';
 
 const naverMapApi = import.meta.env.VITE_NAVER_MAP_API;

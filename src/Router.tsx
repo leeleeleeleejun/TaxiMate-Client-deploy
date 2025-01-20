@@ -9,16 +9,18 @@ import LoadingIcon from '@/components/common/LoadingIcon';
 import InAppNotificationLayout from '@/components/common/InAppNotification/InAppNotificationLayout.tsx';
 import ForwardHandler from '@/ForwardHandler.tsx';
 
-const HomePage = lazy(() => import('@/pages/HomePage'));
-const SearchPage = lazy(() => import('@/pages/SearchPage'));
-const PostDetailPage = lazy(() => import('@/pages/PostDetailPage'));
-const CreatePostPage = lazy(() => import('@/pages/CreatePostPage'));
-const ChatListPage = lazy(() => import('@/pages/ChatListPage'));
-const ChatRoomPage = lazy(() => import('@/pages/ChatRoomPage'));
-const UsageHistoryPage = lazy(() => import('@/pages/UsageHistoryPage'));
-const MyProfilePage = lazy(() => import('@/pages/MyProfilePage'));
-const LoginPage = lazy(() => import('@/pages/LoginPage'));
-const LoginLoadingPage = lazy(() => import('@/pages/LoginLoadingPage'));
+const HomePage = lazy(() => import('@/domains/Home/Page'));
+const ChatListPage = lazy(() => import('@/domains/ChatList/Page'));
+const ChatRoomPage = lazy(() => import('@/domains/ChatRoom/Page'));
+const LoginPage = lazy(() => import('@/domains/Login/Page'));
+const LoginLoadingPage = lazy(
+  () => import('@/domains/Login/Page/LoginLoadingPage.tsx')
+);
+const SearchPage = lazy(() => import('@/domains/Search/Page'));
+const CreatePostPage = lazy(() => import('@/domains/CreatePost/Page'));
+const MyProfilePage = lazy(() => import('@/domains/MyProfile/Page'));
+const PostDetailPage = lazy(() => import('@/domains/PostDetail/Page'));
+const UsageHistoryPage = lazy(() => import('@/domains/UsageHistory/Page'));
 
 const Router = () => {
   const client = useStompClient();

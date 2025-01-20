@@ -1,7 +1,18 @@
 import { Marker, useNavermaps } from 'react-naver-maps';
+import { SetActiveMarker } from '@/types';
 
-import { MarkerContainerProps } from '@/types/props';
-
+interface MarkerContainerProps {
+  id: string;
+  position: {
+    latitude: number;
+    longitude: number;
+  };
+  title: string;
+  anchor: number[];
+  showPlace: boolean;
+  activeMarker: string | null;
+  setActiveMarker?: SetActiveMarker;
+}
 const MarkerContainer = ({
   position,
   title,

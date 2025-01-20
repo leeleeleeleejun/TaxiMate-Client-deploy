@@ -6,19 +6,29 @@ import {
   PostHeaderContainer,
   PostListItemContainer,
 } from '@/components/common/PostListItem/PostListItem.style.ts';
-import PeopleCountTag from '@/components/common/PeopleCountTag';
+import PeopleCountTag, {
+  PeopleCountTagProps,
+} from '@/components/common/PeopleCountTag';
 
 import ClockIcon from '@/assets/icons/postList/clock-icon.svg?react';
 import ArrowRightIcon from '@/assets/icons/common/arrow-right-icon.svg?react';
 import LocationIcon from '@/assets/icons/postList/location-dot-icon.svg?react';
 import CaretRightIcon from '@/assets/icons/postList/caret-right-icon.svg?react';
 
-import {
-  PostBodyProps,
-  PostHeaderProps,
-  PostListItemProps,
-} from '@/types/props';
+interface PostHeaderProps {
+  title: string;
+  activePostList?: boolean;
+}
 
+interface PostBodyProps {
+  departureTime: string;
+  origin: string;
+  destination: string;
+}
+
+interface PostListItemProps extends PostHeaderProps, PostBodyProps {
+  id: string;
+}
 const PostListItem = ({
   id,
   title,
@@ -29,7 +39,7 @@ const PostListItem = ({
   destination,
   activePostList,
   isClose,
-}: PostListItemProps) => {
+}: PostListItemProps & PeopleCountTagProps) => {
   return (
     <PostListItemContainer>
       <Link to={'/posts/' + id}>
@@ -58,7 +68,7 @@ const PostHeader = ({
   maxParticipants,
   activePostList,
   isClose,
-}: PostHeaderProps) => {
+}: PostHeaderProps & PeopleCountTagProps) => {
   return (
     <PostHeaderContainer>
       <div>
