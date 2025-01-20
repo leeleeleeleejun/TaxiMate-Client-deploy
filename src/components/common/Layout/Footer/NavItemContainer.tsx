@@ -1,6 +1,12 @@
-import { NavItem } from '@/components/common/Layout/Footer/Footer.style.ts';
-import { NavItemContainerProps } from '@/types/props';
+import { ReactNode } from 'react';
 import { useLocation } from 'react-router-dom';
+import { NavItem } from '@/components/common/Layout/Footer/Footer.style.ts';
+
+interface NavItemContainerProps {
+  children: ReactNode;
+  contentName?: string;
+  path: string;
+}
 
 const NavItemContainer = ({
   children,

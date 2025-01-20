@@ -1,13 +1,23 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { RegisterDataKey } from '@/types';
-import { CreatePostSearchPageProps } from '@/types/props';
+import {
+  RegisterDataKey,
+  SetRegisterDataFunc,
+  SetStep,
+  StepType,
+} from '@/types';
 
 import Header from '@/components/common/Layout/Header';
 import { BackButton } from '@/components/common/Layout/Header/Header.style.ts';
 import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
 import SearchList from '@/components/common/SearchList';
 import { SearchInput } from './Search.style.ts';
+
+interface CreatePostSearchPageProps {
+  step: StepType;
+  setStep: SetStep;
+  setRegisterDataFunc: SetRegisterDataFunc;
+}
 
 const SearchPage = ({
   step,

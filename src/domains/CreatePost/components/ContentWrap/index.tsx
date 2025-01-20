@@ -1,16 +1,13 @@
 import { ContentContainer, ContentTitle } from './ContentWrap.style.ts';
 
-const Index = ({
-  theme,
-  explain,
-  SvgIcon,
-  children,
-}: {
+interface Props {
   theme: string;
   explain?: string;
   SvgIcon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   children: React.ReactNode;
-}) => {
+}
+
+const Index = ({ theme, explain, SvgIcon, children }: Props) => {
   return (
     <ContentContainer>
       <ContentTitle>

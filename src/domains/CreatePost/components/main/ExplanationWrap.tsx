@@ -1,7 +1,7 @@
 import Index from '@/domains/CreatePost/components/ContentWrap';
 import { CheckLength, TextArea } from './Wrap.style.ts';
 import ExplainIcon from '@/assets/icons/createPost/explain-icon .svg?react';
-import { ContentWrapProps } from '@/types/props';
+import { ContentWrapProps } from '../../types/ContentWrapProps.ts';
 
 const ExplanationWrap = ({ value, setRegisterDataFunc }: ContentWrapProps) => {
   if (!setRegisterDataFunc) return null;

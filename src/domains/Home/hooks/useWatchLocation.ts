@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Location } from '@/types/props';
+import { Location } from '@/types';
 
 const useWatchLocation = () => {
   const [location, setLocation] = useState<Location>();

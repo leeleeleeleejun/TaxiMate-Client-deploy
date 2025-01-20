@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { getAddress } from '@/api/kakaoApi.ts';
-import { SetPlaceMapPageProps } from '@/types/props';
 
 import Map from '../../components/setPlace/Map.tsx';
 import LocationInfo from '@/components/common/LocationInfo';
@@ -8,6 +7,17 @@ import CreatePostChildPageLayout from '../../components/CreatePostChildPageLayou
 import { PLACE_KEYWORDS } from '../../constants/Place.ts';
 import { SubmitButton } from '../../components/SubmitButton.tsx';
 import { SubmitContainer } from './SetPlaceMap.style.ts';
+import { SetRegisterDataFunc, StepType } from '@/types';
+
+interface SetPlaceMapPageProps {
+  step: StepType;
+  value: { latitude: number; longitude: number };
+  comeBackMain: () => void;
+  setRegisterDataFunc: SetRegisterDataFunc;
+  backHandle: () => void;
+  isMyLocationSelected: boolean;
+  setIsMyLocationSelected: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 const SetPlaceMapPage = ({
   step,

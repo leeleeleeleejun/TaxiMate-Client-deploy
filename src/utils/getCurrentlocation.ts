@@ -1,4 +1,4 @@
-import { Location } from '@/types/props';
+import { Location } from '@/types';
 
 const getCurrentLocation = async (): Promise<Location> => {
   if (!navigator.geolocation) {

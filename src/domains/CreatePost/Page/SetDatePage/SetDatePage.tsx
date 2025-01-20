@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { parseAbsoluteToLocal } from '@internationalized/date';
+import { SetRegisterDataFunc } from '@/types';
 
-import { SetDatePageProps } from '@/types/props';
 import formatDate from '@/utils/date/formatDate.ts';
 import CreatePostChildPageLayout from '../../components/CreatePostChildPageLayout';
 import DatePickerWrap from '../../components/setDate/DatePickerWrap.tsx';
@@ -10,6 +10,12 @@ import checkDate from '../../utils/checkDate.ts';
 import setDepartureTimeValueFunc from '../../utils/setDepartureTimeValueFunc.ts';
 import { Container, DateStringContainer } from './setDate.style.ts';
 import { SubmitButton } from '../../components/SubmitButton.tsx';
+
+interface SetDatePageProps {
+  value: string;
+  setRegisterDataFunc: SetRegisterDataFunc;
+  comeBackMain: () => void;
+}
 
 const SetDatePage = ({
   value,

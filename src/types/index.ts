@@ -1,3 +1,5 @@
+export type Location = { lat: number; lng: number };
+
 export interface SearchPlace {
   id: string;
   place_name: string;

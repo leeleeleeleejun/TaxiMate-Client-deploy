@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { CreateMainPageProps } from '@/types/props';
 import { useCreatePostMutation } from '@/api/postApi.ts';
 
 import Header from '@/components/common/Layout/Header';
@@ -8,16 +7,23 @@ import {
   BackButton,
   HeaderItem,
 } from '@/components/common/Layout/Header/Header.style.ts';
+import { RegisterData, SetRegisterDataFunc, SetStep } from '@/types';
 
-import { Container, CreateSubmitButton } from './CreateMain.style.ts';
-import TitleWrap from '../../components/main/TitleWrap.tsx';
 import DateWrap from '../../components/main/DateWrap.tsx';
-import PlaceInfoWrap from '../../components/main/PlaceInfoWrap.tsx';
+import TitleWrap from '../../components/main/TitleWrap.tsx';
 import MemberWrap from '../../components/main/MemberWrap.tsx';
+import PlaceInfoWrap from '../../components/main/PlaceInfoWrap.tsx';
 import ExplanationWrap from '../../components/main/ExplanationWrap.tsx';
 import validateRegisterData from '../../utils/validateRegisterData.ts';
+import { Container, CreateSubmitButton } from './CreateMain.style.ts';
 
 import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
+
+interface CreateMainPageProps {
+  registerData: RegisterData;
+  setRegisterDataFunc: SetRegisterDataFunc;
+  setStep: SetStep;
+}
 
 const CreateMainPage = ({
   registerData,

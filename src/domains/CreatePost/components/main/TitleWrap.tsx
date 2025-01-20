@@ -1,7 +1,7 @@
 import { CheckLength, TitleInput } from './Wrap.style.ts';
 import Index from '@/domains/CreatePost/components/ContentWrap';
 import TitleIcon from '@/assets/icons/createPost/title-icon.svg?react';
-import { ContentWrapProps } from '@/types/props';
+import { ContentWrapProps } from '../../types/ContentWrapProps.ts';
 
 const TitleWrap = ({ value, setRegisterDataFunc }: ContentWrapProps) => {
   if (!setRegisterDataFunc) return null;

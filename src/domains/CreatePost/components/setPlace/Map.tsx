@@ -1,8 +1,17 @@
 import { Container as MapDiv, NaverMap } from 'react-naver-maps';
 
+import { Location } from '@/types';
 import { Main, MarkerContainer } from './setPlace.style.ts';
-import { Location } from '@/types/props';
 import UserCurrentLocationMarker from '@/components/common/UserCurrentLocationMarker';
+
+interface Props {
+  map: naver.maps.Map | null;
+  setMap: React.Dispatch<React.SetStateAction<naver.maps.Map | null>>;
+  setAddressInfo: (lng: number, lat: number) => void;
+  defaultCenter: Location;
+  isOrigin: boolean;
+  isMyLocationSelected: boolean;
+}
 
 const Map = ({
   map,
@@ -11,14 +20,7 @@ const Map = ({
   defaultCenter,
   isOrigin,
   isMyLocationSelected,
-}: {
-  map: naver.maps.Map | null;
-  setMap: React.Dispatch<React.SetStateAction<naver.maps.Map | null>>;
-  setAddressInfo: (lng: number, lat: number) => void;
-  defaultCenter: Location;
-  isOrigin: boolean;
-  isMyLocationSelected: boolean;
-}) => {
+}: Props) => {
   const content = isOrigin ? '출발' : '도착';
 
   const onCenterChangedFunc = async () => {

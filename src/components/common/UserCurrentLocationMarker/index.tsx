@@ -1,5 +1,5 @@
 import { Marker, useNavermaps } from 'react-naver-maps';
-import { Location } from '@/types/props';
+import { Location } from '@/types';
 
 const UserCurrentLocationMarker = ({ position }: { position: Location }) => {
   const naverMaps = useNavermaps();

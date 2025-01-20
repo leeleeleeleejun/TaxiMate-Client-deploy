@@ -1,13 +1,20 @@
 import { useState } from 'react';
-import { SetPlaceProps } from '@/types/props';
+import { SetRegisterDataFunc, SetStep, StepType } from '@/types';
 import getCurrentLocation from '@/utils/getCurrentlocation.ts';
 
+import SearchBar from '../../components/setPlace/SearchBar';
+import { MyLocationButton } from './SetPlace.style.ts';
 import LoadingIcon from '@/components/common/LoadingIcon';
 import CreatePostChildPageLayout from '../../components/CreatePostChildPageLayout';
 import ActiveMoveLocationIcon from '@/assets/icons/map/active-move-location-icon.svg?react';
 
-import { MyLocationButton } from './SetPlace.style.ts';
-import SearchBar from '../../components/setPlace/SearchBar';
+interface SetPlaceProps {
+  step: StepType;
+  setStep: SetStep;
+  setRegisterDataFunc: SetRegisterDataFunc;
+  comeBackMain: () => void;
+  setIsMyLocationSelected: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 const SetPlacePage = ({
   step,

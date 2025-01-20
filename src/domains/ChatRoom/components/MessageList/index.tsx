@@ -1,7 +1,6 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { ChatMessage, GroupMessage } from '@/types/chat.ts';
 import { useMessageSubscription } from '@/hooks/useMessageSubscription.ts';
-import { MessageListProps } from '@/types/props';
 
 import { SystemMessage } from '../SystemMessage.tsx';
 import ScrollToNewMessage from '../ScrollToNewMessage';
@@ -10,6 +9,16 @@ import MyMessageBox from '../MessageBox/MyMessageBox.tsx';
 import OthersMessageBox from '../MessageBox/OthersMessageBox.tsx';
 import chatHandler from '../../utils/chatHandler.ts';
 import checkReceive from '../../utils/checkReceive.ts';
+import { Client } from '@stomp/stompjs';
+
+interface MessageListProps {
+  client: Client | null;
+  userId: string;
+  currentPartyId: string;
+  inAppNotificationHandler: (message: ChatMessage) => void;
+  initialChatMessage: GroupMessage[];
+  children: ReactNode;
+}
 
 const MessageList = ({
   client,

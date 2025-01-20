@@ -2,15 +2,14 @@ import { selections } from '@/constants';
 import { SelectionKey } from '@/types';
 import Picker from 'react-mobile-picker';
 
-const TimePickerWrap = ({
-  time,
-  setTime,
-}: {
+interface Props {
   time: { meridiem: string; hour: string; minute: string };
   setTime: React.Dispatch<
     React.SetStateAction<{ meridiem: string; hour: string; minute: string }>
   >;
-}) => {
+}
+
+const TimePickerWrap = ({ time, setTime }: Props) => {
   return (
     <Picker value={time} onChange={setTime} height={90}>
       {(Object.keys(selections) as SelectionKey[]).map((name) => (

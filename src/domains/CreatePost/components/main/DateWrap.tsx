@@ -1,5 +1,5 @@
-import { ContentWrapProps } from '@/types/props';
 import formatDate from '@/utils/date/formatDate.ts';
+import { ContentWrapProps } from '../../types/ContentWrapProps.ts';
 
 import Index from '@/domains/CreatePost/components/ContentWrap';
 import { DepartureTimeContainer } from './Wrap.style.ts';

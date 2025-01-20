@@ -2,12 +2,25 @@ import { useEffect } from 'react';
 import { RootState } from '@/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container as MapDiv, NaverMap } from 'react-naver-maps';
-import { HomeMapProps } from '@/types/props';
-import getCurrentLocation from '@/utils/getCurrentlocation.ts';
+import { SetActiveMarker, Location } from '@/types';
+import { Post } from '@/types/post.ts';
 
 import { setCenterLocation } from './HomeMapSlice.ts';
+import getCurrentLocation from '@/utils/getCurrentlocation.ts';
 import MarkerContainer from '@/components/common/MarkerContainer';
 import UserCurrentLocationMarker from '@/components/common/UserCurrentLocationMarker';
+
+interface HomeMapProps {
+  map: naver.maps.Map | null;
+  setMap: React.Dispatch<React.SetStateAction<naver.maps.Map | null>>;
+  setIsActiveMyLocationButton: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowResearchButton: React.Dispatch<React.SetStateAction<boolean>>;
+  isActivePostItem: string | null;
+  setIsActivePostItem: SetActiveMarker;
+  data: Post[];
+  userLocation: Location | null;
+  isFirstLoading: boolean;
+}
 
 const Map = ({
   map,

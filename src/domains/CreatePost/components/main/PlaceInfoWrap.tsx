@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getAddress } from '@/api/kakaoApi.ts';
-import { ContentWrapProps } from '@/types/props';
+import { ContentWrapProps } from '../../types/ContentWrapProps.ts';
 
 import LocationInfo from '@/components/common/LocationInfo';
 import Index from '@/domains/CreatePost/components/ContentWrap';
