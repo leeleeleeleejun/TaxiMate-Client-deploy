@@ -1,6 +1,6 @@
-import { selections } from '@/constants';
 import { SelectionKey } from '@/types';
 import Picker from 'react-mobile-picker';
+import { selections } from '../../constants/TimePickerSelectionItem.ts';
 
 interface Props {
   time: { meridiem: string; hour: string; minute: string };
