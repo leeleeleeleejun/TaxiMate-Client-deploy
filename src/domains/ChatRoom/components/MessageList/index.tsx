@@ -47,17 +47,22 @@ const MessageList = ({
   useMessageSubscription(handleNewMessage);
 
   useLayoutEffect(() => {
-    if (!messageEndRef.current) return;
+    // 마지막 메세지가 나의 것일 경우 아래로 스크롤
+    const handleMessageScrolling = () => {
+      if (!messageEndRef.current) return;
 
-    const isLastMessageMine =
-      messageList.length > 0 &&
-      messageList[messageList.length - 1].sender?.id === userId;
+      const isLastMessageMine =
+        messageList.length > 0 &&
+        messageList[messageList.length - 1].sender?.id === userId;
 
-    if (isVisible || isLastMessageMine) {
-      scrollToBottom();
-    } else {
-      setShowUpButton(true);
-    }
+      if (isVisible || isLastMessageMine) {
+        scrollToBottom();
+      } else {
+        setShowUpButton(true);
+      }
+    };
+
+    handleMessageScrolling();
   }, [messageList]);
 
   useEffect(() => {
@@ -83,6 +88,7 @@ const MessageList = ({
   }, [isVisible]);
 
   useEffect(() => {
+    // refatch 했을 경우 모두 initialChatMessage로 초기화
     scrollToBottom();
     setMessageList([]);
   }, [initialChatMessage]);
