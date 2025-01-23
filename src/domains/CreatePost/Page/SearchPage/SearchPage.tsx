@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import {
   RegisterDataKey,
   SetRegisterDataFunc,
@@ -24,7 +23,6 @@ const SearchPage = ({
   setStep,
   setRegisterDataFunc,
 }: CreatePostSearchPageProps) => {
-  const navigate = useNavigate();
   const [inputValue, setInputValue] = useState<string>('');
   const inputEl = useRef<HTMLInputElement>(null);
 
@@ -47,11 +45,7 @@ const SearchPage = ({
   };
 
   const backButtonClickHandler = () => {
-    if (step && setStep) {
-      step === 'searchOrigin' ? setStep('origin') : setStep('destination');
-    } else {
-      navigate(-1);
-    }
+    step === 'searchOrigin' ? setStep('origin') : setStep('destination');
   };
 
   const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
