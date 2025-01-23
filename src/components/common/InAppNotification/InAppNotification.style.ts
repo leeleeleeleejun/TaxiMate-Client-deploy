@@ -1,6 +1,6 @@
 import styled, { css, keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
-import { MessageContent } from '@/domains/ChatList/components/ChatListItem/ChatListItem.style.ts';
+import { MessageContent } from '@/domains/ChatRoomList/components/ChatRoomListItem/ChatRoomListItem.style.ts';
 
 const slideDown = keyframes`
     0% {

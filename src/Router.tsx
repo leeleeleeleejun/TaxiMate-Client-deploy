@@ -10,7 +10,7 @@ import InAppNotificationLayout from '@/components/common/InAppNotification/InApp
 import ForwardHandler from '@/ForwardHandler.tsx';
 
 const HomePage = lazy(() => import('@/domains/Home/Page'));
-const ChatListPage = lazy(() => import('@/domains/ChatList/Page'));
+const ChatListPage = lazy(() => import('@/domains/ChatRoomList/Page'));
 const ChatRoomPage = lazy(() => import('@/domains/ChatRoom/Page'));
 const LoginPage = lazy(() => import('@/domains/Login/Page'));
 const LoginLoadingPage = lazy(

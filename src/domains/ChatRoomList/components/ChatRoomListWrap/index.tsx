@@ -1,9 +1,9 @@
-import ChatListItem from '../ChatListItem';
+import ChatRoomListItem from '../ChatRoomListItem';
 import { useEffect, useState } from 'react';
 import { WsChat, ChatRoom } from '@/types/chat.ts';
 import { useMessageSubscription } from '@/hooks/useMessageSubscription.ts';
 
-const ChatListWrap = ({
+const ChatRoomListWrap = ({
   chatRoomListProp,
 }: {
   chatRoomListProp: ChatRoom[];
@@ -43,7 +43,7 @@ const ChatListWrap = ({
   return (
     <>
       {chatRoomList.map((item) => (
-        <ChatListItem
+        <ChatRoomListItem
           key={item.id}
           title={item.title}
           currentParticipants={item.currentParticipants}
@@ -59,4 +59,4 @@ const ChatListWrap = ({
   );
 };
 
-export default ChatListWrap;
+export default ChatRoomListWrap;

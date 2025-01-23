@@ -9,9 +9,9 @@ import {
   ChatListItemHeader,
   MessageContent,
   MessageCounter,
-} from './ChatListItem.style';
+} from './ChatRoomListItem.style.ts';
 
-const ChatListItem = ({
+const ChatRoomListItem = ({
   title,
   currentParticipants,
   maxParticipants,
@@ -49,4 +49,4 @@ const ChatListItem = ({
   );
 };
 
-export default ChatListItem;
+export default ChatRoomListItem;

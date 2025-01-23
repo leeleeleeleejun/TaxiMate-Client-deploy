@@ -9,9 +9,9 @@ import { HeaderItem } from '@/components/common/Layout/Header/Header.style.ts';
 import ChatIcon from '@/assets/icons/chat/chat-icon.svg?react';
 
 import { Container, Divider } from './page.style';
-import ChatListWrap from '../components/ChatListWrap';
+import ChatRoomListWrap from '../components/ChatRoomListWrap';
 
-const ChatListPage = () => {
+const ChatRoomListPage = () => {
   const { data, isLoading } = useGetChatListQuery(null, {
     refetchOnFocus: true,
   });
@@ -33,12 +33,12 @@ const ChatListPage = () => {
       {data.length > 0 ? (
         <Container>
           {progressChatRoom.length > 0 && (
-            <ChatListWrap chatRoomListProp={progressChatRoom} />
+            <ChatRoomListWrap chatRoomListProp={progressChatRoom} />
           )}
           {closeChatRoom.length > 0 && (
             <>
               <Divider>종료된 팟</Divider>{' '}
-              <ChatListWrap chatRoomListProp={closeChatRoom} />
+              <ChatRoomListWrap chatRoomListProp={closeChatRoom} />
             </>
           )}
         </Container>
@@ -49,4 +49,4 @@ const ChatListPage = () => {
     </>
   );
 };
-export default ChatListPage;
+export default ChatRoomListPage;
