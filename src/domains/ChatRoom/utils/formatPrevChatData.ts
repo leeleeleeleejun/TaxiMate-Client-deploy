@@ -1,5 +1,6 @@
 import { ChatList, GroupMessage } from '@/types/chat.ts';
 import formatDateForSystemMessage from '@/domains/ChatRoom/utils/formatDateForSystemMessage.ts';
+import isSameCompare from './isSameCompare.ts';
 
 const formatPrevChatData = (chatData: ChatList) => {
   const array: GroupMessage[] = [];
@@ -19,10 +20,10 @@ const formatPrevChatData = (chatData: ChatList) => {
     }
 
     const lastMessage = array[array.length - 1];
-    const isSameUser = lastMessage.sender?.id === message.sender?.id;
-    const isSameTime =
-      lastMessage.createdAt.slice(0, 16) === message.createdAt?.slice(0, 16);
-    const isSameType = lastMessage.type === message.type;
+    const { isSameUser, isSameTime, isSameType } = isSameCompare(
+      lastMessage,
+      message
+    );
 
     if (isSameType && isSameUser && isSameTime) {
       // 이전 메시지와 같은 유저, 같은 시간대의 메시지라면 chat 배열에 추가

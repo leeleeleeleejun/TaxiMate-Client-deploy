@@ -9,7 +9,7 @@ type ChatType = 'MESSAGE' | 'SYSTEM';
 // 메세지 수신
 export interface ChatMessage {
   id: string;
-  partyId: number;
+  partyId: string;
   partyTitle: string;
   message: string;
   type: ChatType;
@@ -18,7 +18,7 @@ export interface ChatMessage {
 }
 
 export interface ChatRoom {
-  id: number;
+  id: string;
   title: string;
   maxParticipants: number; // 최대 참여자 수
   currentParticipants: number; // 현재 참여자 수

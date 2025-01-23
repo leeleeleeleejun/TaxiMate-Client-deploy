@@ -1,5 +1,6 @@
 import { ChatMessage, GroupMessage } from '@/types/chat.ts';
 import formatDateForSystemMessage from '@/domains/ChatRoom/utils/formatDateForSystemMessage.ts';
+import isSameCompare, { isSameDayFunc } from './isSameCompare.ts';
 
 const createDateSeparator = (messageDate: string): GroupMessage => ({
   chat: [messageDate],
@@ -7,26 +8,6 @@ const createDateSeparator = (messageDate: string): GroupMessage => ({
   sender: null,
   type: 'SYSTEM',
 });
-
-const isSameDayFunc = (day1: string, day2: string) => {
-  return day1.slice(0, 10) === day2.slice(0, 10);
-};
-
-const isSameCompare = (
-  prevMessage: GroupMessage,
-  currentMessage: ChatMessage
-) => {
-  const isSameUser = prevMessage.sender?.id === currentMessage.sender.id;
-  const isSameTime =
-    prevMessage.createdAt.slice(0, 16) ===
-    currentMessage.createdAt?.slice(0, 16);
-  const isSameType = prevMessage.type === currentMessage.type;
-  const isSameDay = isSameDayFunc(
-    prevMessage.createdAt,
-    currentMessage.createdAt
-  );
-  return { isSameUser, isSameTime, isSameType, isSameDay };
-};
 
 const chatHandler = (
   initialChatMessage: GroupMessage[],

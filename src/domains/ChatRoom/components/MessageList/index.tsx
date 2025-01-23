@@ -34,7 +34,7 @@ const MessageList = ({
   const [showUpButton, setShowUpButton] = useState(false);
 
   const handleNewMessage = (message: ChatMessage) => {
-    if (message.partyId === Number(currentPartyId)) {
+    if (message.partyId === currentPartyId) {
       chatHandler(initialChatMessage, message, setMessageList);
       if (message.sender.id !== userId) {
         checkReceive(client, currentPartyId, message.id);
