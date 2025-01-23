@@ -39,16 +39,15 @@ const ChatRoomPage = ({ client }: { client: Client | null }) => {
     currentPartyId,
     { refetchOnFocus: true }
   );
-
+  const [initialChatMessage, setInitialChatMessage] = useState<GroupMessage[]>(
+    []
+  );
   const {
     notification,
     showNotification,
     handleNewMessage,
     setShowNotification,
   } = useInAppNotificationHandler();
-  const [initialChatMessage, setInitialChatMessage] = useState<GroupMessage[]>(
-    []
-  );
 
   useEffect(() => {
     if (!chatData) return;
@@ -62,18 +61,8 @@ const ChatRoomPage = ({ client }: { client: Client | null }) => {
     <>
       {notification && showNotification && (
         <InAppNotification
-          id={notification.id}
+          notification={notification}
           showNotification={showNotification}
-          partyTitle={notification?.partyTitle || ''}
-          partyId={notification?.partyId || '0'}
-          message={notification?.message || ''}
-          sender={{
-            profileImage: notification.sender.profileImage || '',
-            nickname: notification.sender.nickname || '',
-            id: notification.sender.id,
-          }}
-          createdAt={''}
-          type={'MESSAGE'}
           setShowNotification={() => {
             setShowNotification(false);
           }}
@@ -110,6 +99,7 @@ const ChatRoomPage = ({ client }: { client: Client | null }) => {
         initialChatMessage={initialChatMessage}
         client={client}
       >
+        {/*초기 메세지 children으로 전달*/}
         {initialChatMessage.map((message) =>
           message.type === 'SYSTEM' ? (
             message.chat.map((item, index) => (

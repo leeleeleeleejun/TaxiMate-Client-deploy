@@ -11,21 +11,21 @@ import {
   Title,
 } from '@/components/common/InAppNotification/InAppNotification.style.ts';
 
-interface Props extends WsChat {
+interface Props {
+  notification: WsChat;
   showNotification: boolean;
   setShowNotification: () => void;
 }
 
 const InAppNotification = ({
-  partyTitle,
-  message,
-  sender,
-  partyId,
+  notification,
   showNotification,
   setShowNotification,
 }: Props) => {
   const [touchStartY, setTouchStartY] = useState(0);
   const [touchEndY, setTouchEndY] = useState(0);
+
+  const { partyId, partyTitle, message, sender } = notification;
 
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchStartY(e.touches[0].clientY);

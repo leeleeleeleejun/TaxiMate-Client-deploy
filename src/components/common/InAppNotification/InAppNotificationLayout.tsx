@@ -13,10 +13,6 @@ const InAppNotificationLayout = () => {
 
   useMessageSubscription(handleNewMessage);
 
-  const partyTitle = notification?.partyTitle || '';
-  const partyId = notification?.partyId || '0';
-  const message = notification?.message || '';
-
   return (
     <>
       {showNotification && notification && (
@@ -24,18 +20,8 @@ const InAppNotificationLayout = () => {
           setShowNotification={() => {
             setShowNotification(false);
           }}
-          id={notification.id}
           showNotification={showNotification}
-          partyTitle={partyTitle}
-          partyId={partyId}
-          message={message}
-          sender={{
-            profileImage: notification.sender.profileImage || '',
-            nickname: notification.sender.nickname || '',
-            id: notification.sender.id,
-          }}
-          type={'MESSAGE'}
-          createdAt={''}
+          notification={notification}
         />
       )}
       <Outlet />
