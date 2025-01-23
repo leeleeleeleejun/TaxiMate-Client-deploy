@@ -8,6 +8,26 @@ const createDateSeparator = (messageDate: string): GroupMessage => ({
   type: 'SYSTEM',
 });
 
+const isSameDayFunc = (day1: string, day2: string) => {
+  return day1.slice(0, 10) === day2.slice(0, 10);
+};
+
+const isSameCompare = (
+  prevMessage: GroupMessage,
+  currentMessage: ChatMessage
+) => {
+  const isSameUser = prevMessage.sender?.id === currentMessage.sender.id;
+  const isSameTime =
+    prevMessage.createdAt.slice(0, 16) ===
+    currentMessage.createdAt?.slice(0, 16);
+  const isSameType = prevMessage.type === currentMessage.type;
+  const isSameDay = isSameDayFunc(
+    prevMessage.createdAt,
+    currentMessage.createdAt
+  );
+  return { isSameUser, isSameTime, isSameType, isSameDay };
+};
+
 const chatHandler = (
   initialChatMessage: GroupMessage[],
   message: ChatMessage,
@@ -18,24 +38,22 @@ const chatHandler = (
 
   setMessageList((prevState) => {
     if (prevState.length === 0) {
-      const isSameDay =
-        initialChatMessage[initialChatMessage.length - 1].createdAt.slice(
-          0,
-          10
-        ) === message.createdAt?.slice(0, 10);
-      if (!isSameDay) {
+      if (
+        !isSameDayFunc(
+          initialChatMessage[initialChatMessage.length - 1].createdAt,
+          message.createdAt
+        )
+      ) {
         return [createDateSeparator(messageDate), setMessage];
       }
       return [setMessage];
     }
 
     const lastMessage = prevState[prevState.length - 1];
-    const isSameUser = lastMessage.sender?.id === message.sender.id;
-    const isSameTime =
-      lastMessage.createdAt.slice(0, 16) === message.createdAt?.slice(0, 16);
-    const isSameType = lastMessage.type === message.type;
-    const isSameDay =
-      lastMessage.createdAt.slice(0, 10) === message.createdAt?.slice(0, 10);
+    const { isSameUser, isSameTime, isSameType, isSameDay } = isSameCompare(
+      lastMessage,
+      message
+    );
 
     if (isSameType && isSameUser && isSameTime) {
       const updatedMessage = {
