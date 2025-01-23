@@ -1,8 +1,8 @@
-import { ChatList, GroupMessage } from '@/types/chat.ts';
+import { DetailChatRoom, GroupMessage } from '@/types/chat.ts';
 import formatDateForSystemMessage from '@/domains/ChatRoom/utils/formatDateForSystemMessage.ts';
 import isSameCompare from './isSameCompare.ts';
 
-const formatPrevChatData = (chatData: ChatList) => {
+const formatPrevChatData = (chatData: DetailChatRoom) => {
   const array: GroupMessage[] = [];
   let currentDate = '';
 

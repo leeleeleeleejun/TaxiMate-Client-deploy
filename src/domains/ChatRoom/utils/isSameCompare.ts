@@ -1,10 +1,10 @@
-import { Chat, GroupMessage } from '@/types/chat.ts';
+import { GroupMessage, ApiChat } from '@/types/chat.ts';
 
 export const isSameDayFunc = (day1: string, day2: string) => {
   return day1.slice(0, 10) === day2.slice(0, 10);
 };
 
-const isSameCompare = (prevMessage: GroupMessage, currentMessage: Chat) => {
+const isSameCompare = (prevMessage: GroupMessage, currentMessage: ApiChat) => {
   const isSameUser = prevMessage.sender?.id === currentMessage?.sender?.id;
   const isSameTime =
     prevMessage.createdAt.slice(0, 16) ===

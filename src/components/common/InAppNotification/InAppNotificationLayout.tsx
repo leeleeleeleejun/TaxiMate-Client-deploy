@@ -14,7 +14,7 @@ const InAppNotificationLayout = () => {
   useMessageSubscription(handleNewMessage);
 
   const partyTitle = notification?.partyTitle || '';
-  const partyId = notification?.partyId || 0;
+  const partyId = notification?.partyId || '0';
   const message = notification?.message || '';
 
   return (

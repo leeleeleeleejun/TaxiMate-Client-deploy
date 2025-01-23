@@ -39,6 +39,7 @@ const ChatRoomPage = ({ client }: { client: Client | null }) => {
     currentPartyId,
     { refetchOnFocus: true }
   );
+
   const {
     notification,
     showNotification,
@@ -65,7 +66,7 @@ const ChatRoomPage = ({ client }: { client: Client | null }) => {
           showNotification={showNotification}
           partyTitle={notification?.partyTitle || ''}
           partyId={notification?.partyId || '0'}
-          content={notification?.content || ''}
+          message={notification?.message || ''}
           sender={{
             profileImage: notification.sender.profileImage || '',
             nickname: notification.sender.nickname || '',

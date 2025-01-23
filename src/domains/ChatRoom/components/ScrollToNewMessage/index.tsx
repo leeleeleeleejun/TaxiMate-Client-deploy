@@ -1,5 +1,5 @@
 import UserBasicImg from '@/components/common/userBasicImg';
-import { Message } from '@/components/common/InAppNotification/InAppNotification.style.ts';
+import { Content } from '@/components/common/InAppNotification/InAppNotification.style.ts';
 import ArrowDownIcon from '@/assets/icons/chat/arrow-down-icon.svg?react';
 
 import { Container } from './ScrollToNewMessage.style.ts';
@@ -22,7 +22,7 @@ const ScrollToNewMessage = ({
         {img ? <OthersProfile src={img} alt='profile' /> : <UserBasicImg />}
         <span>{name}</span>
       </div>
-      <Message>{message}</Message>
+      <Content>{message}</Content>
       <ArrowDownIcon />
     </Container>
   );

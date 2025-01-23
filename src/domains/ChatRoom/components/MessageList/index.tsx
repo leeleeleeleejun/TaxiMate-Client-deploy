@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { Message, GroupMessage } from '@/types/chat.ts';
+import { WsChat, GroupMessage } from '@/types/chat.ts';
 import { useMessageSubscription } from '@/hooks/useMessageSubscription.ts';
 
 import { SystemMessage } from '../SystemMessage.tsx';
@@ -15,7 +15,7 @@ interface MessageListProps {
   client: Client | null;
   userId: string;
   currentPartyId: string;
-  inAppNotificationHandler: (message: Message) => void;
+  inAppNotificationHandler: (message: WsChat) => void;
   initialChatMessage: GroupMessage[];
   children: ReactNode;
 }
@@ -33,8 +33,8 @@ const MessageList = ({
   const [isVisible, setIsVisible] = useState(false);
   const [showUpButton, setShowUpButton] = useState(false);
 
-  const handleNewMessage = (message: Message) => {
-    if (message.partyId === currentPartyId) {
+  const handleNewMessage = (message: WsChat) => {
+    if (String(message.partyId) === currentPartyId) {
       chatHandler(initialChatMessage, message, setMessageList);
       if (message.sender.id !== userId) {
         checkReceive(client, currentPartyId, message.id);

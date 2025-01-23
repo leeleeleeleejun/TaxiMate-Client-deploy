@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Message } from '@/types/chat.ts';
+import { WsChat } from '@/types/chat.ts';
 import { CLIENT_PATH } from '@/constants/path.ts';
 import UserBasicImg from '@/components/common/userBasicImg';
 import {
@@ -11,14 +11,14 @@ import {
   Title,
 } from '@/components/common/InAppNotification/InAppNotification.style.ts';
 
-interface Props extends Message {
+interface Props extends WsChat {
   showNotification: boolean;
   setShowNotification: () => void;
 }
 
 const InAppNotification = ({
   partyTitle,
-  content,
+  message,
   sender,
   partyId,
   showNotification,
@@ -56,7 +56,7 @@ const InAppNotification = ({
       <ContentWrap>
         <Title>{partyTitle}</Title>
         <ProfileName>{sender.nickname || 'user'}</ProfileName>
-        <Content>{content}</Content>
+        <Content>{message}</Content>
       </ContentWrap>
     </Container>
   );
