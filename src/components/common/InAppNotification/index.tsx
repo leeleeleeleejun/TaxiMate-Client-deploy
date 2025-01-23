@@ -1,24 +1,24 @@
 import { useState } from 'react';
-import { ChatMessage } from '@/types/chat.ts';
+import { Message } from '@/types/chat.ts';
 import { CLIENT_PATH } from '@/constants/path.ts';
 import UserBasicImg from '@/components/common/userBasicImg';
 import {
   Container,
   Content,
-  Message,
+  ContentWrap,
   ProfileImg,
   ProfileName,
   Title,
 } from '@/components/common/InAppNotification/InAppNotification.style.ts';
 
-interface Props extends ChatMessage {
+interface Props extends Message {
   showNotification: boolean;
   setShowNotification: () => void;
 }
 
 const InAppNotification = ({
   partyTitle,
-  message,
+  content,
   sender,
   partyId,
   showNotification,
@@ -53,11 +53,11 @@ const InAppNotification = ({
       ) : (
         <UserBasicImg />
       )}
-      <Content>
+      <ContentWrap>
         <Title>{partyTitle}</Title>
         <ProfileName>{sender.nickname || 'user'}</ProfileName>
-        <Message>{message}</Message>
-      </Content>
+        <Content>{content}</Content>
+      </ContentWrap>
     </Container>
   );
 };

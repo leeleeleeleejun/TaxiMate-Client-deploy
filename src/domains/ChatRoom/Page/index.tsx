@@ -65,7 +65,7 @@ const ChatRoomPage = ({ client }: { client: Client | null }) => {
           showNotification={showNotification}
           partyTitle={notification?.partyTitle || ''}
           partyId={notification?.partyId || '0'}
-          message={notification?.message || ''}
+          content={notification?.content || ''}
           sender={{
             profileImage: notification.sender.profileImage || '',
             nickname: notification.sender.nickname || '',

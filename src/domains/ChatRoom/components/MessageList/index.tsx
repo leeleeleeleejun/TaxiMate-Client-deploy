@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { ChatMessage, GroupMessage } from '@/types/chat.ts';
+import { Message, GroupMessage } from '@/types/chat.ts';
 import { useMessageSubscription } from '@/hooks/useMessageSubscription.ts';
 
 import { SystemMessage } from '../SystemMessage.tsx';
@@ -15,7 +15,7 @@ interface MessageListProps {
   client: Client | null;
   userId: string;
   currentPartyId: string;
-  inAppNotificationHandler: (message: ChatMessage) => void;
+  inAppNotificationHandler: (message: Message) => void;
   initialChatMessage: GroupMessage[];
   children: ReactNode;
 }
@@ -33,7 +33,7 @@ const MessageList = ({
   const [isVisible, setIsVisible] = useState(false);
   const [showUpButton, setShowUpButton] = useState(false);
 
-  const handleNewMessage = (message: ChatMessage) => {
+  const handleNewMessage = (message: Message) => {
     if (message.partyId === currentPartyId) {
       chatHandler(initialChatMessage, message, setMessageList);
       if (message.sender.id !== userId) {

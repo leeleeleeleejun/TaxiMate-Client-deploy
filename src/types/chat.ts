@@ -7,11 +7,11 @@ interface Sender {
 type ChatType = 'MESSAGE' | 'SYSTEM';
 
 // 메세지 수신
-export interface ChatMessage {
+export interface Message {
   id: string;
   partyId: string;
   partyTitle: string;
-  message: string;
+  content: string;
   type: ChatType;
   createdAt: string;
   sender: Sender;

@@ -1,6 +1,6 @@
 import ChatListItem from '../ChatListItem';
 import { useEffect, useState } from 'react';
-import { ChatMessage, ChatRoom } from '@/types/chat.ts';
+import { Message, ChatRoom } from '@/types/chat.ts';
 import { useMessageSubscription } from '@/hooks/useMessageSubscription.ts';
 
 const ChatListWrap = ({
@@ -14,7 +14,7 @@ const ChatListWrap = ({
     setChatRoomList(chatRoomListProp);
   }, []);
 
-  const handleNewMessage = (message: ChatMessage) => {
+  const handleNewMessage = (message: Message) => {
     setChatRoomList((prevList) => {
       if (!prevList) return prevList;
 
@@ -25,7 +25,7 @@ const ChatListWrap = ({
 
       const updatedRoom = {
         ...prevList[targetIndex],
-        recentMessage: message.message,
+        recentMessage: message.content,
         recentMessageTime: message.createdAt,
         unreadCount: prevList[targetIndex].unreadCount + 1,
       };

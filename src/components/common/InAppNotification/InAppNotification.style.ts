@@ -61,7 +61,7 @@ export const ProfileName = styled.div`
   color: var(--color-gray-100);
 `;
 
-export const Content = styled.div`
+export const ContentWrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -72,7 +72,7 @@ export const Title = styled.div`
   font-weight: var(--weight-semi-bold);
 `;
 
-export const Message = styled(MessageContent)`
+export const Content = styled(MessageContent)`
   text-align: left;
   font-size: var(--font-small);
   font-weight: var(--weight-regular);

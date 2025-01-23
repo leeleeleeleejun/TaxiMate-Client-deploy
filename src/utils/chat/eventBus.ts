@@ -1,6 +1,6 @@
-import { ChatMessage } from '@/types/chat.ts';
+import { Message } from '@/types/chat.ts';
 
-type Callback = (data: ChatMessage) => void;
+type Callback = (data: Message) => void;
 
 class EventBus {
   private subscribers: { [key: string]: Callback[] } = {};
@@ -15,7 +15,7 @@ class EventBus {
     };
   }
 
-  publish(event: string, data: ChatMessage): void {
+  publish(event: string, data: Message): void {
     if (!this.subscribers[event]) return;
     this.subscribers[event].forEach((callback) => callback(data));
   }

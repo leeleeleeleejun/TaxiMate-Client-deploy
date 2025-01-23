@@ -1,12 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
-import { ChatMessage } from '@/types/chat.ts';
+import { Message } from '@/types/chat.ts';
 
 const useInAppNotificationHandler = () => {
-  const [notification, setNotification] = useState<ChatMessage | null>(null);
+  const [notification, setNotification] = useState<Message | null>(null);
   const [showNotification, setShowNotification] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null); // 타이머를 저장할 ref
 
-  const handleNewMessage = (message: ChatMessage) => {
+  const handleNewMessage = (message: Message) => {
     if (!message) return;
 
     setNotification(message);

@@ -33,10 +33,6 @@ const SetPlaceMapPage = ({
   const [place, setPlace] = useState('');
   const isMyLocationSelectedRef = useRef(isMyLocationSelected);
 
-  useEffect(() => {
-    return setIsMyLocationSelected(false);
-  }, []);
-
   const isOrigin = step === 'originMap';
   const { keyWord, content } = isOrigin
     ? PLACE_KEYWORDS.origin
@@ -67,6 +63,10 @@ const SetPlaceMapPage = ({
     setRegisterDataFunc(registerKey, { latitude: y, longitude: x });
     comeBackMain();
   };
+
+  useEffect(() => {
+    return setIsMyLocationSelected(false);
+  }, []);
 
   useEffect(() => {
     setAddressInfo(value.longitude, value.latitude);
