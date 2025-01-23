@@ -23,12 +23,10 @@ import {
   NotificationHeader,
   RoomTitle,
 } from './page.style.ts';
-import { SystemMessage } from '../components/SystemMessage.tsx';
 import MessageList from '../components/MessageList';
 import MessageInputBox from '../components/MessageInputBox';
-import MyMessageBox from '../components/MessageBox/MyMessageBox.tsx';
-import OthersMessageBox from '../components/MessageBox/OthersMessageBox.tsx';
 import formatPrevChatData from '../utils/formatPrevChatData.ts';
+import InitialChatMessage from '@/domains/ChatRoom/components/InitialChatMessage.tsx';
 
 const ChatRoomPage = ({ client }: { client: Client | null }) => {
   const navigate = useNavigate();
@@ -100,27 +98,10 @@ const ChatRoomPage = ({ client }: { client: Client | null }) => {
         client={client}
       >
         {/*초기 메세지 children으로 전달*/}
-        {initialChatMessage.map((message) =>
-          message.type === 'SYSTEM' ? (
-            message.chat.map((item, index) => (
-              <SystemMessage key={index}>{item}</SystemMessage>
-            ))
-          ) : message.sender?.id === userData.id ? (
-            <MyMessageBox
-              key={message.createdAt}
-              messages={message.chat}
-              time={message.createdAt}
-            />
-          ) : (
-            <OthersMessageBox
-              key={message.createdAt}
-              name={message.sender?.nickname || 'user'}
-              img={message.sender?.profileImage || ''}
-              messages={message.chat}
-              time={message.createdAt}
-            />
-          )
-        )}
+        <InitialChatMessage
+          initialChatMessage={initialChatMessage}
+          userId={userData.id}
+        />
       </MessageList>
       <MessageInputBox client={client} partyId={currentPartyId} />
     </>
