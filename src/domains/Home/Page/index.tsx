@@ -5,6 +5,7 @@ import { useNavermaps } from 'react-naver-maps';
 import { useLazyGetPostsQuery } from '@/api/postApi.ts';
 import reactNativePostMessage from '@/utils/reactNativePostMessage.ts';
 import { defaultLocation } from '@/utils/getCurrentlocation.ts';
+import { Location } from '@/types';
 
 import Header from '@/components/common/Layout/Header';
 import { HeaderItem } from '@/components/common/Layout/Header/Header.style.ts';
@@ -39,18 +40,6 @@ const HomePage = () => {
   const [trigger, { data, isLoading: getPostsIsLoading }] =
     useLazyGetPostsQuery();
 
-  const moveCurrentLocationFunc = () => {
-    if (map && userLocation) {
-      const latLng = new naverMaps.LatLng(userLocation);
-      dispatch(setCenterLocation(userLocation));
-      map.setCenter(latLng);
-      getPostsQueryTrigger();
-      setIsActiveMyLocationButton(true);
-    } else {
-      alert('위치 접근 권한이 거부되었습니다.');
-    }
-  };
-
   const getPostsQueryTrigger = () => {
     if (!map) return;
     const minLatitude = map.getBounds().minY();
@@ -66,15 +55,38 @@ const HomePage = () => {
     setShowResearchButton(false);
   };
 
+  const updateMapCenter = (map: naver.maps.Map | null, location: Location) => {
+    if (map) {
+      const latLng = new naverMaps.LatLng(location);
+      map.setCenter(latLng);
+      dispatch(setCenterLocation(location));
+    }
+  };
+
+  const centerMapToUserLocation = (
+    map: naver.maps.Map | null,
+    userLocation: Location | undefined,
+    isActiveMyLocationButton: boolean
+  ) => {
+    if (!userLocation) {
+      alert('위치 접근 권한이 거부되었습니다.');
+      return;
+    }
+    updateMapCenter(map, userLocation);
+    getPostsQueryTrigger();
+    setIsActiveMyLocationButton(isActiveMyLocationButton);
+  };
+
+  const moveCurrentLocationFunc = () => {
+    centerMapToUserLocation(map, userLocation, true);
+  };
+
   // 비동기로 사용자 현재 위치 받아오는 Effect
   useEffect(() => {
     if (isFirstLoading && map) {
       (async () => {
         const { lat, lng, isUserLocation } = await defaultLocation();
-        map.setCenter({ lat, lng });
-        dispatch(setCenterLocation({ lat, lng }));
-        getPostsQueryTrigger();
-        setIsActiveMyLocationButton(isUserLocation);
+        centerMapToUserLocation(map, { lat, lng }, isUserLocation);
         isFirstLoading = false;
       })();
     }
