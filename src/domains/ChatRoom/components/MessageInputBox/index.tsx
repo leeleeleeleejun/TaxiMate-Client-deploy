@@ -1,17 +1,13 @@
-import { useRef, useState } from 'react';
-import { Client } from '@stomp/stompjs';
+import { useContext, useRef, useState } from 'react';
+import { StompContext } from '@/store/StompContext.ts';
+
 import ArrowUpIcon from '@/assets/icons/chat/arrow-up-icon.svg?react';
 
 import sendMessage from '../../utils/sendMessage';
 import { Container, Input } from './MessageInputBox.style.ts';
 
-const MessageInputBox = ({
-  client,
-  partyId,
-}: {
-  client: Client | null;
-  partyId: string;
-}) => {
+const MessageInputBox = ({ partyId }: { partyId: string }) => {
+  const client = useContext(StompContext);
   const [input, setInput] = useState('');
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const hiddenInput = useRef<HTMLInputElement>(null);

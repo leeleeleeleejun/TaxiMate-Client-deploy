@@ -15,6 +15,8 @@ export const SearchListItemContainer = styled.li`
   padding: 20px 10px;
   border-bottom: 1px solid var(--color-gray-300);
 
+  cursor: pointer;
+
   div {
     display: flex;
 

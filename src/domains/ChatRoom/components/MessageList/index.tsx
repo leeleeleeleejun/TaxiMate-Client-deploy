@@ -1,4 +1,12 @@
-import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import {
+  ReactNode,
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
+import { StompContext } from '@/store/StompContext.ts';
 import { WsChat, GroupMessage } from '@/types/chat.ts';
 import { useMessageSubscription } from '@/hooks/useMessageSubscription.ts';
 
@@ -9,10 +17,8 @@ import MyMessageBox from '../MessageBox/MyMessageBox.tsx';
 import OthersMessageBox from '../MessageBox/OthersMessageBox.tsx';
 import chatHandler from '../../utils/chatHandler.ts';
 import checkReceive from '../../utils/checkReceive.ts';
-import { Client } from '@stomp/stompjs';
 
 interface MessageListProps {
-  client: Client | null;
   userId: string;
   currentPartyId: string;
   inAppNotificationHandler: (message: WsChat) => void;
@@ -21,13 +27,14 @@ interface MessageListProps {
 }
 
 const MessageList = ({
-  client,
   userId,
   currentPartyId,
   inAppNotificationHandler,
   initialChatMessage,
   children,
 }: MessageListProps) => {
+  const client = useContext(StompContext);
+
   const messageEndRef = useRef<HTMLDivElement>(null);
   const [messageList, setMessageList] = useState<GroupMessage[]>([]);
   const [isVisible, setIsVisible] = useState(false);

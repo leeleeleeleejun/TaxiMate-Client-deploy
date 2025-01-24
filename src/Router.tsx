@@ -8,6 +8,7 @@ import Layout from '@/components/common/Layout';
 import LoadingIcon from '@/components/common/LoadingIcon';
 import InAppNotificationLayout from '@/components/common/InAppNotification/InAppNotificationLayout.tsx';
 import ForwardHandler from '@/ForwardHandler.tsx';
+import { StompContext } from '@/store/StompContext.ts';
 
 const HomePage = lazy(() => import('@/domains/Home/Page'));
 const ChatListPage = lazy(() => import('@/domains/ChatRoomList/Page'));
@@ -66,7 +67,11 @@ const Router = () => {
             <Route element={<AuthChecker />}>
               <Route
                 path={CLIENT_PATH.CHAT_ROOM}
-                element={<ChatRoomPage client={client} />}
+                element={
+                  <StompContext.Provider value={client}>
+                    <ChatRoomPage />
+                  </StompContext.Provider>
+                }
               />
             </Route>
           </Route>
