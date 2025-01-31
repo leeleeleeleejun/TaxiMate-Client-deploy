@@ -1,5 +1,10 @@
-import { lazy, Suspense } from 'react';
+import { lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import {
+  DefaultProps,
+  DefaultPropsProvider,
+  Suspense,
+} from '@suspensive/react';
 
 import { CLIENT_PATH } from '@/constants/path.ts';
 import useStompClient from '@/hooks/useStompClient.ts';
@@ -23,60 +28,73 @@ const MyProfilePage = lazy(() => import('@/domains/MyProfile/Page'));
 const PostDetailPage = lazy(() => import('@/domains/PostDetail/Page'));
 const UsageHistoryPage = lazy(() => import('@/domains/UsageHistory/Page'));
 
+const defaultProps = new DefaultProps({
+  Delay: {
+    fallback: <LoadingIcon />,
+    ms: 6000,
+  },
+  Suspense: {
+    fallback: <LoadingIcon />,
+    clientOnly: false,
+  },
+});
+
 const Router = () => {
   const client = useStompClient();
 
   return (
     <BrowserRouter>
       <ForwardHandler />
-      <Suspense fallback={<LoadingIcon />}>
-        <Routes>
-          <Route element={<Layout />}>
-            <Route element={<InAppNotificationLayout />}>
-              <Route path={'/'} element={<HomePage />} />
-              <Route path={CLIENT_PATH.SEARCH} element={<SearchPage />} />
-              <Route
-                path={CLIENT_PATH.POST_DETAIL}
-                element={<PostDetailPage />}
-              />
-              <Route path={CLIENT_PATH.LOGIN} element={<LoginPage />} />
-              <Route
-                path={CLIENT_PATH.LOGIN_LOADING}
-                element={<LoginLoadingPage />}
-              />
-              {/*유저 로그인 상태 체크 필요 페이지*/}
+      <DefaultPropsProvider defaultProps={defaultProps}>
+        <Suspense>
+          <Routes>
+            <Route element={<Layout />}>
+              <Route element={<InAppNotificationLayout />}>
+                <Route path={'/'} element={<HomePage />} />
+                <Route path={CLIENT_PATH.SEARCH} element={<SearchPage />} />
+                <Route
+                  path={CLIENT_PATH.POST_DETAIL}
+                  element={<PostDetailPage />}
+                />
+                <Route path={CLIENT_PATH.LOGIN} element={<LoginPage />} />
+                <Route
+                  path={CLIENT_PATH.LOGIN_LOADING}
+                  element={<LoginLoadingPage />}
+                />
+                {/*유저 로그인 상태 체크 필요 페이지*/}
+                <Route element={<AuthChecker />}>
+                  <Route
+                    path={CLIENT_PATH.MY_PROFILE}
+                    element={<MyProfilePage />}
+                  />
+                  <Route
+                    path={CLIENT_PATH.USAGE_HISTORY}
+                    element={<UsageHistoryPage />}
+                  />
+                  <Route
+                    path={CLIENT_PATH.CREATE_POST}
+                    element={<CreatePostPage />}
+                  />
+                  <Route
+                    path={CLIENT_PATH.CHAT_LISTS}
+                    element={<ChatListPage />}
+                  />
+                </Route>
+              </Route>
               <Route element={<AuthChecker />}>
                 <Route
-                  path={CLIENT_PATH.MY_PROFILE}
-                  element={<MyProfilePage />}
-                />
-                <Route
-                  path={CLIENT_PATH.USAGE_HISTORY}
-                  element={<UsageHistoryPage />}
-                />
-                <Route
-                  path={CLIENT_PATH.CREATE_POST}
-                  element={<CreatePostPage />}
-                />
-                <Route
-                  path={CLIENT_PATH.CHAT_LISTS}
-                  element={<ChatListPage />}
+                  path={CLIENT_PATH.CHAT_ROOM}
+                  element={
+                    <StompContext.Provider value={client}>
+                      <ChatRoomPage />
+                    </StompContext.Provider>
+                  }
                 />
               </Route>
             </Route>
-            <Route element={<AuthChecker />}>
-              <Route
-                path={CLIENT_PATH.CHAT_ROOM}
-                element={
-                  <StompContext.Provider value={client}>
-                    <ChatRoomPage />
-                  </StompContext.Provider>
-                }
-              />
-            </Route>
-          </Route>
-        </Routes>
-      </Suspense>
+          </Routes>
+        </Suspense>
+      </DefaultPropsProvider>
     </BrowserRouter>
   );
 };
