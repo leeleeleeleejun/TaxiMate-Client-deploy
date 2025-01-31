@@ -27,7 +27,7 @@ export const MoveInfoContainer = styled.div`
   }
 `;
 
-export const PostDetailContainer = styled.div`
+export const Container = styled.div`
   height: 100%;
   overflow: auto;
 
