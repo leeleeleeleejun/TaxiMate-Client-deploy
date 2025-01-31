@@ -6,6 +6,8 @@ import Router from '@/Router.tsx';
 import { useGetRefreshAccessTokenQuery } from '@/api/userApi.ts';
 import { setIsLogin } from '@/domains/MyProfile/Slice/userSlice.ts';
 import GlobalStyle from '@/styles/GlobalStyle.ts';
+import { ErrorBoundary } from '@suspensive/react';
+import ErrorBoundaryFallback from '@/ErrorBoundaryFallback.tsx';
 
 const naverMapApi = import.meta.env.VITE_NAVER_MAP_API;
 const kakaoJsKey = import.meta.env.VITE_KAKAO_JS_KEY;
@@ -35,13 +37,13 @@ function App() {
   if (!isReady) return null;
 
   return (
-    <>
+    <ErrorBoundary fallback={ErrorBoundaryFallback}>
       <Analytics />
       <NavermapsProvider ncpClientId={naverMapApi}>
         <GlobalStyle />
         <Router />
       </NavermapsProvider>
-    </>
+    </ErrorBoundary>
   );
 }
 
