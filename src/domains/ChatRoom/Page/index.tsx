@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Client } from '@stomp/stompjs';
 import { GroupMessage } from '@/types/chat.ts';
 import { CLIENT_PATH } from '@/constants/path.ts';
 import formatDate from '@/utils/date/formatDate.ts';
@@ -28,7 +27,7 @@ import MessageInputBox from '../components/MessageInputBox';
 import formatPrevChatData from '../utils/formatPrevChatData.ts';
 import InitialChatMessage from '@/domains/ChatRoom/components/InitialChatMessage.tsx';
 
-const ChatRoomPage = ({ client }: { client: Client | null }) => {
+const ChatRoomPage = () => {
   const navigate = useNavigate();
   const currentPartyId = useLocation().pathname.split('/')[2];
 
@@ -95,7 +94,6 @@ const ChatRoomPage = ({ client }: { client: Client | null }) => {
         currentPartyId={currentPartyId}
         inAppNotificationHandler={handleNewMessage}
         initialChatMessage={initialChatMessage}
-        client={client}
       >
         {/*초기 메세지 children으로 전달*/}
         <InitialChatMessage
@@ -103,7 +101,7 @@ const ChatRoomPage = ({ client }: { client: Client | null }) => {
           userId={userData.id}
         />
       </MessageList>
-      <MessageInputBox client={client} partyId={currentPartyId} />
+      <MessageInputBox partyId={currentPartyId} />
     </>
   );
 };
