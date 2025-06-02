@@ -29,7 +29,7 @@
       const ncpKeyId = import.meta.env.VITE_NAVER_MAP_API;
 
       if (!ncpKeyId) {
-        console.error("Naver Map API key (VITE_NAVER_MAP_KEY) is missing");
+        console.error("Naver Map API key (VITE_NAVER_MAP_API) is missing");
       } else {
         const script = document.createElement("script");
         script.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${ncpKeyId}`;
