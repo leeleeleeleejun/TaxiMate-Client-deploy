@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { NavermapsProvider } from 'react-naver-maps';
 import { Analytics } from '@vercel/analytics/react';
 import Router from '@/Router.tsx';
 import { useGetRefreshAccessTokenQuery } from '@/api/userApi.ts';
@@ -9,7 +8,6 @@ import GlobalStyle from '@/styles/GlobalStyle.ts';
 import { ErrorBoundary } from '@suspensive/react';
 import ErrorBoundaryFallback from '@/ErrorBoundaryFallback.tsx';
 
-const naverMapApi = import.meta.env.VITE_NAVER_MAP_API;
 const kakaoJsKey = import.meta.env.VITE_KAKAO_JS_KEY;
 
 window.Kakao.init(kakaoJsKey);
@@ -39,10 +37,8 @@ function App() {
   return (
     <ErrorBoundary fallback={ErrorBoundaryFallback}>
       <Analytics />
-      <NavermapsProvider ncpClientId={naverMapApi}>
         <GlobalStyle />
         <Router />
-      </NavermapsProvider>
     </ErrorBoundary>
   );
 }
