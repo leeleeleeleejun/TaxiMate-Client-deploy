@@ -7,8 +7,10 @@ import { setIsLogin } from '@/domains/MyProfile/Slice/userSlice.ts';
 import GlobalStyle from '@/styles/GlobalStyle.ts';
 import { ErrorBoundary } from '@suspensive/react';
 import ErrorBoundaryFallback from '@/ErrorBoundaryFallback.tsx';
+import {NavermapsProvider} from "react-naver-maps";
 
 const kakaoJsKey = import.meta.env.VITE_KAKAO_JS_KEY;
+const naverMapApi = import.meta.env.VITE_NAVER_MAP_API;
 
 window.Kakao.init(kakaoJsKey);
 
@@ -37,8 +39,10 @@ function App() {
   return (
     <ErrorBoundary fallback={ErrorBoundaryFallback}>
       <Analytics />
+      <NavermapsProvider ncpKeyId={naverMapApi}>
         <GlobalStyle />
         <Router />
+      </NavermapsProvider>
     </ErrorBoundary>
   );
 }
