@@ -6,7 +6,7 @@ export const Main = styled.main`
   position: relative;
   .map-wrapper {
     width: 100%;
-    height: calc(100vh - (var(--header-height) + var(--footer-height)));
+    height: calc(100svh - (var(--header-height) + var(--footer-height)));
   }
   ${MarkerContainerStyle}
 

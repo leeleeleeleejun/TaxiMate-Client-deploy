@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const SearchListContainer = styled.ul`
-  height: calc(100vh - (var(--header-height)));
+  height: calc(100svh - (var(--header-height)));
   border-top: 1px solid var(--color-gray-300);
 
   overflow-y: auto;
