@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import reactNativePostMessage from '@/utils/reactNativePostMessage.ts';
+//import reactNativePostMessage from '@/utils/reactNativePostMessage.ts';
 import { useGetAccessTokenQuery } from '@/api/userApi.ts';
 import { setIsLogin } from '@/domains/MyProfile/Slice/userSlice.ts';
 import useErrorHandle from '@/hooks/useErrorHandle.ts';
@@ -26,7 +26,7 @@ const LoginLoadingPage = () => {
   useEffect(() => {
     if (!isTokenLoading && isTokenSuccess) {
       dispatch(setIsLogin(true));
-      reactNativePostMessage('push_notification');
+      // reactNativePostMessage('push_notification');
       navigate('/', { replace: true });
     } else if (isTokenError) {
       alert('로그인에 실패했습니다.');
