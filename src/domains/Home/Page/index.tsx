@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavermaps } from 'react-naver-maps';
 
 import { useLazyGetPostsQuery } from '@/api/postApi.ts';
-import reactNativePostMessage from '@/utils/reactNativePostMessage.ts';
+// import reactNativePostMessage from '@/utils/reactNativePostMessage.ts';
 import { defaultLocation } from '@/utils/getCurrentlocation.ts';
 import { Location } from '@/types';
 
@@ -101,9 +101,9 @@ const HomePage = () => {
           <TaxiIcon />
         </HeaderItem>
         <button
-          onClick={() => {
-            reactNativePostMessage('like_knu');
-          }}
+          // onClick={() => {
+          //   reactNativePostMessage('like_knu');
+          // }}
         >
           <KnuLogoIcon />
         </button>
