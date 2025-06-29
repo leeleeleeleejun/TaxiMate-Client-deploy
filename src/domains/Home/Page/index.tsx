@@ -40,20 +40,21 @@ const HomePage = () => {
   const [trigger, { data, isLoading: getPostsIsLoading }] =
     useLazyGetPostsQuery();
 
-  const getPostsQueryTrigger = () => {
-    if (!map) return;
-    const minLatitude = map.getBounds().minY();
-    const minLongitude = map.getBounds().minX();
-    const maxLatitude = map.getBounds().maxY();
-    const maxLongitude = map.getBounds().maxX();
-    trigger({
-      minLatitude,
-      minLongitude,
-      maxLatitude,
-      maxLongitude,
-    });
-    setShowResearchButton(false);
-  };
+  const getPostsQueryTrigger = () =>
+    map &&
+    (() => {
+      const bounds = map.getBounds();
+
+      const coords = {
+        minLatitude: bounds.minY(),
+        minLongitude: bounds.minX(),
+        maxLatitude: bounds.maxY(),
+        maxLongitude: bounds.maxX(),
+      };
+
+      trigger(coords);
+      setShowResearchButton(false);
+    })();
 
   const updateMapCenter = (map: naver.maps.Map | null, location: Location) => {
     if (map) {
