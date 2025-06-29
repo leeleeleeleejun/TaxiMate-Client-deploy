@@ -4,7 +4,7 @@ import { useNavermaps } from 'react-naver-maps';
 
 import { useLazyGetPostsQuery } from '@/api/postApi.ts';
 // import reactNativePostMessage from '@/utils/reactNativePostMessage.ts';
-import { defaultLocation } from '@/utils/getCurrentlocation.ts';
+import { defaultLocation } from '@/utils/location/getCurrentlocation.ts';
 import { Location } from '@/types';
 
 import Header from '@/components/common/Layout/Header';
@@ -102,9 +102,9 @@ const HomePage = () => {
           <TaxiIcon />
         </HeaderItem>
         <button
-          // onClick={() => {
-          //   reactNativePostMessage('like_knu');
-          // }}
+        // onClick={() => {
+        //   reactNativePostMessage('like_knu');
+        // }}
         >
           <KnuLogoIcon />
         </button>

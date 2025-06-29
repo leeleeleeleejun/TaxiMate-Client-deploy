@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { SetRegisterDataFunc, SetStep, StepType } from '@/types';
-import getCurrentLocation from '@/utils/getCurrentlocation.ts';
+import getCurrentLocation from '@/utils/location/getCurrentlocation.ts';
 
 import SearchBar from '../../components/setPlace/SearchBar';
 import { MyLocationButton } from './SetPlace.style.ts';

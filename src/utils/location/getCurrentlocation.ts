@@ -1,6 +1,6 @@
 import { Location } from '@/types';
-import geolocationErrorMessage from "@/utils/geolocationErrorMessage.ts";
-import toLocation from "@/utils/toLocation.ts";
+import geolocationErrorMessage from '@/utils/location/geolocationErrorMessage.ts';
+import toLocation from '@/utils/location/toLocation.ts';
 
 const getCurrentLocation = async (): Promise<Location> => {
   if (!navigator.geolocation) {

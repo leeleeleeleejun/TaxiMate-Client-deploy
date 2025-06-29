@@ -1,5 +1,5 @@
 import { ReactNode, useState } from 'react';
-import { defaultLocation } from '@/utils/getCurrentlocation.ts';
+import { defaultLocation } from '@/utils/location/getCurrentlocation.ts';
 import { RegisterDataKey, RegisterData, StepType } from '@/types';
 
 import CreateMainPage from '@/domains/CreatePost/Page/CreateMainPage/CreateMainPage.tsx';
