@@ -1,4 +1,6 @@
 import { Location } from '@/types';
+import geolocationErrorMessage from "@/utils/geolocationErrorMessage.ts";
+import toLocation from "@/utils/toLocation.ts";
 
 const getCurrentLocation = async (): Promise<Location> => {
   if (!navigator.geolocation) {
@@ -7,31 +9,9 @@ const getCurrentLocation = async (): Promise<Location> => {
 
   return new Promise((resolve, reject) => {
     navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const currentLocation = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        };
-        resolve(currentLocation);
-      },
+      (position) => resolve(toLocation(position.coords)),
       (error) => {
-        let errorMessage: string;
-
-        // 더 명확한 에러 메시지 제공
-        switch (error.code) {
-          case 1:
-            errorMessage = '위치 접근 권한이 거부되었습니다.';
-            break;
-          case 2:
-            errorMessage = '위치를 확인할 수 없습니다.';
-            break;
-          case 3:
-            errorMessage = '위치 확인 시간이 초과되었습니다.';
-            break;
-          default:
-            errorMessage = error.message;
-        }
-
+        const errorMessage = geolocationErrorMessage(error.code, error.message);
         reject(errorMessage);
       },
       {
