@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { GroupMessage } from '@/types/chat.ts';
 import { CLIENT_PATH } from '@/constants/path.ts';
 import formatDate from '@/utils/date/formatDate.ts';
+import formatPathWithParams from '@/utils/formatPathWithParams.ts';
 import { useGetChatQuery } from '@/api/chatApi.ts';
 import { useGetProfileQuery } from '@/api/userApi.ts';
 import useInAppNotificationHandler from '@/hooks/useInAppNotificationHandler.ts';
@@ -74,7 +75,7 @@ const ChatRoomPage = () => {
         <RoomTitle>{chatData.party.title}</RoomTitle>
       </Header>
       <NotificationContainer
-        to={CLIENT_PATH.POST_DETAIL.replace(':postId', currentPartyId)}
+        to={formatPathWithParams(CLIENT_PATH.POST_DETAIL, currentPartyId)}
       >
         <NotificationHeader>
           <PeopleCountTag

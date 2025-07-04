@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { CLIENT_PATH } from '@/constants/path.ts';
+import formatPathWithParams from '@/utils/formatPathWithParams.ts';
 
 import {
   AddressWrapper,
@@ -42,7 +44,7 @@ const PostListItem = ({
 }: PostListItemProps & PeopleCountTagProps) => {
   return (
     <PostListItemContainer>
-      <Link to={'/posts/' + id}>
+      <Link to={formatPathWithParams(CLIENT_PATH.POST_DETAIL, id)}>
         <PostHeader
           title={title}
           currentParticipants={currentParticipants}

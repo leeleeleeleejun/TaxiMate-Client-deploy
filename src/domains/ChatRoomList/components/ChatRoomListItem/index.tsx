@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
+import { CLIENT_PATH } from '@/constants/path.ts';
 import { ChatRoom } from '@/types/chat.ts';
+import formatPathWithParams from '@/utils/formatPathWithParams.ts';
 import formatDateForDetailPost from '@/utils/date/formatDateForDetailPost.ts';
 
 import PeopleCountTag from '@/components/common/PeopleCountTag';
@@ -24,7 +26,7 @@ const ChatRoomListItem = ({
   const formatTime = formatDateForDetailPost(recentMessageTime);
   return (
     <ChatListItemContainer>
-      <Link to={'/chat-list/' + id}>
+      <Link to={formatPathWithParams(CLIENT_PATH.CHAT_ROOM, id)}>
         <ChatListItemHeader>
           <div>
             <h3>{title}</h3>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { WsChat } from '@/types/chat.ts';
 import { CLIENT_PATH } from '@/constants/path.ts';
+import formatPathWithParams from '@/utils/formatPathWithParams.ts';
 import UserBasicImg from '@/components/common/userBasicImg';
 import {
   Container,
@@ -42,7 +43,7 @@ const InAppNotification = ({
 
   return (
     <Container
-      to={CLIENT_PATH.CHAT_ROOM.replace(':chatRoomId', String(partyId))}
+      to={formatPathWithParams(CLIENT_PATH.CHAT_ROOM, partyId)}
       onClick={setShowNotification}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}

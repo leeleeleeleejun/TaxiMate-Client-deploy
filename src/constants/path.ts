@@ -8,9 +8,9 @@ export const API_PATH = {
     GET: {
       ALL: `/api/v1/parties`,
       // 포스트 ID 조회
-      BY_ID: `/api/v1/parties/:partyId`,
+      BY_ID: `/api/v1/parties/:id`,
       // 특정 유저의 전체 포스트 조회
-      BY_USER: `/posts/user/:userId`,
+      BY_USER: `/posts/user/:id`,
       JOIN_POSTS: `/api/v1/participation`,
       CLOSE_POSTS: `/api/v1/participation?isTerminated=true`,
     },
@@ -25,16 +25,16 @@ export const API_PATH = {
   CHAT: {
     PARTICIPATION: `/api/v1/participation`,
     GET_CHAT_LIST: `/api/v1/chats`,
-    GET_CHAT: '/api/v1/chats/:partyId',
+    GET_CHAT: '/api/v1/chats/:id',
   },
 };
 
 export const CLIENT_PATH = {
   SEARCH: '/search',
-  POST_DETAIL: '/posts/:postId',
+  POST_DETAIL: '/posts/:id',
   CREATE_POST: '/create-post',
   CHAT_LISTS: '/chat-list',
-  CHAT_ROOM: '/chat-list/:chatRoomId',
+  CHAT_ROOM: '/chat-list/:id',
   USAGE_HISTORY: '/usage-history',
   MY_PROFILE: '/my-profile',
   LOGIN: '/login',

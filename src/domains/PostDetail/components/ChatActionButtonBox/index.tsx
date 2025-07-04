@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { CLIENT_PATH } from '@/constants/path.ts';
 import { PostDetail, PostDetailStatus } from '@/types/post.ts';
+import formatPathWithParams from '@/utils/formatPathWithParams.ts';
 import {
   useLeaveChatMutation,
   useParticipationChatMutation,
@@ -30,7 +31,7 @@ const ChatActionButtonBox = ({
   const isLogin = useSelector((state: RootState) => state.userSlice.isLogin);
 
   const goChatRoom = () => {
-    navigate(CLIENT_PATH.CHAT_ROOM.replace(':chatRoomId', id));
+    navigate(formatPathWithParams(CLIENT_PATH.CHAT_ROOM, id));
   };
 
   const participationChatHandler = async () => {

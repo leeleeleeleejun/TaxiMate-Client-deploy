@@ -1,4 +1,6 @@
 import { useNavigate } from 'react-router-dom';
+import { CLIENT_PATH } from '@/constants/path.ts';
+import formatPathWithParams from '@/utils/formatPathWithParams.ts';
 import { useCreatePostMutation } from '@/api/postApi.ts';
 
 import Header from '@/components/common/Layout/Header';
@@ -44,8 +46,10 @@ const CreateMainPage = ({
         ...registerData,
         departureTime: formatDate,
       }).unwrap();
-
-      navigate('/posts/' + result.data.partyId, { replace: true });
+      navigate(
+        formatPathWithParams(CLIENT_PATH.POST_DETAIL, result.data.partyId),
+        { replace: true }
+      );
     } catch (err) {
       console.error('Post creation failed:', err);
       alert('게시글 생성 중 문제가 발생했습니다.');
