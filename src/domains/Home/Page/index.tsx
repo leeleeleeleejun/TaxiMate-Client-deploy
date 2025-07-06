@@ -40,9 +40,8 @@ const HomePage = () => {
   const [trigger, { data, isLoading: getPostsIsLoading }] =
     useLazyGetPostsQuery();
 
-  const getPostsQueryTrigger = () =>
-    map &&
-    (() => {
+  const getPostsQueryTrigger = () => {
+    if (map) {
       const bounds = map.getBounds();
 
       const coords = {
