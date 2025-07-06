@@ -27,7 +27,7 @@ const useCustomNavigation = () => {
    * @param options 옵션 (replace 등)
    */
   const goTo = ({ path, id, options }: GoToParams) =>
-    id
+    id !== undefined
       ? navigate(formatPathWithParams(CLIENT_PATH[path], id), options)
       : navigate(CLIENT_PATH[path], options);
 
