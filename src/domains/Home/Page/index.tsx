@@ -53,7 +53,8 @@ const HomePage = () => {
 
       trigger(coords);
       setShowResearchButton(false);
-    })();
+    }
+  };
 
   const updateMapCenter = (map: naver.maps.Map | null, location: Location) => {
     if (map) {
