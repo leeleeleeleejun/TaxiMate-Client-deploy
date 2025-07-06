@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { GroupMessage } from '@/types/chat.ts';
 import { CLIENT_PATH } from '@/constants/path.ts';
 import formatDate from '@/utils/date/formatDate.ts';
@@ -27,10 +27,11 @@ import MessageList from '../components/MessageList';
 import MessageInputBox from '../components/MessageInputBox';
 import formatPrevChatData from '../utils/formatPrevChatData.ts';
 import InitialChatMessage from '@/domains/ChatRoom/components/InitialChatMessage.tsx';
+import useCustomNavigation from '@/hooks/useNavigate.ts';
 
 const ChatRoomPage = () => {
-  const navigate = useNavigate();
   const currentPartyId = useLocation().pathname.split('/')[2];
+  const { goTo } = useCustomNavigation();
 
   const { data: userData, isLoading } = useGetProfileQuery(null);
   const { data: chatData, isLoading: chatIsLoading } = useGetChatQuery(
@@ -68,7 +69,9 @@ const ChatRoomPage = () => {
       )}
       <Header>
         <BackButton
-          onClick={() => navigate(CLIENT_PATH.CHAT_LISTS, { replace: true })}
+          onClick={() =>
+            goTo({ path: 'CHAT_LISTS', options: { replace: true } })
+          }
         >
           <ArrowLeftIcon />
         </BackButton>

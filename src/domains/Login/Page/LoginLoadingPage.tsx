@@ -1,17 +1,18 @@
 import { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 //import reactNativePostMessage from '@/utils/reactNativePostMessage.ts';
 import { useGetAccessTokenQuery } from '@/api/userApi.ts';
 import { setIsLogin } from '@/domains/MyProfile/Slice/userSlice.ts';
 import useErrorHandle from '@/hooks/useErrorHandle.ts';
+import useCustomNavigation from '@/hooks/useNavigate.ts';
 
 const LoginLoadingPage = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const location = useLocation();
   const code = new URLSearchParams(location.search).get('code') || '';
+  const { goHome, goTo } = useCustomNavigation();
 
   const {
     isLoading: isTokenLoading,
@@ -27,10 +28,15 @@ const LoginLoadingPage = () => {
     if (!isTokenLoading && isTokenSuccess) {
       dispatch(setIsLogin(true));
       // reactNativePostMessage('push_notification');
-      navigate('/', { replace: true });
+      goHome({ replace: true });
     } else if (isTokenError) {
       alert('로그인에 실패했습니다.');
-      navigate('/login', { replace: true });
+      goTo({
+        path: 'LOGIN',
+        options: {
+          replace: true,
+        },
+      });
     }
   }, [isTokenLoading, isTokenSuccess, isTokenError]);
 

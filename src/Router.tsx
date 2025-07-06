@@ -62,24 +62,24 @@ const Router = () => {
                   element={<LoginLoadingPage />}
                 />
                 {/*유저 로그인 상태 체크 필요 페이지*/}
-                <Route element={<AuthChecker />}>
-                  <Route
-                    path={CLIENT_PATH.MY_PROFILE}
-                    element={<MyProfilePage />}
-                  />
-                  <Route
-                    path={CLIENT_PATH.USAGE_HISTORY}
-                    element={<UsageHistoryPage />}
-                  />
-                  <Route
-                    path={CLIENT_PATH.CREATE_POST}
-                    element={<CreatePostPage />}
-                  />
-                  <Route
-                    path={CLIENT_PATH.CHAT_LISTS}
-                    element={<ChatListPage />}
-                  />
-                </Route>
+                {/*<Route element={<AuthChecker />}>*/}
+                <Route
+                  path={CLIENT_PATH.MY_PROFILE}
+                  element={<MyProfilePage />}
+                />
+                <Route
+                  path={CLIENT_PATH.USAGE_HISTORY}
+                  element={<UsageHistoryPage />}
+                />
+                <Route
+                  path={CLIENT_PATH.CREATE_POST}
+                  element={<CreatePostPage />}
+                />
+                <Route
+                  path={CLIENT_PATH.CHAT_LISTS}
+                  element={<ChatListPage />}
+                />
+                {/*</Route>*/}
               </Route>
               <Route element={<AuthChecker />}>
                 <Route

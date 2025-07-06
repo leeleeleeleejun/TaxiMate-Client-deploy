@@ -1,6 +1,3 @@
-import { useNavigate } from 'react-router-dom';
-import { CLIENT_PATH } from '@/constants/path.ts';
-import formatPathWithParams from '@/utils/formatPathWithParams.ts';
 import { useCreatePostMutation } from '@/api/postApi.ts';
 
 import Header from '@/components/common/Layout/Header';
@@ -20,6 +17,7 @@ import validateRegisterData from '../../utils/validateRegisterData.ts';
 import { Container, CreateSubmitButton } from './CreateMain.style.ts';
 
 import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
+import useCustomNavigation from '@/hooks/useNavigate.ts';
 
 interface CreateMainPageProps {
   registerData: RegisterData;
@@ -32,7 +30,7 @@ const CreateMainPage = ({
   setRegisterDataFunc,
   setStep,
 }: CreateMainPageProps) => {
-  const navigate = useNavigate();
+  const { goTo, goHome } = useCustomNavigation();
   const [createPost, { isLoading }] = useCreatePostMutation();
 
   const createPostSubmit = async () => {
@@ -46,10 +44,13 @@ const CreateMainPage = ({
         ...registerData,
         departureTime: formatDate,
       }).unwrap();
-      navigate(
-        formatPathWithParams(CLIENT_PATH.POST_DETAIL, result.data.partyId),
-        { replace: true }
-      );
+      goTo({
+        path: 'POST_DETAIL',
+        id: result.data.partyId,
+        options: {
+          replace: true,
+        },
+      });
     } catch (err) {
       console.error('Post creation failed:', err);
       alert('게시글 생성 중 문제가 발생했습니다.');
@@ -59,7 +60,7 @@ const CreateMainPage = ({
   return (
     <>
       <Header>
-        <BackButton onClick={() => navigate('/', { replace: true })}>
+        <BackButton onClick={() => goHome({ replace: true })}>
           <ArrowLeftIcon />
         </BackButton>
         <HeaderItem>팟 생성</HeaderItem>
