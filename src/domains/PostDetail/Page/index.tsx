@@ -1,16 +1,16 @@
-import { useNavigate } from 'react-router-dom';
 import PostDetailContainer from './PostDetailContainer.tsx';
 import Header from '@/components/common/Layout/Header';
 import { BackButton } from '@/components/common/Layout/Header/Header.style.ts';
 import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
+import useCustomNavigation from '@/hooks/useNavigate.ts';
 
 const PostDetailPage = () => {
-  const navigate = useNavigate();
+  const { goHome } = useCustomNavigation();
 
   return (
     <>
       <Header>
-        <BackButton onClick={() => navigate('/', { replace: true })}>
+        <BackButton onClick={() => goHome({ replace: true })}>
           <ArrowLeftIcon />
         </BackButton>
       </Header>

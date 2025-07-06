@@ -4,7 +4,7 @@ import { useNavermaps } from 'react-naver-maps';
 
 import { useLazyGetPostsQuery } from '@/api/postApi.ts';
 // import reactNativePostMessage from '@/utils/reactNativePostMessage.ts';
-import { defaultLocation } from '@/utils/getCurrentlocation.ts';
+import { defaultLocation } from '@/utils/location/getCurrentlocation.ts';
 import { Location } from '@/types';
 
 import Header from '@/components/common/Layout/Header';
@@ -41,18 +41,19 @@ const HomePage = () => {
     useLazyGetPostsQuery();
 
   const getPostsQueryTrigger = () => {
-    if (!map) return;
-    const minLatitude = map.getBounds().minY();
-    const minLongitude = map.getBounds().minX();
-    const maxLatitude = map.getBounds().maxY();
-    const maxLongitude = map.getBounds().maxX();
-    trigger({
-      minLatitude,
-      minLongitude,
-      maxLatitude,
-      maxLongitude,
-    });
-    setShowResearchButton(false);
+    if (map) {
+      const bounds = map.getBounds();
+
+      const coords = {
+        minLatitude: bounds.minY(),
+        minLongitude: bounds.minX(),
+        maxLatitude: bounds.maxY(),
+        maxLongitude: bounds.maxX(),
+      };
+
+      trigger(coords);
+      setShowResearchButton(false);
+    }
   };
 
   const updateMapCenter = (map: naver.maps.Map | null, location: Location) => {
@@ -101,9 +102,9 @@ const HomePage = () => {
           <TaxiIcon />
         </HeaderItem>
         <button
-          // onClick={() => {
-          //   reactNativePostMessage('like_knu');
-          // }}
+        // onClick={() => {
+        //   reactNativePostMessage('like_knu');
+        // }}
         >
           <KnuLogoIcon />
         </button>

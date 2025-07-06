@@ -2,6 +2,7 @@ import { baseApi } from '@/api/baseApi.ts';
 import { API_PATH } from '@/constants/path.ts';
 import { CreatePostRes, Post, PostDetail } from '@/types/post.ts';
 import { RegisterData } from '@/types';
+import formatPathWithParams from '@/utils/formatPathWithParams.ts';
 
 const postApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -22,7 +23,7 @@ const postApi = baseApi.injectEndpoints({
       keepUnusedDataFor: 0,
     }),
     getPostById: builder.query<PostDetail, string>({
-      query: (id) => API_PATH.POST.GET.BY_ID.replace(':partyId', id),
+      query: (id) => formatPathWithParams(API_PATH.POST.GET.BY_ID, id),
       transformResponse: (response: { data: PostDetail }) => response.data,
       keepUnusedDataFor: 1,
     }),

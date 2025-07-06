@@ -1,7 +1,6 @@
 import { RootState } from '@/store';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { CLIENT_PATH } from '@/constants/path.ts';
+import useCustomNavigation from '@/hooks/useNavigate.ts';
 import { PostDetail, PostDetailStatus } from '@/types/post.ts';
 import {
   useLeaveChatMutation,
@@ -23,19 +22,19 @@ const ChatActionButtonBox = ({
   id: string;
   refetchFunc: () => Promise<PostDetail | undefined>;
 }) => {
-  const navigate = useNavigate();
+  const { goHome, goTo } = useCustomNavigation();
 
   const [participationChat] = useParticipationChatMutation();
   const [leaveChat] = useLeaveChatMutation();
   const isLogin = useSelector((state: RootState) => state.userSlice.isLogin);
 
   const goChatRoom = () => {
-    navigate(CLIENT_PATH.CHAT_ROOM.replace(':chatRoomId', id));
+    goTo({ path: 'CHAT_ROOM', id });
   };
 
   const participationChatHandler = async () => {
     if (!isLogin) {
-      return navigate('/login');
+      return goTo({ path: 'LOGIN' });
     }
     try {
       await participationChat(id).unwrap();
@@ -49,7 +48,7 @@ const ChatActionButtonBox = ({
     await leaveChat(id).unwrap();
     const result = await refetchFunc();
     if (result?.currentParticipants === 0) {
-      navigate('/', { replace: true });
+      goHome({ replace: true });
     }
   };
 

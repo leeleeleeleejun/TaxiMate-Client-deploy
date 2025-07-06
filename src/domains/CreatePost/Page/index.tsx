@@ -1,5 +1,5 @@
 import { ReactNode, useState } from 'react';
-import { defaultLocation } from '@/utils/getCurrentlocation.ts';
+import { defaultLocation } from '@/utils/location/getCurrentlocation.ts';
 import { RegisterDataKey, RegisterData, StepType } from '@/types';
 
 import CreateMainPage from '@/domains/CreatePost/Page/CreateMainPage/CreateMainPage.tsx';
@@ -53,21 +53,21 @@ const CreatePostPage = () => {
 
   return (
     <>
-      <Step check={step === 'main'}>
+      <Step step={step} name={'main'}>
         <CreateMainPage
           registerData={registerData}
           setRegisterDataFunc={setRegisterDataFunc}
           setStep={setStep}
         />
       </Step>
-      <Step check={step === 'time'}>
+      <Step step={step} name={'time'}>
         <SetDatePage
           value={registerData.departureTime}
           setRegisterDataFunc={setRegisterDataFunc}
           comeBackMain={comeBackMain}
         />
       </Step>
-      <Step check={step === 'origin' || step === 'destination'}>
+      <Step step={step} name={['origin', 'destination']}>
         <SetPlacePage
           step={step}
           setStep={setStep}
@@ -76,14 +76,14 @@ const CreatePostPage = () => {
           setIsMyLocationSelected={setIsMyLocationSelected}
         />
       </Step>
-      <Step check={step === 'searchOrigin' || step === 'searchDestination'}>
+      <Step step={step} name={['searchOrigin', 'searchDestination']}>
         <SearchPage
           step={step}
           setStep={setStep}
           setRegisterDataFunc={setRegisterDataFunc}
         />
       </Step>
-      <Step check={step === 'originMap' || step === 'destinationMap'}>
+      <Step step={step} name={['originMap', 'destinationMap']}>
         <SetPlaceMapPage
           step={step}
           value={
@@ -104,10 +104,15 @@ const CreatePostPage = () => {
 
 export default CreatePostPage;
 
-const Step = ({ check, children }: { check: boolean; children: ReactNode }) => {
-  if (check) {
-    return children;
-  }
-
-  return null;
+const Step = ({
+  step,
+  name,
+  children,
+}: {
+  step: StepType;
+  name: StepType | StepType[];
+  children: ReactNode;
+}) => {
+  const names = Array.isArray(name) ? name : [name];
+  return names.includes(step) ? children : null;
 };

@@ -6,7 +6,7 @@ import { SetActiveMarker, Location } from '@/types';
 import { Post } from '@/types/post.ts';
 
 import { setCenterLocation } from './HomeMapSlice.ts';
-import getCurrentLocation from '@/utils/getCurrentlocation.ts';
+import getCurrentLocation from '@/utils/location/getCurrentlocation.ts';
 import MarkerContainer from '@/components/common/MarkerContainer';
 import UserCurrentLocationMarker from '@/components/common/UserCurrentLocationMarker';
 

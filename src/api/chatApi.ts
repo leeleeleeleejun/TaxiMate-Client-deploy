@@ -1,6 +1,7 @@
 import { baseApi } from '@/api/baseApi.ts';
 import { API_PATH } from '@/constants/path.ts';
 import { ChatRoom, DetailChatRoom } from '@/types/chat.ts';
+import formatPathWithParams from '@/utils/formatPathWithParams.ts';
 
 const chatApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -26,7 +27,7 @@ const chatApi = baseApi.injectEndpoints({
       keepUnusedDataFor: 0,
     }),
     getChat: builder.query<DetailChatRoom, string>({
-      query: (id) => API_PATH.CHAT.GET_CHAT.replace(':partyId', id),
+      query: (id) => formatPathWithParams(API_PATH.CHAT.GET_CHAT, id),
       transformResponse: (response: { data: DetailChatRoom }) => {
         return response.data;
       },

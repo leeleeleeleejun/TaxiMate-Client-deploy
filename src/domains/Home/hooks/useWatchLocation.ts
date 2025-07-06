@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Location } from '@/types';
+import geolocationErrorMessage from '@/utils/location/geolocationErrorMessage.ts';
+import toLocation from '@/utils/location/toLocation.ts';
 
 const useWatchLocation = () => {
   const [location, setLocation] = useState<Location>();
@@ -9,40 +11,14 @@ const useWatchLocation = () => {
       console.log('Geolocation is not supported by your browser');
       return;
     }
-
-    const newId = navigator.geolocation.watchPosition(
-      (position) => {
-        const currentLocation = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        };
-        setLocation(currentLocation);
-      },
+    const watchId = navigator.geolocation.watchPosition(
+      (position) => setLocation(toLocation(position.coords)),
       (error) => {
-        let errorMessage: string;
-
-        switch (error.code) {
-          case 1:
-            errorMessage = '위치 접근 권한이 거부되었습니다.';
-            break;
-          case 2:
-            errorMessage = '위치를 확인할 수 없습니다.';
-            break;
-          case 3:
-            errorMessage = '위치 확인 시간이 초과되었습니다.';
-            break;
-          default:
-            errorMessage = error.message;
-        }
-        throw errorMessage;
+        const errorMessage = geolocationErrorMessage(error.code, error.message);
+        console.warn(errorMessage); // ✅ throw 대신 사이드이펙트 함수
       }
     );
-
-    return () => {
-      if (newId !== -1) {
-        navigator.geolocation.clearWatch(newId);
-      }
-    };
+    return () => navigator.geolocation.clearWatch(watchId);
   }, []);
 
   return { userLocation: location };
