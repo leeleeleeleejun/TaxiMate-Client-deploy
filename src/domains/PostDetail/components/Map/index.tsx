@@ -27,7 +27,7 @@ const Map = ({
     });
 
   /**
-   * 첫 번째와 마지막 위치웨 출발, 도착 마커 표시
+   * 첫 번째와 마지막 위치에 출발, 도착 마커 표시
    */
   const markerPlaces = [polylinePath[0], polylinePath[polylinePath.length - 1]];
 
