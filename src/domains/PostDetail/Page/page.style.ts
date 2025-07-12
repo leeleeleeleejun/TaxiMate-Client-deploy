@@ -45,3 +45,24 @@ export const Container = styled.div`
 
   ${MarkerContainerStyle}
 `;
+
+export const OpenNaverMapAppBtn = styled.button`
+  display: flex;
+  gap: 5px;
+
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+
+  background-color: white;
+  padding: 4px 6px;
+
+  font-size: var(--font-semi-micro);
+  font-weight: var(--weight-semi-bold);
+  color: var(--color-gray-100);
+
+  border: 1px solid var(--color-gray-200);
+  border-radius: 5px;
+`;

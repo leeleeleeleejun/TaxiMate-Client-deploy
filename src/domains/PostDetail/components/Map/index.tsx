@@ -3,11 +3,14 @@ import { Container as MapDiv, NaverMap, useNavermaps } from 'react-naver-maps';
 
 import MarkerContainer from '@/components/common/MarkerContainer';
 import NoData from '@/components/common/NoData.tsx';
+import { OpenNaverMapAppBtn } from '@/domains/PostDetail/Page/page.style.ts';
 
 const Map = ({
   taxiRoute,
+  handleOpenNaverMapApp,
 }: {
   taxiRoute: { latitude: number; longitude: number }[];
+  handleOpenNaverMapApp: VoidFunction;
 }) => {
   const navermaps = useNavermaps();
 
@@ -23,12 +26,12 @@ const Map = ({
       path: polylinePath,
     });
 
+  /**
+   * 첫 번째와 마지막 위치웨 출발, 도착 마커 표시
+   */
   const markerPlaces = [polylinePath[0], polylinePath[polylinePath.length - 1]];
 
-  const bounds = new navermaps.LatLngBounds(
-    polylinePath[0],
-    polylinePath[polylinePath.length - 1]
-  );
+  const bounds = new navermaps.LatLngBounds(markerPlaces[0], markerPlaces[1]);
 
   useEffect(() => {
     for (let i = 1; i < polylinePath.length - 1; i += 2) {
@@ -37,7 +40,11 @@ const Map = ({
   }, []);
 
   return markerPlaces[0] ? (
-    <MapDiv className={'map-wrapper'}>
+    <MapDiv className={'map-wrapper'} onClick={handleOpenNaverMapApp}>
+      <OpenNaverMapAppBtn>
+        <img width={15} src={'/naver-map-logo.png'} alt={'naver-map-logo'} />
+        지도앱 가기
+      </OpenNaverMapAppBtn>
       <NaverMap defaultBounds={bounds} ref={setMap} logoControl={false}>
         {markerPlaces.map((item, index) => (
           <MarkerContainer
