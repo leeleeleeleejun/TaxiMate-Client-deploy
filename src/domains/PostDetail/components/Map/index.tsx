@@ -40,8 +40,8 @@ const Map = ({
   }, []);
 
   return markerPlaces[0] ? (
-    <MapDiv className={'map-wrapper'} onClick={handleOpenNaverMapApp}>
-      <OpenNaverMapAppBtn>
+    <MapDiv className={'map-wrapper'}>
+      <OpenNaverMapAppBtn onClick={handleOpenNaverMapApp}>
         <img width={15} src={'/naver-map-logo.png'} alt={'naver-map-logo'} />
         지도앱 가기
       </OpenNaverMapAppBtn>
