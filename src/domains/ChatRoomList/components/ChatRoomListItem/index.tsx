@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { CLIENT_PATH } from '@/constants/path.ts';
 import { ChatRoom } from '@/types/chat.ts';
 import formatPathWithParams from '@/utils/formatPathWithParams.ts';
-import formatDateForDetailPost from '@/utils/date/formatDateForDetailPost.ts';
+import getTimeAgoString from '@/utils/date/getTimeAgoString';
 
 import PeopleCountTag from '@/components/common/PeopleCountTag';
 import {
@@ -23,7 +23,7 @@ const ChatRoomListItem = ({
   id,
   isProgress,
 }: ChatRoom) => {
-  const formatTime = formatDateForDetailPost(recentMessageTime);
+  const formatTime = getTimeAgoString(recentMessageTime);
   return (
     <ChatListItemContainer>
       <Link to={formatPathWithParams(CLIENT_PATH.CHAT_ROOM, id)}>

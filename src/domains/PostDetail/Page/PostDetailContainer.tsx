@@ -13,7 +13,7 @@ import { useLocation } from 'react-router-dom';
 import { useGetPostByIdQuery } from '@/api/postApi.ts';
 import { PostDetail } from '@/types/post.ts';
 import NoData from '@/components/common/NoData.tsx';
-import formatDateForDetailPost from '@/utils/date/formatDateForDetailPost.ts';
+import getTimeAgoString from '@/utils/date/getTimeAgoString';
 import SuspenseContainer from '@/components/common/SuspenseContainer.tsx';
 import openNaverMapApp from '@/domains/PostDetail/utiils/openNaverMapApp.ts';
 
@@ -29,7 +29,7 @@ const PostDetailContainer = () => {
   if (isLoading) return <SuspenseContainer />;
   if (!data) return <NoData>데이터를 찾을 수 없습니다</NoData>;
 
-  const formatCreatedAt = formatDateForDetailPost(data.createdAt);
+  const formatCreatedAt = getTimeAgoString(data.createdAt);
 
   const handleOpenNaverMapApp = () => {
     if (data.taxi.route.length === 0) return;
