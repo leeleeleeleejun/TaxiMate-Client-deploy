@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { parseAbsoluteToLocal } from '@internationalized/date';
 import { SetRegisterDataFunc } from '@/types';
 
-import formatDate from '@/utils/date/formatDate.ts';
+import formatDate from '@/utils/date/formatDate';
 import CreatePostChildPageLayout from '../../components/CreatePostChildPageLayout';
 import DatePickerWrap from '../../components/setDate/DatePickerWrap.tsx';
 import TimePickerWrap from '../../components/setDate/TimePickerWrap.tsx';

@@ -5,7 +5,7 @@ import {
   PostListContainer,
 } from '@/domains/UsageHistory/Page/page.style.ts';
 import PostListItem from '@/components/common/PostListItem';
-import formatDate from '@/utils/date/formatDate.ts';
+import formatDate from '@/utils/date/formatDate';
 import NoData from '@/components/common/NoData.tsx';
 import { useState } from 'react';
 import { useGetClosePostsQuery, useGetJoinPostsQuery } from '@/api/postApi.ts';

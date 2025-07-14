@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { GroupMessage } from '@/types/chat.ts';
 import { CLIENT_PATH } from '@/constants/path.ts';
-import formatDate from '@/utils/date/formatDate.ts';
+import formatDate from '@/utils/date/formatDate';
 import formatPathWithParams from '@/utils/formatPathWithParams.ts';
 import { useGetChatQuery } from '@/api/chatApi.ts';
 import { useGetProfileQuery } from '@/api/userApi.ts';

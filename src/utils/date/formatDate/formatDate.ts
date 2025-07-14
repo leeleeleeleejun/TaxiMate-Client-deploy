@@ -6,19 +6,6 @@ const formatDate = (timestamp: string): string => {
 
   const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
 
-  const isSameDate = (d1: Date, d2: Date) =>
-    d1.getFullYear() === d2.getFullYear() &&
-    d1.getMonth() === d2.getMonth() &&
-    d1.getDate() === d2.getDate();
-
-  const formatTime = (date: Date) => {
-    const hours = date.getHours();
-    const minutes = date.getMinutes().toString().padStart(2, '0');
-    const ampm = hours >= 12 ? '오후' : '오전';
-    const adjustedHours = hours % 12 || 12;
-    return `${ampm} ${adjustedHours}시 ${minutes}분`;
-  };
-
   if (isSameDate(date, today)) {
     return `오늘 ${formatTime(date)} 쯤`;
   } else if (isSameDate(date, tomorrow)) {
@@ -33,3 +20,16 @@ const formatDate = (timestamp: string): string => {
 };
 
 export default formatDate;
+
+export const isSameDate = (d1: Date, d2: Date) =>
+  d1.getFullYear() === d2.getFullYear() &&
+  d1.getMonth() === d2.getMonth() &&
+  d1.getDate() === d2.getDate();
+
+export const formatTime = (date: Date) => {
+  const hours = date.getHours();
+  const minutes = date.getMinutes().toString().padStart(2, '0');
+  const ampm = hours >= 12 ? '오후' : '오전';
+  const adjustedHours = hours % 12 || 12;
+  return `${ampm} ${adjustedHours}시 ${minutes}분`;
+};

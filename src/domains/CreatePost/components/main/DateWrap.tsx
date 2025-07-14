@@ -1,4 +1,4 @@
-import formatDate from '@/utils/date/formatDate.ts';
+import formatDate from '@/utils/date/formatDate';
 import { ContentWrapProps } from '../../types/ContentWrapProps.ts';
 
 import Index from '@/domains/CreatePost/components/ContentWrap';
