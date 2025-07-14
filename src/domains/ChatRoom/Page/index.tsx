@@ -27,7 +27,7 @@ import MessageList from '../components/MessageList';
 import MessageInputBox from '../components/MessageInputBox';
 import formatPrevChatData from '../utils/formatPrevChatData.ts';
 import InitialChatMessage from '@/domains/ChatRoom/components/InitialChatMessage.tsx';
-import useCustomNavigation from '@/hooks/useNavigate.ts';
+import useCustomNavigation from '@/hooks/useNavigate';
 
 const ChatRoomPage = () => {
   const currentPartyId = useLocation().pathname.split('/')[2];

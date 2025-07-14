@@ -1,6 +1,6 @@
 import { RootState } from '@/store';
 import { useSelector } from 'react-redux';
-import useCustomNavigation from '@/hooks/useNavigate.ts';
+import useCustomNavigation from '@/hooks/useNavigate';
 import { PostDetail, PostDetailStatus } from '@/types/post.ts';
 import {
   useLeaveChatMutation,

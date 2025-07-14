@@ -2,7 +2,7 @@ import PostDetailContainer from './PostDetailContainer.tsx';
 import Header from '@/components/common/Layout/Header';
 import { BackButton } from '@/components/common/Layout/Header/Header.style.ts';
 import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
-import useCustomNavigation from '@/hooks/useNavigate.ts';
+import useCustomNavigation from '@/hooks/useNavigate';
 
 const PostDetailPage = () => {
   const { goHome } = useCustomNavigation();

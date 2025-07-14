@@ -7,7 +7,7 @@ import { SearchInput } from './Search.style.ts';
 import { BackButton } from '@/components/common/Layout/Header/Header.style';
 import { setCenterLocation } from '@/domains/Home/components/Map/HomeMapSlice.ts';
 import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
-import useCustomNavigation from '@/hooks/useNavigate.ts';
+import useCustomNavigation from '@/hooks/useNavigate';
 
 const SearchPage = () => {
   const dispatch = useDispatch();

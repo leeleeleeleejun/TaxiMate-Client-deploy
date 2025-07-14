@@ -17,7 +17,7 @@ import validateRegisterData from '../../utils/validateRegisterData.ts';
 import { Container, CreateSubmitButton } from './CreateMain.style.ts';
 
 import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
-import useCustomNavigation from '@/hooks/useNavigate.ts';
+import useCustomNavigation from '@/hooks/useNavigate';
 
 interface CreateMainPageProps {
   registerData: RegisterData;
