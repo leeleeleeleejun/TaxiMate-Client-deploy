@@ -6,7 +6,7 @@ import formatDate from '@/utils/date/formatDate';
 import formatPathWithParams from '@/utils/formatPathWithParams.ts';
 import { useGetChatQuery } from '@/api/chatApi.ts';
 import { useGetProfileQuery } from '@/api/userApi.ts';
-import useInAppNotificationHandler from '@/hooks/useInAppNotificationHandler.ts';
+import useInAppNotificationHandler from '@/hooks/useInAppNotificationHandler';
 
 import NoData from '@/components/common/NoData.tsx';
 import LoadingIcon from '@/components/common/LoadingIcon';
