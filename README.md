@@ -16,7 +16,7 @@
 
 #### Front-end
 
-![React](https://go-skill-icons.vercel.app/api/icons?i=ts,react,vite,redux,styledcomponents)
+![React](https://go-skill-icons.vercel.app/api/icons?i=ts,react,vite,redux,styledcomponents,vitest)
 
 #### Back-end
 
