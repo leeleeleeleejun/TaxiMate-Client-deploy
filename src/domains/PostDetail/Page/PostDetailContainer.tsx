@@ -1,21 +1,35 @@
+import { useLocation } from 'react-router-dom';
+import { Place } from '../types';
+import { PostDetail } from '@/types/post.ts';
+import { useGetPostByIdQuery } from '@/api/postApi.ts';
+import {
+  formatNaverMapUrl,
+  getWebNaverMapUrl,
+} from '../utiils/formatNaverMapUrl.ts';
+import { formatKakaoTaxiUrl } from '../utiils/formatKakaoTaxiUrl.ts';
+import openOtherApp from '../utiils/openOtherMapApp.ts';
+
+import {
+  NAVER_MAP_IOS_URL,
+  NAVER_MAP_ANDROID_URL,
+  KAKAO_TAXI_IOS_URL,
+  KAKAO_TAXI_ANDROID_URL,
+} from '../constants';
+
 import {
   Container,
   ContentContainer,
   MoveInfoContainer,
-} from '@/domains/PostDetail/Page/page.style.ts';
-import PostDetailHeader from '@/domains/PostDetail/components/PostDetailHeader';
-import PostDetailTitle from '@/domains/PostDetail/components/PostDetailTitle';
+} from '../Page/page.style.ts';
+import PostDetailHeader from '../components/PostDetailHeader';
+import PostDetailTitle from '../components/PostDetailTitle';
 import LocationInfo from '@/components/common/LocationInfo';
-import Map from '@/domains/PostDetail/components/Map';
-import ParticipantsBox from '@/domains/PostDetail/components/ParticipantsBox';
-import ChatActionButtonBox from '@/domains/PostDetail/components/ChatActionButtonBox';
-import { useLocation } from 'react-router-dom';
-import { useGetPostByIdQuery } from '@/api/postApi.ts';
-import { PostDetail } from '@/types/post.ts';
+import Map from '../components/Map';
+import ParticipantsBox from '../components/ParticipantsBox';
+import ChatActionButtonBox from '../components/ChatActionButtonBox';
 import NoData from '@/components/common/NoData.tsx';
 import getTimeAgoString from '@/utils/date/getTimeAgoString';
 import SuspenseContainer from '@/components/common/SuspenseContainer.tsx';
-import openNaverMapApp from '@/domains/PostDetail/utiils/openNaverMapApp.ts';
 
 const PostDetailContainer = () => {
   const id = useLocation().pathname.split('/')[2];
@@ -33,21 +47,49 @@ const PostDetailContainer = () => {
 
   const handleOpenNaverMapApp = () => {
     if (data.taxi.route.length === 0) return;
-
     const route = data.taxi.route;
 
-    openNaverMapApp({
-      origin: {
-        name: data.origin,
-        lat: route[0].latitude,
-        lng: route[0].longitude,
-      },
-      destination: {
-        name: data.destination,
-        lat: route.at(-1)!.latitude,
-        lng: route.at(-1)!.longitude,
-      },
+    const origin: Place = {
+      name: data.origin,
+      lat: route[0].latitude,
+      lng: route[0].longitude,
+    };
+    const destination: Place = {
+      name: data.destination,
+      lat: route.at(-1)!.latitude,
+      lng: route.at(-1)!.longitude,
+    };
+
+    const NAVER_APP_LINK = formatNaverMapUrl({
+      origin,
+      destination,
     });
+    const NAVER_MAP_WEB_URL = getWebNaverMapUrl(origin, destination);
+
+    openOtherApp(
+      NAVER_APP_LINK,
+      NAVER_MAP_IOS_URL,
+      NAVER_MAP_ANDROID_URL,
+      NAVER_MAP_WEB_URL
+    );
+  };
+
+  const handleOpenKakaoTaxiApp = () => {
+    if (data.taxi.route.length === 0) return;
+    const route = data.taxi.route;
+
+    const destination: Omit<Place, 'name'> = {
+      lat: route.at(-1)!.latitude,
+      lng: route.at(-1)!.longitude,
+    };
+
+    const KAKAO_TAXI_APP_LINK = formatKakaoTaxiUrl(destination);
+
+    openOtherApp(
+      KAKAO_TAXI_APP_LINK,
+      KAKAO_TAXI_IOS_URL,
+      KAKAO_TAXI_ANDROID_URL
+    );
   };
 
   return (
@@ -73,6 +115,7 @@ const PostDetailContainer = () => {
       <Map
         taxiRoute={data.taxi.route}
         handleOpenNaverMapApp={handleOpenNaverMapApp}
+        handleOpenKakaoTaxiApp={handleOpenKakaoTaxiApp}
       />
       <ContentContainer>{data.explanation}</ContentContainer>
       <MoveInfoContainer>

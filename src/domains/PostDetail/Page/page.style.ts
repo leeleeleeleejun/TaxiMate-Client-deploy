@@ -46,15 +46,22 @@ export const Container = styled.div`
   ${MarkerContainerStyle}
 `;
 
-export const OpenNaverMapAppBtn = styled.button`
+export const OpenOtherAppBox = styled.div`
   display: flex;
+  flex-direction: column;
   gap: 5px;
 
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   position: absolute;
   top: 5px;
   right: 5px;
+`;
+
+export const OpenOtherMapAppBtn = styled.button`
+  display: flex;
+  gap: 5px;
+  align-items: center;
 
   background-color: white;
   padding: 4px 6px;
