@@ -10,7 +10,7 @@ const openOtherApp = (
   webUrl?: string
 ) => {
   const clickedAt = Date.now();
-  // 1. 네이버 지도 앱 실행 시도
+  // 1. 앱 실행 시도 (deepLink를 사용하여)
   location.href = deepLink;
 
   // 2. 1.5초 후 앱이 설치되지 않은 경우 대체 경로 이동
