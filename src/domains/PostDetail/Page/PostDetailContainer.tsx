@@ -7,7 +7,6 @@ import {
   getWebNaverMapUrl,
 } from '../utiils/formatNaverMapUrl.ts';
 import { formatKakaoTaxiUrl } from '../utiils/formatKakaoTaxiUrl.ts';
-import formatDateForDetailPost from '@/utils/date/formatDateForDetailPost.ts';
 import openOtherApp from '../utiils/openOtherMapApp.ts';
 
 import {
@@ -29,6 +28,7 @@ import Map from '../components/Map';
 import ParticipantsBox from '../components/ParticipantsBox';
 import ChatActionButtonBox from '../components/ChatActionButtonBox';
 import NoData from '@/components/common/NoData.tsx';
+import getTimeAgoString from '@/utils/date/getTimeAgoString';
 import SuspenseContainer from '@/components/common/SuspenseContainer.tsx';
 
 const PostDetailContainer = () => {
@@ -43,7 +43,7 @@ const PostDetailContainer = () => {
   if (isLoading) return <SuspenseContainer />;
   if (!data) return <NoData>데이터를 찾을 수 없습니다</NoData>;
 
-  const formatCreatedAt = formatDateForDetailPost(data.createdAt);
+  const formatCreatedAt = getTimeAgoString(data.createdAt);
 
   const handleOpenNaverMapApp = () => {
     if (data.taxi.route.length === 0) return;

@@ -27,7 +27,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "types": ["vitest/globals","vitest/jsdom"]
   },
-  "include": ["src/**/*", "global.d.ts"]
+  "include": ["src/**/*", "global.d.ts", "vitest.setup.ts"]
 }

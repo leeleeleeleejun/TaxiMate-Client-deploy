@@ -1,4 +1,4 @@
-import formatDate from '@/utils/date/formatDate.ts';
+import formatDate from '@/utils/date/formatDate';
 import { PostDetailTitleContainer } from './PostDetailTitle.style.ts';
 
 const PostDetailTitle = ({

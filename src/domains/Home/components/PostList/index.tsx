@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import 'react-spring-bottom-sheet/dist/style.css';
 import { BottomSheet, BottomSheetRef } from 'react-spring-bottom-sheet';
 
-import formatDate from '@/utils/date/formatDate.ts';
+import formatDate from '@/utils/date/formatDate';
 
 import {
   PostListContainer,

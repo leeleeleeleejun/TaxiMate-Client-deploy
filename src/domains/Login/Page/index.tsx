@@ -6,7 +6,7 @@ import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
 
 import { Header, IconWrap, LoginButton } from './page.style.ts';
 import { getKakaoInga } from '../api/getKakaoInga.ts';
-import useCustomNavigation from '@/hooks/useNavigate.ts';
+import useCustomNavigation from '@/hooks/useNavigate';
 
 const Index = () => {
   const { goHome } = useCustomNavigation();

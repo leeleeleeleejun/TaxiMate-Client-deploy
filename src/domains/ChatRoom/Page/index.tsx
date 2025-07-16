@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { GroupMessage } from '@/types/chat.ts';
 import { CLIENT_PATH } from '@/constants/path.ts';
-import formatDate from '@/utils/date/formatDate.ts';
+import formatDate from '@/utils/date/formatDate';
 import formatPathWithParams from '@/utils/formatPathWithParams.ts';
 import { useGetChatQuery } from '@/api/chatApi.ts';
 import { useGetProfileQuery } from '@/api/userApi.ts';
-import useInAppNotificationHandler from '@/hooks/useInAppNotificationHandler.ts';
+import useInAppNotificationHandler from '@/hooks/useInAppNotificationHandler';
 
 import NoData from '@/components/common/NoData.tsx';
 import LoadingIcon from '@/components/common/LoadingIcon';
@@ -27,7 +27,7 @@ import MessageList from '../components/MessageList';
 import MessageInputBox from '../components/MessageInputBox';
 import formatPrevChatData from '../utils/formatPrevChatData.ts';
 import InitialChatMessage from '@/domains/ChatRoom/components/InitialChatMessage.tsx';
-import useCustomNavigation from '@/hooks/useNavigate.ts';
+import useCustomNavigation from '@/hooks/useNavigate';
 
 const ChatRoomPage = () => {
   const currentPartyId = useLocation().pathname.split('/')[2];
