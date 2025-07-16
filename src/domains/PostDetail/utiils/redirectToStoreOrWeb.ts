@@ -1,8 +1,4 @@
-import type { Place, UserAgentPlatform } from '../types';
-import { APP_STORE_URL, PLAY_STORE_URL } from '../constants';
-
-const getWebNaverMapUrl = (origin: Place, destination: Place): string =>
-  `https://map.naver.com/p/directions/${origin.lng},${origin.lat},${origin.name},PLACE_POI/${destination.lng},${destination.lat},${destination.name},PLACE_POI/-/car?c=14.00,0,0,0,dh`;
+import type { UserAgentPlatform } from '../types';
 
 const getUserAgentPlatform = (): UserAgentPlatform => {
   const ua = navigator.userAgent;
@@ -11,18 +7,26 @@ const getUserAgentPlatform = (): UserAgentPlatform => {
   return 'unknown';
 };
 
-const redirectToStoreOrWeb = (origin: Place, destination: Place) => {
+const redirectToStoreOrWeb = (
+  androidUrl: string,
+  iosUrl: string,
+  webUrl?: string
+) => {
   const platform = getUserAgentPlatform();
 
   switch (platform) {
     case 'ios':
-      location.href = APP_STORE_URL;
+      location.href = iosUrl;
       break;
     case 'android':
-      location.href = PLAY_STORE_URL;
+      location.href = androidUrl;
       break;
     default:
-      location.href = getWebNaverMapUrl(origin, destination);
+      if (webUrl) {
+        location.href = webUrl;
+      } else {
+        alert('이동이 불가능한 기기입니다.');
+      }
   }
 };
 
