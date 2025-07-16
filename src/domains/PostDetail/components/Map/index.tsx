@@ -31,7 +31,7 @@ const Map = ({
       path: polylinePath,
     });
 
-  //첫 번째와 마지막 위치에 출발, 도착 마커 표시
+  // 첫 번째와 마지막 위치에 출발, 도착 마커 표시
   const markerPlaces = [polylinePath[0], polylinePath[polylinePath.length - 1]];
   const bounds = new navermaps.LatLngBounds(markerPlaces[0], markerPlaces[1]);
   const markerId = (index: number) => (index === 0 ? 'origin' : 'destination');

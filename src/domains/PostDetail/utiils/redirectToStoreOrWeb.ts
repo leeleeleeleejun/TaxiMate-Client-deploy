@@ -25,7 +25,7 @@ const redirectToStoreOrWeb = (
       if (webUrl) {
         location.href = webUrl;
       } else {
-        alert('이동이 불가능한 기기입니다.');
+        alert('현재 사용 중인 기기에서는 이동이 불가능합니다.');
       }
   }
 };
