@@ -6,13 +6,13 @@ import {
   formatNaverMapUrl,
   getWebNaverMapUrl,
 } from '../utiils/formatNaverMapUrl.ts';
+import { formatKakaoTaxiUrl } from '../utiils/formatKakaoTaxiUrl.ts';
 import formatDateForDetailPost from '@/utils/date/formatDateForDetailPost.ts';
 import openOtherApp from '../utiils/openOtherMapApp.ts';
 
 import {
   NAVER_MAP_IOS_URL,
   NAVER_MAP_ANDROID_URL,
-  KAKAO_TAXI_APP_LINK,
   KAKAO_TAXI_IOS_URL,
   KAKAO_TAXI_ANDROID_URL,
 } from '../constants';
@@ -75,6 +75,16 @@ const PostDetailContainer = () => {
   };
 
   const handleOpenKakaoTaxiApp = () => {
+    if (data.taxi.route.length === 0) return;
+    const route = data.taxi.route;
+
+    const destination: Omit<Place, 'name'> = {
+      lat: route.at(-1)!.latitude,
+      lng: route.at(-1)!.longitude,
+    };
+
+    const KAKAO_TAXI_APP_LINK = formatKakaoTaxiUrl(destination);
+
     openOtherApp(
       KAKAO_TAXI_APP_LINK,
       KAKAO_TAXI_IOS_URL,

@@ -3,7 +3,6 @@ export const NAVER_MAP_IOS_URL =
 export const NAVER_MAP_ANDROID_URL =
   'https://play.google.com/store/apps/details?id=com.nhn.android.nmap&hl=ko';
 
-export const KAKAO_TAXI_APP_LINK = 'kakaot://';
 export const KAKAO_TAXI_IOS_URL = 'https://apps.apple.com/kr/app/id981110422';
 export const KAKAO_TAXI_ANDROID_URL =
   'https://play.google.com/store/apps/details?id=com.kakao.taxi';
