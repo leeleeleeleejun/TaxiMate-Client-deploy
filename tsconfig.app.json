@@ -28,7 +28,7 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "types": ["vitest/globals","vitest/jsdom"]
+    "types": ["vitest/globals","vitest/jsdom", "navermaps"]
   },
   "include": ["src/**/*", "global.d.ts", "vitest.setup.ts"]
 }
