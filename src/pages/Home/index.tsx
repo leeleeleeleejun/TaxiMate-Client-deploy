@@ -11,14 +11,14 @@ import { HeaderItem } from '@/components/common/Layout/Header/Header.style.ts';
 import Footer from '@/components/common/Layout/Footer';
 import LoadingIcon from '@/components/common/LoadingIcon';
 
-import Map from '@/domains/Home/components/Map';
-import PostList from '@/domains/Home/components/PostList';
-import { Main } from '@/domains/Home/components/Map/Map.style.ts';
-import SearchBar from '@/domains/Home/components/SearchBar';
-import ResearchButton from '@/domains/Home/components/ResearchButton';
-import MoveCurrentLocationButton from '@/domains/Home/components/MoveCurrentLocationButton';
-import useWatchLocation from '@/domains/Home/hooks/useWatchLocation.ts';
-import { setCenterLocation } from '@/domains/Home/components/Map/HomeMapSlice.ts';
+import Map from '@/features/home/components/Map';
+import PostList from '@/features/home/components/PostList';
+import { Main } from '@/features/home/components/Map/Map.style.ts';
+import SearchBar from '@/features/home/components/SearchBar';
+import ResearchButton from '@/features/home/components/ResearchButton';
+import MoveCurrentLocationButton from '@/features/home/components/MoveCurrentLocationButton';
+import useWatchLocation from '@/features/home/hooks/useWatchLocation.ts';
+import { setCenterLocation } from '@/features/home/components/Map/HomeMapSlice.ts';
 
 import TaxiIcon from '@/assets/icons/header/taxi-icon.svg?react';
 import KnuLogoIcon from '@/assets/icons/header/knu-logo-icon.svg?react';

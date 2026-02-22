@@ -1,7 +1,7 @@
 import UserContainer from '@/components/common/UserContainer';
 import { Container, Menu } from './page.style.ts';
 import { Link } from 'react-router-dom';
-import MenuItem from '@/domains/MyProfile/components/MenuItem.tsx';
+import MenuItem from '@/features/user/components/MenuItem.tsx';
 import { useGetProfileQuery } from '@/api/userApi.ts';
 import NoData from '@/components/common/NoData.tsx';
 import FileIcon from '@/assets/icons/myprofile/file-icon.svg?react';

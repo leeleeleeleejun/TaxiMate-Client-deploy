@@ -8,12 +8,12 @@ import {
 } from '@/components/common/Layout/Header/Header.style.ts';
 import { RegisterData, SetRegisterDataFunc, SetStep } from '@/types';
 
-import DateWrap from '@/domains/CreatePost/components/main/DateWrap.tsx';
-import TitleWrap from '@/domains/CreatePost/components/main/TitleWrap.tsx';
-import MemberWrap from '@/domains/CreatePost/components/main/MemberWrap.tsx';
-import PlaceInfoWrap from '@/domains/CreatePost/components/main/PlaceInfoWrap.tsx';
-import ExplanationWrap from '@/domains/CreatePost/components/main/ExplanationWrap.tsx';
-import validateRegisterData from '@/domains/CreatePost/utils/validateRegisterData.ts';
+import DateWrap from '../components/main/DateWrap.tsx';
+import TitleWrap from '../components/main/TitleWrap.tsx';
+import MemberWrap from '../components/main/MemberWrap.tsx';
+import PlaceInfoWrap from '../components/main/PlaceInfoWrap.tsx';
+import ExplanationWrap from '../components/main/ExplanationWrap.tsx';
+import validateRegisterData from '../utils/validateRegisterData.ts';
 import { Container, CreateSubmitButton } from './CreateMain.style.ts';
 
 import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';

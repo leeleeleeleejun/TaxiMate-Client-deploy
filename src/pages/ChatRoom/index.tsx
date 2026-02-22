@@ -24,11 +24,11 @@ import {
   RoomTitle,
 } from './page.style.ts';
 
-import InitialChatMessage from '@/domains/ChatRoom/components/InitialChatMessage.tsx';
+import InitialChatMessage from '@/features/chat/components/InitialChatMessage.tsx';
 import useCustomNavigation from '@/hooks/useNavigate';
-import formatPrevChatData from '@/domains/ChatRoom/utils/formatPrevChatData.ts';
-import MessageList from '@/domains/ChatRoom/components/MessageList';
-import MessageInputBox from '@/domains/ChatRoom/components/MessageInputBox';
+import formatPrevChatData from '@/features/chat/utils/formatPrevChatData.ts';
+import MessageList from '@/features/chat/components/MessageList';
+import MessageInputBox from '@/features/chat/components/MessageInputBox';
 
 const ChatRoomPage = () => {
   const currentPartyId = useLocation().pathname.split('/')[2];

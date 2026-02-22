@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { MessageContent as BaseMessageContent } from '@/shared/styles/textStyles.ts';
 
 export const ChatListItemBody = styled.div`
   display: flex;
@@ -47,19 +48,7 @@ export const ChatListItemHeader = styled.div`
   }
 `;
 
-export const MessageContent = styled.p`
-  line-height: 1.2;
-  overflow: hidden;
-
-  display: -webkit-box;
-  display: -ms-flexbox;
-  white-space: normal;
-  text-overflow: ellipsis;
-
-  word-break: break-word;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-`;
+export const MessageContent = BaseMessageContent;
 
 export const MessageCounter = styled.span`
   height: 100%;

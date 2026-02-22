@@ -1,7 +1,7 @@
 import { GroupMessage } from '@/types/chat.ts';
-import { SystemMessage } from '@/domains/ChatRoom/components/SystemMessage.tsx';
-import MyMessageBox from '@/domains/ChatRoom/components/MessageBox/MyMessageBox.tsx';
-import OthersMessageBox from '@/domains/ChatRoom/components/MessageBox/OthersMessageBox.tsx';
+import { SystemMessage } from './SystemMessage.tsx';
+import MyMessageBox from './MessageBox/MyMessageBox.tsx';
+import OthersMessageBox from './MessageBox/OthersMessageBox.tsx';
 
 const InitialChatMessage = ({
   initialChatMessage,

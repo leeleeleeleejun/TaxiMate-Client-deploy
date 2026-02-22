@@ -2,7 +2,7 @@ import { useGetChatListQuery } from '@/api/chatApi.ts';
 import { Container, Divider } from './page.style.ts';
 import NoData from '@/components/common/NoData.tsx';
 import SuspenseContainer from '@/components/common/SuspenseContainer.tsx';
-import ChatRoomListWrap from '@/domains/ChatRoomList/components/ChatRoomListWrap';
+import ChatRoomListWrap from '@/features/chat/components/ChatRoomListWrap';
 
 const ChatListContainer = () => {
   const { data, isLoading } = useGetChatListQuery(null, {
