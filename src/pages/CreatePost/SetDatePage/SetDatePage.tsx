@@ -3,13 +3,13 @@ import { parseAbsoluteToLocal } from '@internationalized/date';
 import { SetRegisterDataFunc } from '@/types';
 
 import formatDate from '@/utils/date/formatDate';
-import CreatePostChildPageLayout from '@/domains/CreatePost/components/CreatePostChildPageLayout';
-import DatePickerWrap from '@/domains/CreatePost/components/setDate/DatePickerWrap.tsx';
-import TimePickerWrap from '@/domains/CreatePost/components/setDate/TimePickerWrap.tsx';
-import checkDate from '@/domains/CreatePost/utils/checkDate.ts';
-import setDepartureTimeValueFunc from '@/domains/CreatePost/utils/setDepartureTimeValueFunc.ts';
+import CreatePostChildPageLayout from '@/features/post/components/CreatePostChildPageLayout';
+import DatePickerWrap from '@/features/post/components/setDate/DatePickerWrap.tsx';
+import TimePickerWrap from '@/features/post/components/setDate/TimePickerWrap.tsx';
+import checkDate from '@/features/post/utils/checkDate.ts';
+import setDepartureTimeValueFunc from '@/features/post/utils/setDepartureTimeValueFunc.ts';
 import { Container, DateStringContainer } from './setDate.style.ts';
-import { SubmitButton } from '@/domains/CreatePost/components/SubmitButton.tsx';
+import { SubmitButton } from '@/features/post/components/SubmitButton.tsx';
 
 interface SetDatePageProps {
   value: string;

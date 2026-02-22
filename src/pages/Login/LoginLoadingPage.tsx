@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { useGetAccessTokenQuery } from '@/api/userApi.ts';
-import { setIsLogin } from '@/domains/MyProfile/Slice/userSlice.ts';
+import { setIsLogin } from '@/features/user/userSlice.ts';
 import useErrorHandle from '@/hooks/useErrorHandle.ts';
 import useCustomNavigation from '@/hooks/useNavigate';
 

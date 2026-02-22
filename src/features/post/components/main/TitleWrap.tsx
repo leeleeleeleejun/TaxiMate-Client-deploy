@@ -1,5 +1,5 @@
 import { CheckLength, TitleInput } from './Wrap.style.ts';
-import Index from '@/domains/CreatePost/components/ContentWrap';
+import Index from '../ContentWrap';
 import TitleIcon from '@/assets/icons/createPost/title-icon.svg?react';
 import { ContentWrapProps } from '../../types/ContentWrapProps.ts';
 

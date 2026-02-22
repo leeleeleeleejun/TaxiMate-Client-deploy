@@ -1,5 +1,5 @@
 import { WsChat, GroupMessage } from '@/types/chat.ts';
-import formatDateForSystemMessage from '@/domains/ChatRoom/utils/formatDateForSystemMessage.ts';
+import formatDateForSystemMessage from './formatDateForSystemMessage.ts';
 import isSameCompare, { isSameDayFunc } from './isSameCompare.ts';
 
 /**

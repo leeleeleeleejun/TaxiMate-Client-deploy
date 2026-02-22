@@ -1,5 +1,5 @@
 import { RegisterData } from '@/types';
-import checkDate from '@/domains/CreatePost/utils/checkDate.ts';
+import checkDate from './checkDate.ts';
 import isSameLocation from '@/utils/isSameLocation.ts';
 
 const validateRegisterData = (registerData: RegisterData) => {

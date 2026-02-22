@@ -1,5 +1,5 @@
-import NextRadio from '@/domains/CreatePost/components/Radio.tsx';
-import Index from '@/domains/CreatePost/components/ContentWrap';
+import NextRadio from '../Radio.tsx';
+import Index from '../ContentWrap';
 import MemberIcon from '@/assets/icons/createPost/member-icon.svg?react';
 import { ContentWrapProps } from '../../types/ContentWrapProps.ts';
 

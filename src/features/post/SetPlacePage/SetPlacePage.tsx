@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { SetRegisterDataFunc, SetStep, StepType } from '@/types';
 import getCurrentLocation from '@/utils/location/getCurrentlocation.ts';
 
-import SearchBar from '@/domains/CreatePost/components/setPlace/SearchBar';
+import SearchBar from '../components/setPlace/SearchBar';
 import { MyLocationButton } from './SetPlace.style.ts';
 import LoadingIcon from '@/components/common/LoadingIcon';
-import CreatePostChildPageLayout from '@/domains/CreatePost/components/CreatePostChildPageLayout';
+import CreatePostChildPageLayout from '../components/CreatePostChildPageLayout';
 import ActiveMoveLocationIcon from '@/assets/icons/map/active-move-location-icon.svg?react';
 
 interface SetPlaceProps {

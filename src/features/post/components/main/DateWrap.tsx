@@ -1,7 +1,7 @@
 import formatDate from '@/utils/date/formatDate';
 import { ContentWrapProps } from '../../types/ContentWrapProps.ts';
 
-import Index from '@/domains/CreatePost/components/ContentWrap';
+import Index from '../ContentWrap';
 import { DepartureTimeContainer } from './Wrap.style.ts';
 
 import ClockIcon from '@/assets/icons/createPost/clock-icon.svg?react';

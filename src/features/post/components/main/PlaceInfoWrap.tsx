@@ -3,7 +3,7 @@ import { getAddress } from '@/api/kakaoApi.ts';
 import { ContentWrapProps } from '../../types/ContentWrapProps.ts';
 
 import LocationInfo from '@/components/common/LocationInfo';
-import Index from '@/domains/CreatePost/components/ContentWrap';
+import Index from '../ContentWrap';
 import LocationPinIcon from '@/assets/icons/createPost/location-pin-icon.svg?react';
 
 interface PlaceInfoWrapProps extends ContentWrapProps {

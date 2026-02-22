@@ -1,4 +1,4 @@
-import Index from '@/domains/CreatePost/components/ContentWrap';
+import Index from '../ContentWrap';
 import { CheckLength, TextArea } from './Wrap.style.ts';
 import ExplainIcon from '@/assets/icons/createPost/explain-icon .svg?react';
 import { ContentWrapProps } from '../../types/ContentWrapProps.ts';

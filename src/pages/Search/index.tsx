@@ -5,7 +5,7 @@ import Header from '@/components/common/Layout/Header';
 import SearchList from '@/components/common/SearchList';
 import { SearchInput } from './Search.style.ts';
 import { BackButton } from '@/components/common/Layout/Header/Header.style.ts';
-import { setCenterLocation } from '@/domains/Home/components/Map/HomeMapSlice.ts';
+import { setCenterLocation } from '@/features/home/components/Map/HomeMapSlice.ts';
 import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
 import useCustomNavigation from '@/hooks/useNavigate';
 

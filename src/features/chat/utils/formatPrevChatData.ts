@@ -1,5 +1,5 @@
 import { DetailChatRoom, GroupMessage } from '@/types/chat.ts';
-import formatDateForSystemMessage from '@/domains/ChatRoom/utils/formatDateForSystemMessage.ts';
+import formatDateForSystemMessage from './formatDateForSystemMessage.ts';
 import isSameCompare from './isSameCompare.ts';
 
 const formatPrevChatData = (chatData: DetailChatRoom) => {

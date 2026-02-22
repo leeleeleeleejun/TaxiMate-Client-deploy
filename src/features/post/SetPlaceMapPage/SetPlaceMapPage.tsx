@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { getAddress } from '@/api/kakaoApi.ts';
 
-import Map from '@/domains/CreatePost/components/setPlace/Map.tsx';
+import Map from '../components/setPlace/Map.tsx';
 import LocationInfo from '@/components/common/LocationInfo';
-import CreatePostChildPageLayout from '@/domains/CreatePost/components/CreatePostChildPageLayout';
-import { PLACE_KEYWORDS } from '@/domains/CreatePost/constants/Place.ts';
-import { SubmitButton } from '@/domains/CreatePost/components/SubmitButton.tsx';
+import CreatePostChildPageLayout from '../components/CreatePostChildPageLayout';
+import { PLACE_KEYWORDS } from '../constants/Place.ts';
+import { SubmitButton } from '../components/SubmitButton.tsx';
 import { SubmitContainer } from './SetPlaceMap.style.ts';
 import { SetRegisterDataFunc, StepType } from '@/types';
 

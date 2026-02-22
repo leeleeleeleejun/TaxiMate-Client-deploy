@@ -5,7 +5,7 @@ import TaxiIcon from '@/assets/icons/login/taxi-icon.svg?react';
 import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
 
 import { Header, IconWrap, LoginButton } from './page.style.ts';
-import { getKakaoInga } from '@/domains/Login/api/getKakaoInga.ts';
+import { getKakaoInga } from '@/features/auth/api/getKakaoInga.ts';
 import useCustomNavigation from '@/hooks/useNavigate';
 
 const Index = () => {

@@ -1,32 +1,32 @@
 import { useLocation } from 'react-router-dom';
-import { Place } from '@/domains/PostDetail/types';
+import { Place } from '@/features/post/types/postDetail.types.ts';
 import { PostDetail } from '@/types/post.ts';
 import { useGetPostByIdQuery } from '@/api/postApi.ts';
 import {
   formatNaverMapUrl,
   getWebNaverMapUrl,
-} from '@/domains/PostDetail/utils/formatNaverMapUrl.ts';
-import { formatKakaoTaxiUrl } from '@/domains/PostDetail/utils/formatKakaoTaxiUrl.ts';
-import openOtherApp from '@/domains/PostDetail/utils/openOtherMapApp.ts';
+} from '@/features/post/utils/formatNaverMapUrl.ts';
+import { formatKakaoTaxiUrl } from '@/features/post/utils/formatKakaoTaxiUrl.ts';
+import openOtherApp from '@/features/post/utils/openOtherMapApp.ts';
 
 import {
   NAVER_MAP_IOS_URL,
   NAVER_MAP_ANDROID_URL,
   KAKAO_TAXI_IOS_URL,
   KAKAO_TAXI_ANDROID_URL,
-} from '@/domains/PostDetail/constants';
+} from '@/features/post/constants/postDetail.constants.ts';
 
 import {
   Container,
   ContentContainer,
   MoveInfoContainer,
 } from './page.style.ts';
-import PostDetailHeader from '@/domains/PostDetail/components/PostDetailHeader';
-import PostDetailTitle from '@/domains/PostDetail/components/PostDetailTitle';
+import PostDetailHeader from '@/features/post/components/PostDetailHeader';
+import PostDetailTitle from '@/features/post/components/PostDetailTitle';
 import LocationInfo from '@/components/common/LocationInfo';
-import Map from '@/domains/PostDetail/components/Map';
-import ParticipantsBox from '@/domains/PostDetail/components/ParticipantsBox';
-import ChatActionButtonBox from '@/domains/PostDetail/components/ChatActionButtonBox';
+import Map from '@/features/post/components/Map';
+import ParticipantsBox from '@/features/post/components/ParticipantsBox';
+import ChatActionButtonBox from '@/features/post/components/ChatActionButtonBox';
 import NoData from '@/components/common/NoData.tsx';
 import getTimeAgoString from '@/utils/date/getTimeAgoString';
 import SuspenseContainer from '@/components/common/SuspenseContainer.tsx';
