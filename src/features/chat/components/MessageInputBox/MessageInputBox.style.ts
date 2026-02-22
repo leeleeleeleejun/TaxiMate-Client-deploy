@@ -1,9 +1,13 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.div<{ $keyboardHeight: number }>`
   width: 100%;
   padding: 10px 20px;
   display: flex;
+  position: ${({ $keyboardHeight }) => ($keyboardHeight > 0 ? 'fixed' : 'relative')};
+  bottom: ${({ $keyboardHeight }) => ($keyboardHeight > 0 ? `${$keyboardHeight}px` : 'auto')};
+  background-color: var(--color-white);
+  z-index: 1000;
 `;
 
 export const Input = styled.textarea<{ $inputLineLength: number }>`
