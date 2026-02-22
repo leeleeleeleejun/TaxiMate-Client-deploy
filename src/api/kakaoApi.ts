@@ -1,4 +1,5 @@
 import { API_PATH } from '@/constants/path.ts';
+import { logger } from '@/utils/logger.ts';
 
 const kakaoApiKey = import.meta.env.VITE_KAKAO_API;
 
@@ -21,7 +22,7 @@ export const getAddress = async (x: number, y: number) => {
 
     return result.documents[0];
   } catch (err) {
-    console.error(err);
+    logger.error('Failed to get address:', err);
   }
 };
 
@@ -43,6 +44,6 @@ export const getSearchList = async (query: string, x: string, y: string) => {
 
     return result;
   } catch (err) {
-    console.error(err);
+    logger.error('Failed to search:', err);
   }
 };

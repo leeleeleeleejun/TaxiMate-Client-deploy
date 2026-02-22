@@ -7,6 +7,7 @@ import { getAccessToken } from '@/api/baseApi.ts';
 import { eventBus } from '@/utils/chat/eventBus.ts';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
+import { logger } from '@/utils/logger.ts';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 export const uuid = uuidv4().replace('-', '');
@@ -19,7 +20,7 @@ export const useStompClient = (): Client | null => {
 
   useEffect(() => {
     if (!isLogin) {
-      console.log('Access token is missing, STOMP connection skipped.');
+      logger.log('Access token is missing, STOMP connection skipped.');
       setIsConnected(false);
       return;
     }
@@ -30,7 +31,7 @@ export const useStompClient = (): Client | null => {
       heartbeatOutgoing: 4000,
       reconnectDelay: 1000,
       onConnect: () => {
-        console.log('Connected to STOMP');
+        logger.log('Connected to STOMP');
         setIsConnected(true);
         client.subscribe(
           '/queue/messages/' + uuid,
@@ -42,11 +43,11 @@ export const useStompClient = (): Client | null => {
         );
       },
       onStompError: (frame) => {
-        console.error(frame);
+        logger.error('STOMP error:', frame);
         setIsConnected(false);
       },
       onDisconnect: () => {
-        console.log('Disconnected');
+        logger.log('Disconnected from STOMP');
         setIsConnected(false);
       },
     });
