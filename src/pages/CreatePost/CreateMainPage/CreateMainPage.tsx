@@ -18,6 +18,7 @@ import { Container, CreateSubmitButton } from './CreateMain.style.ts';
 
 import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
 import useCustomNavigation from '@/hooks/useNavigate';
+import { logger } from '@/utils/logger.ts';
 
 interface CreateMainPageProps {
   registerData: RegisterData;
@@ -52,7 +53,7 @@ export const CreateMainPage = ({
         },
       });
     } catch (err) {
-      console.error('Post creation failed:', err);
+      logger.error('Post creation failed:', err);
       alert('게시글 생성 중 문제가 발생했습니다.');
     }
   };

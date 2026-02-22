@@ -1,71 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-    @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
-    //@font-face {
-    //    font-family: 'Pretendard';
-    //    font-weight: 900;
-    //    font-display: swap;
-    //    src: local('Pretendard Black'), url(/src/assets/fonts/Pretendard-Black.woff2) format('woff2');
-    //}
-    //
-    //@font-face {
-    //    font-family: 'Pretendard';
-    //    font-weight: 800;
-    //    font-display: swap;
-    //    src: local('Pretendard ExtraBold'), url(/src/assets/fonts/Pretendard-ExtraBold.woff2) format('woff2');
-    //}
-    //
-    //@font-face {
-    //    font-family: 'Pretendard';
-    //    font-weight: 700;
-    //    font-display: swap;
-    //    src: local('Pretendard Bold'), url(/src/assets/fonts/Pretendard-Bold.woff2) format('woff2');
-    //}
-    //
-    //@font-face {
-    //    font-family: 'Pretendard';
-    //    font-weight: 600;
-    //    font-display: swap;
-    //    src: local('Pretendard SemiBold'), url(/src/assets/fonts/Pretendard-SemiBold.woff2) format('woff2');
-    //}
-    //
-    //@font-face {
-    //    font-family: 'Pretendard';
-    //    font-weight: 500;
-    //    font-display: swap;
-    //    src: local('Pretendard Medium'), url(/src/assets/fonts/Pretendard-Medium.woff2) format('woff2');
-    //}
-    //
-    //@font-face {
-    //    font-family: 'Pretendard';
-    //    font-weight: 400;
-    //    font-display: swap;
-    //    src: local('Pretendard Regular'), url(/src/assets/fonts/Pretendard-Regular.woff2) format('woff2');
-    //}
-    //
-    //@font-face {
-    //    font-family: 'Pretendard';
-    //    font-weight: 300;
-    //    font-display: swap;
-    //    src: local('Pretendard Light'), url(/src/assets/fonts/Pretendard-Light.woff2) format('woff2');
-    //}
-    //
-    //@font-face {
-    //    font-family: 'Pretendard';
-    //    font-weight: 200;
-    //    font-display: swap;
-    //    src: local('Pretendard ExtraLight'), url(/src/assets/fonts/Pretendard-ExtraLight.woff2) format('woff2');
-    //}
-    //
-    //@font-face {
-    //    font-family: 'Pretendard';
-    //    font-weight: 100;
-    //    font-display: swap;
-    //    src: local('Pretendard Thin'), url(/src/assets/fonts/Pretendard-Thin.woff2) format('woff2');
-    //}
-    
-/* http://meyerweb.com/eric/tools/css/reset/ 
+  @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
+  /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
 */

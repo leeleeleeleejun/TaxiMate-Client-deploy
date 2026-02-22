@@ -5,9 +5,9 @@ import { useGetPostByIdQuery } from '@/api/postApi.ts';
 import {
   formatNaverMapUrl,
   getWebNaverMapUrl,
-} from '@/domains/PostDetail/utiils/formatNaverMapUrl.ts';
-import { formatKakaoTaxiUrl } from '@/domains/PostDetail/utiils/formatKakaoTaxiUrl.ts';
-import openOtherApp from '@/domains/PostDetail/utiils/openOtherMapApp.ts';
+} from '@/domains/PostDetail/utils/formatNaverMapUrl.ts';
+import { formatKakaoTaxiUrl } from '@/domains/PostDetail/utils/formatKakaoTaxiUrl.ts';
+import openOtherApp from '@/domains/PostDetail/utils/openOtherMapApp.ts';
 
 import {
   NAVER_MAP_IOS_URL,

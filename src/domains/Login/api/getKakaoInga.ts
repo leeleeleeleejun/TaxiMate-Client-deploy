@@ -1,4 +1,6 @@
 import { CLIENT_PATH } from '@/constants/path.ts';
+import { logger } from '@/utils/logger.ts';
+
 const localUrl = import.meta.env.VITE_API_LOCAL_URL;
 const kakaoClient = import.meta.env.VITE_KAKAO_CLIENT_ID;
 
@@ -14,6 +16,6 @@ export const getKakaoInga = async () => {
       });
     }
   } catch (error) {
-    console.log(error);
+    logger.error('Kakao auth failed:', error);
   }
 };

@@ -5,6 +5,7 @@ import ArrowUpIcon from '@/assets/icons/chat/arrow-up-icon.svg?react';
 
 import sendMessage from '../../utils/sendMessage';
 import { Container, Input } from './MessageInputBox.style.ts';
+import { logger } from '@/utils/logger.ts';
 
 const MessageInputBox = ({ partyId }: { partyId: string }) => {
   const client = useContext(StompContext);
@@ -19,7 +20,7 @@ const MessageInputBox = ({ partyId }: { partyId: string }) => {
       hiddenInput.current?.focus();
       inputRef.current?.focus();
     } else {
-      console.log('유효하지 않은 메시지이거나 파티입니다.');
+      logger.warn('Invalid message or party');
     }
   };
 

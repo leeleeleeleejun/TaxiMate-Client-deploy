@@ -100,11 +100,7 @@ const HomePage = () => {
           택시팟
           <TaxiIcon />
         </HeaderItem>
-        <button
-        // onClick={() => {
-        //   reactNativePostMessage('like_knu');
-        // }}
-        >
+        <button>
           <KnuLogoIcon />
         </button>
       </Header>
