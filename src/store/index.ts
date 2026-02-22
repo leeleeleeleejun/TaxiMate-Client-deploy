@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { baseApi } from '@/api/baseApi.ts';
 import userSlice from '@/features/user/userSlice.ts';
-import homeMapSlice from '@/domains/Home/components/Map/HomeMapSlice.ts';
+import homeMapSlice from '@/features/home/components/Map/HomeMapSlice.ts';
 
 export const store = configureStore({
   reducer: {

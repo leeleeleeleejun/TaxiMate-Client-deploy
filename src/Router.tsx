@@ -15,17 +15,17 @@ import InAppNotificationLayout from '@/components/common/InAppNotification/InApp
 import ForwardHandler from '@/ForwardHandler.tsx';
 import { StompContext } from '@/store/StompContext.ts';
 
-const HomePage = lazy(() => import('@/pages/Home'));
-const ChatListPage = lazy(() => import('@/pages/ChatRoomList'));
-const ChatRoomPage = lazy(() => import('@/pages/ChatRoom'));
+const HomePage = lazy(() => import('@/features/home/HomePage.tsx'));
+const ChatListPage = lazy(() => import('@/features/chat/ChatRoomListPage.tsx'));
+const ChatRoomPage = lazy(() => import('@/features/chat/ChatRoomPage.tsx'));
 const LoginPage = lazy(() => import('@/features/auth/LoginPage.tsx'));
 const LoginLoadingPage = lazy(
   () => import('@/features/auth/LoginLoadingPage.tsx')
 );
 const SearchPage = lazy(() => import('@/pages/Search'));
-const CreatePostPage = lazy(() => import('@/pages/CreatePost'));
+const CreatePostPage = lazy(() => import('@/features/post/CreatePostPage.tsx'));
 const MyProfilePage = lazy(() => import('@/features/user/MyProfilePage.tsx'));
-const PostDetailPage = lazy(() => import('@/pages/PostDetail'));
+const PostDetailPage = lazy(() => import('@/features/post/PostDetailPage.tsx'));
 const UsageHistoryPage = lazy(() => import('@/features/user/UsageHistoryPage.tsx'));
 
 const defaultProps = new DefaultProps({
