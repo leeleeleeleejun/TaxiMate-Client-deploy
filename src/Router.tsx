@@ -22,7 +22,7 @@ const LoginPage = lazy(() => import('@/features/auth/LoginPage.tsx'));
 const LoginLoadingPage = lazy(
   () => import('@/features/auth/LoginLoadingPage.tsx')
 );
-const SearchPage = lazy(() => import('@/pages/Search'));
+const SearchPage = lazy(() => import('@/features/home/SearchPage.tsx'));
 const CreatePostPage = lazy(() => import('@/features/post/CreatePostPage.tsx'));
 const MyProfilePage = lazy(() => import('@/features/user/MyProfilePage.tsx'));
 const PostDetailPage = lazy(() => import('@/features/post/PostDetailPage.tsx'));
