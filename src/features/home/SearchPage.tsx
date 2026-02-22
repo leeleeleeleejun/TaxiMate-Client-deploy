@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import Header from '@/components/common/Layout/Header';
 import SearchList from '@/components/common/SearchList';
-import { SearchInput } from './Search.style.ts';
+import { SearchInput } from './SearchPage.style.ts';
 import { BackButton } from '@/components/common/Layout/Header/Header.style.ts';
 import { setCenterLocation } from '@/features/home/components/Map/HomeMapSlice.ts';
 import ArrowLeftIcon from '@/assets/icons/common/arrow-left-icon.svg?react';
@@ -20,7 +20,6 @@ const SearchPage = () => {
   }, []);
 
   const listClickHandler = (lat: number, lng: number) => {
-    //메인홈에서 검색 시 사용
     dispatch(setCenterLocation({ lat, lng }));
     goHome({ replace: true });
   };
