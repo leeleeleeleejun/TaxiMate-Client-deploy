@@ -18,15 +18,15 @@ import { StompContext } from '@/store/StompContext.ts';
 const HomePage = lazy(() => import('@/pages/Home'));
 const ChatListPage = lazy(() => import('@/pages/ChatRoomList'));
 const ChatRoomPage = lazy(() => import('@/pages/ChatRoom'));
-const LoginPage = lazy(() => import('@/pages/Login'));
+const LoginPage = lazy(() => import('@/features/auth/LoginPage.tsx'));
 const LoginLoadingPage = lazy(
-  () => import('@/pages/Login/LoginLoadingPage.tsx')
+  () => import('@/features/auth/LoginLoadingPage.tsx')
 );
 const SearchPage = lazy(() => import('@/pages/Search'));
 const CreatePostPage = lazy(() => import('@/pages/CreatePost'));
-const MyProfilePage = lazy(() => import('@/pages/MyProfile'));
+const MyProfilePage = lazy(() => import('@/features/user/MyProfilePage.tsx'));
 const PostDetailPage = lazy(() => import('@/pages/PostDetail'));
-const UsageHistoryPage = lazy(() => import('@/pages/UsageHistory'));
+const UsageHistoryPage = lazy(() => import('@/features/user/UsageHistoryPage.tsx'));
 
 const defaultProps = new DefaultProps({
   Delay: {

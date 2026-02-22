@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Analytics } from '@vercel/analytics/react';
 import Router from '@/Router.tsx';
 import { useGetRefreshAccessTokenQuery } from '@/api/userApi.ts';
-import { setIsLogin } from '@/domains/MyProfile/Slice/userSlice.ts';
+import { setIsLogin } from '@/features/user/userSlice.ts';
 import GlobalStyle from '@/styles/GlobalStyle.ts';
 import { ErrorBoundary } from '@suspensive/react';
 import ErrorBoundaryFallback from '@/ErrorBoundaryFallback.tsx';
