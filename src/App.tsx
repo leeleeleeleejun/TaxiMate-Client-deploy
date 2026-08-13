@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Analytics } from '@vercel/analytics/react';
 import Router from '@/Router.tsx';
@@ -22,20 +22,15 @@ splashDom?.remove();
 
 function App() {
   const dispatch = useDispatch();
-  const [isReady, setIsReady] = useState(false); // 렌더링 준비 상태
-  const { isSuccess, isLoading } = useGetRefreshAccessTokenQuery(null);
+  // refresh 쿠키로 액세스 토큰을 백그라운드에서 재발급한다.
+  // 화면 렌더링을 막지 않고, 인증이 필요한 라우트에서만 AuthChecker가 갱신 완료를 기다린다.
+  const { isSuccess } = useGetRefreshAccessTokenQuery(null);
 
   useEffect(() => {
-    // API 호출이 완료될 때까지 기다림
-    if (!isLoading) {
-      if (isSuccess) {
-        dispatch(setIsLogin(true));
-      }
-      setIsReady(true); // 모든 작업이 완료되었음을 표시
+    if (isSuccess) {
+      dispatch(setIsLogin(true));
     }
-  }, [isSuccess, isLoading, dispatch]);
-
-  if (!isReady) return null;
+  }, [isSuccess, dispatch]);
 
   return (
     <ErrorBoundary fallback={ErrorBoundaryFallback}>
